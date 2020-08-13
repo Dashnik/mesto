@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./pages/style.css">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/header-logo.jpg" alt=''>
+        <div class="header__line"></div>
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img src="./images/Jacques_Cousteau.jpg" class="profile__image" alt='Жак-Ив Кусто'>
+            <div class="profile__info">
+                <h1 class="profile__name">Жак-Ив Кусто 
+                    <img class="profile__name-edit profile__name-edit_open-popup " src="./images/Edit_Button.png"
+                        alt='Редактирование профиля'>
+                </h1>
+                <p class="profile__description">Исследователь океана</p>
+            </div>
+            <img class="profile__rectangle" src="./images/Add Button1.svg" alt='Добавить'>
+        </section>
+        <section class="elements">
+            <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>  
+             <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>
+            <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>
+            <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>
+            <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>
+            <div class="rectangle">
+                <img src="./images/mountain.jpg" alt=''>
+                <div class="rectangle__meta">
+                    <p class="rectangle__title"> Карачаево-Черкесия
+                    </p>
+                    <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__logo">&COPY; 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+        <div class="popup__container">
+            <div class="test">
+                <div type="button" class="popup__close" aria-label="закрыть попап"></div>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input type='text'>
+                <input type='text'>
+                <button type="submit" class="submit"></button>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/script.js"></script>
+</body>
+
+</html>

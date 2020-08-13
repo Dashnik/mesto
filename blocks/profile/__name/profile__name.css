@@ -1,0 +1,31 @@
+.profile__name {
+  width: 201px;
+  margin-top: 0;
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 56px;
+  /* or 207% */
+  margin-bottom: 0;
+  text-align: center;
+  color: #ffffff;
+  width: 93%;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 900px) {
+  .profile__name {
+    /*width: 295px;*/
+    width: 396px;
+    font-size: 42px;
+    text-align: left;
+  }
+
+  .profile__name-edit {
+    width: 24px;
+    padding-left: 2%;
+  }
+}
+.profile__name-edit:hover {
+  opacity: 0.6;
+
+}

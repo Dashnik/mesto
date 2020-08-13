@@ -1,0 +1,10 @@
+@import url(./__title/rectangle__title.css);
+@import url(./__like/rectangle__like.css);
+@import url(./__meta/rectangle__meta.css);
+
+.rectangle {
+  object-fit: contain;
+  height: 361px;
+  background: #ffffff;
+  border-radius: 10px;
+}
