@@ -17,7 +17,7 @@
         <section class="profile">
             <img src="./images/Jacques_Cousteau.jpg" class="profile__image" alt='Жак-Ив Кусто'>
             <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто 
+                <h1 class="profile__name">Жак-Ив Кусто
                     <img class="profile__name-edit profile__name-edit_open-popup " src="./images/Edit_Button.png"
                         alt='Редактирование профиля'>
                 </h1>
@@ -33,8 +33,8 @@
                     </p>
                     <img class="rectangle__like" src="./images/like.svg" alt='лайк'>
                 </div>
-            </div>  
-             <div class="rectangle">
+            </div>
+            <div class="rectangle">
                 <img src="./images/mountain.jpg" alt=''>
                 <div class="rectangle__meta">
                     <p class="rectangle__title"> Карачаево-Черкесия
@@ -84,9 +84,13 @@
             <div class="test">
                 <div type="button" class="popup__close" aria-label="закрыть попап"></div>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type='text'>
-                <input type='text'>
-                <button type="submit" class="submit"></button>
+                    <input type='text' value=""  class="popup__item popup__name">
+                    <img class="line" src="./images/popup_Line.svg">              
+                    <input type='text' value=""  class="popup__item popup__description">
+                    <img class="line" src="./images/popup_Line.svg">
+                    <button type="submit" class="popup__submit">
+                        <div class='submit__name'>Сохранить</div>
+                    </button>              
             </div>
         </div>
     </div>

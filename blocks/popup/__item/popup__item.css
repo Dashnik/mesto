@@ -1,0 +1,10 @@
+.popup__item {
+  width: 358px;
+  height: 27px;
+  padding:0;
+  border:none;
+}
+
+.line{
+  margin-bottom: 29px;
+}
