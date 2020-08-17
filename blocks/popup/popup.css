@@ -4,19 +4,25 @@
 @import url(./__submit/popup__submit.css);
 @import url(./__title/popup__title.css);
 
-
-
 .popup {
   display: none;
-  position: absolute;
+  /*position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+*/
+  position: fixed;
+  top: 18%;
+  left: 33%;
+  max-width: 430px;
+  height: 330px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-
-.test{
+/*.test {
   margin: 0 auto;
   width: 83%;
-}
+}*/

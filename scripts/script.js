@@ -10,14 +10,16 @@ const popupToggle = function (event){
   popup.reset();
 }
 
-const closePopup = function (event) {
+/*const closePopup = function (event) {
   if (event.target !== event.currentTarget) return
   popupToggle(event);
 }
+popup.addEventListener('click', closePopup);
+*/
 
 popupOpenButton.addEventListener('click',popupToggle );
 popupCloseButton.addEventListener('click',popupToggle );
-popup.addEventListener('click', closePopup);
+
 
 //установка значений для полей в попапе
 
@@ -65,8 +67,6 @@ function formSubmitHandler (evt) {
     newNameInput.textContent = nameInput;
     newDescriptionInput.textContent = jobInput;
 
-    console.log(nameInput);
-    console.log(jobInput);
     popupToggle(evt);
 }
 
