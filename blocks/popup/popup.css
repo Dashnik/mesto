@@ -5,6 +5,7 @@
 @import url(./__title/popup__title.css);
 
 
+
 .popup {
   display: none;
   position: absolute;
@@ -12,12 +13,13 @@
   right: 0;
   bottom: 0;
   left: 0;
- 
 }
 
+
 .test{
-  display: flex;
+  /*display: flex;
   flex-direction: column;
+*/
   margin: 0 auto;
   width: 83%;
 }
