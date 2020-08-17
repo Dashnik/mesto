@@ -1,6 +1,7 @@
 @import url(./__image/profile__image.css);
 @import url(./__info/profile__info.css);
 @import url(./__rectangle/profile__rectangle.css);
+@import url(./__name-edit/profile__name-edit.css);
 
 .profile{
     width: 89%;
@@ -9,7 +10,6 @@
     margin-bottom: 15%;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 

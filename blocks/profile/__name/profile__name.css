@@ -14,18 +14,9 @@
 
 @media screen and (min-width: 900px) {
   .profile__name {
-    /*width: 295px;*/
-    width: 396px;
+    width: 295px;
     font-size: 42px;
     text-align: left;
   }
-
-  .profile__name-edit {
-    width: 24px;
-    padding-left: 2%;
-  }
 }
-.profile__name-edit:hover {
-  opacity: 0.6;
 
-}
