@@ -1,8 +1,10 @@
 @import url(./__container/popup__container.css);
 @import url(./__close/popup__close.css);
-@import url(./__item/popup__item.css);
+/*@import url(./__item/popup__item.css);*/
 @import url(./__submit/popup__submit.css);
 @import url(./__title/popup__title.css);
+@import url(./__name/popup__name.css);
+@import url(./__description/popup__description.css);
 
 .popup {
   display: none;
@@ -13,16 +15,29 @@
   left: 0;
 */
   position: fixed;
-  top: 18%;
-  left: 33%;
-  max-width: 430px;
-  height: 330px;
+  top: 8%;
+  left: 1%;
+  width: 290px;
+ 
+  height: 340px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
-/*.test {
-  margin: 0 auto;
-  width: 83%;
-}*/
+
+@media screen and (min-width:768px)
+{
+.popup {
+  position: fixed;
+  top: 18%;
+  left: 33%;
+  height: 330px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  width: 430px;
+}
+  
+}
+

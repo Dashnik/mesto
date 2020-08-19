@@ -10,6 +10,7 @@
     right:-9%;
     cursor: pointer;
     background-color: transparent;
+    border:none;
 }
 
 .popup__close:hover {

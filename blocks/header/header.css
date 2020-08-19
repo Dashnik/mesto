@@ -1,5 +1,4 @@
 @import url(./__logo/header__logo.css);
-@import url(./__line/header__line.css);
 
 .header{
     width: 99%;
@@ -8,7 +7,9 @@
     max-width: 882px;   
     margin-left: auto;
     margin-right: auto;
- 
+    border:1px;
+    border-color:  #545454;
+    border-bottom-style: solid;
 }
 
 @media screen and (min-width:900px){

@@ -2,7 +2,7 @@
 @import url(../__description/profile__description.css);
 
 .profile__info{
-    /*display: flex;
+   /* display: flex;
     flex-direction: row;*/
  /*   align-items: center;*/
     margin-top: 4%;
@@ -19,4 +19,5 @@
 .profile__info-table{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }

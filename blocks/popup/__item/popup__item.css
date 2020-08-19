@@ -2,9 +2,13 @@
   width: 358px;
   height: 27px;
   padding:0;
-  border:none;
-}
-
-.line{
+ 
+  border:1px;
+  border-color:  #545454;
+  border-bottom-style: solid;
   margin-bottom: 29px;
 }
+
+/*.line{
+  margin-bottom: 29px;
+}*/
