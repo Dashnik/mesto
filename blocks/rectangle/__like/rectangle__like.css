@@ -6,4 +6,5 @@
   background-image: url(../../../images/like.svg);
   border: none;
   background-color: white;
+  background-repeat: no-repeat;
 }

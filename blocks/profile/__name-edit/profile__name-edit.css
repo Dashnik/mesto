@@ -5,6 +5,7 @@
     border: none;
     background-color: black;
     background-image: url(../../../images/Edit_Button.svg);
+    background-repeat: no-repeat;
 }
 
 
