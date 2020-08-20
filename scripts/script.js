@@ -1,5 +1,5 @@
 const popup = document.querySelector('.popup');
-const popupOpenButton = document.querySelector('.profile__name-edit_open-popup');
+const popupOpenButton = document.querySelector('.profile__name-edit');
 const popupCloseButton = popup.querySelector('.popup__close');
 
 
@@ -28,7 +28,7 @@ let ProfileName = document.querySelector('.profile__name');
 //извлечь оттуда текст и записать в переменную
 let textProfileName = ProfileName.textContent;
 //найти поле в которое хочешь записать значение на попапе
-let nameInput = document.querySelector('.popup__name'); 
+let nameInput = document.querySelector('#popupname'); 
 //Присвоить текстовое значение в атрибут value в input
 nameInput.setAttribute('value', textProfileName);
 
@@ -38,7 +38,7 @@ let ProfileDescription = document.querySelector('.profile__description');
 //извлечь оттуда текст и записать в переменную
 let textProfileDescription = ProfileDescription.textContent;
 //найти поле в которое хочешь записать значение на попапе
-let jobInput = document.querySelector('.popup__description'); 
+let jobInput = document.querySelector('#popupjob'); 
 //Присвоить текстовое значение в атрибут value в input
 jobInput.setAttribute('value', textProfileDescription);
 
@@ -55,8 +55,8 @@ function formSubmitHandler (evt) {
                         // О том, как это делать, расскажем позже.
 
     // Находим поля формы в DOM
-    let nameInput = document.getElementById('namevalue').value; // Воспользуйтесь инструментом .querySelector()
-    let jobInput = document.getElementById('descriptionvalue').value;// Воспользуйтесь инструментом .querySelector()
+    let nameInput = document.getElementById('popupname').value; // Воспользуйтесь инструментом .querySelector()
+    let jobInput = document.getElementById('popupjob').value;// Воспользуйтесь инструментом .querySelector()
 
     // Получите значение полей из свойства value
 

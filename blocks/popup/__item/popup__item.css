@@ -1,5 +1,5 @@
 .popup__item {
-  width: 358px;
+  width: 250px;
   height: 27px;
   padding:0;
  
@@ -9,6 +9,11 @@
   margin-bottom: 29px;
 }
 
-/*.line{
-  margin-bottom: 29px;
-}*/
+
+
+@media screen and (min-width:768px)
+{
+.popup__item {
+    width: 358px;
+}
+}

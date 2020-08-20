@@ -8,3 +8,7 @@
   background-color: white;
   background-repeat: no-repeat;
 }
+
+.rectangle__like:hover{
+  opacity: 0.5;
+}
