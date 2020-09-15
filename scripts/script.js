@@ -1,6 +1,11 @@
+
 const popup = document.querySelector('.popup');
 const popupOpenButton = document.querySelector('.profile__name-edit');
 const popupCloseButton = popup.querySelector('.popup__close');
+
+const popupCards = document.querySelector('.popup_cards');
+const popupCardsOpenButton = document.querySelector('.profile__vector');
+const popupCardsCloseButton = popupCards.querySelector('.popup_cards__close');
 
 
 
@@ -10,16 +15,18 @@ const popupToggle = function (event){
   popup.reset();
 }
 
-/*const closePopup = function (event) {
-  if (event.target !== event.currentTarget) return
-  popupToggle(event);
+const popupCardsToggle = function (event){
+  event.preventDefault();
+  popupCards.classList.toggle('popup_opened');
+  popupCards.reset();
 }
-popup.addEventListener('click', closePopup);
-*/
+
 
 popupOpenButton.addEventListener('click',popupToggle );
 popupCloseButton.addEventListener('click',popupToggle );
 
+popupCardsOpenButton.addEventListener('click', popupCardsToggle);
+popupCardsCloseButton.addEventListener('click',popupCardsToggle);
 
 //установка значений для полей в попапе
 
