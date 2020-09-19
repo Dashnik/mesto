@@ -9,6 +9,7 @@ const popupCardsCloseButton = popupCards.querySelector('.popup_cards__close');
 
 
 
+
 const popupToggle = function (event){
   event.preventDefault();
   popup.classList.toggle('popup_opened');
@@ -80,3 +81,63 @@ function formSubmitHandler (evt) {
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
+
+
+
+const initialCards = [
+  {
+      name: 'Одесса',
+      link: 'https://images.unsplash.com/photo-1600352761482-96c43e9088ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+  },
+  {
+      name: 'Лондон',
+      link: 'https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+  },
+  {
+      name: 'Израиль',
+      link: 'https://images.unsplash.com/photo-1600356381284-f331cdd4a9c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+  },
+  {
+      name: 'Горы в Италии',
+      link: 'https://images.unsplash.com/photo-1600352751860-f4ba11b3f170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+  },
+  {
+      name: 'Норвегия',
+      link: 'https://images.unsplash.com/photo-1600256698643-1d9345bfd9ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+  },
+  {
+    name: 'Калифорния',
+    link: 'https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80'
+}];
+
+
+const itemTemplate = document.querySelector('.placesTemplate').content;
+const list = document.querySelector('.elements');
+
+function render(){
+  initialCards.forEach(renderItems);
+}
+
+function renderItems(){
+
+for (let i = 0; i < initialCards.length; i++){
+  const htmlElement = itemTemplate.cloneNode(true); 
+   htmlElement.querySelector('.image').src = initialCards[i].link ; 
+   htmlElement.querySelector('.image').alt =  initialCards[i].name;
+  htmlElement.querySelector('.rectangle__title').textContent = initialCards[i].name;
+list.append(htmlElement);
+}  
+  
+};
+renderItems();
+
+
+
+/*function renderItems(name, link){
+    const htmlElement = itemTemplate.cloneNode(true);
+     htmlElement.querySelector('.image').src = link.link;
+  list.appendChild(htmlElement);
+ 
+   /*htmlElement.querySelector('.rectangle__title').innerText = name.name;
+    list.appendChild(htmlElement);
+  }; */
