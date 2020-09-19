@@ -8,3 +8,13 @@
   background: #ffffff;
   border-radius: 10px;
 }
+
+/*тестовые данные для проверки картинок*/
+.image{  
+  width: 282px;
+  height: 282px;
+}
+
+.song__like_active{
+  background: url(../../images/black_like.svg) center no-repeat;
+}
