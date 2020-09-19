@@ -7,6 +7,7 @@
   height: 361px;
   background: #ffffff;
   border-radius: 10px;
+  position: relative;
 }
 
 /*тестовые данные для проверки картинок*/
@@ -17,4 +18,15 @@
 
 .song__like_active{
   background: url(../../images/black_like.svg) center no-repeat;
+}
+
+
+.cardTrash{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.cardTrash :hover{
+  opacity: 0.5;
 }

@@ -118,42 +118,44 @@ function renderItems() {
     htmlElement.querySelector(".image").alt = initialCards[i].name;
     htmlElement.querySelector(".rectangle__title").textContent =
       initialCards[i].name;
-      htmlElement.querySelector('.rectangle__like').addEventListener('click', function(evt){
-        evt.target.classList.toggle('song__like_active');
-      });
+    htmlElement.querySelector('.rectangle').setAttribute('id', i);
+     htmlElement.querySelector('.rectangle__like').addEventListener('click', function(evt){
+        evt.target.classList.toggle('song__like_active');});
+     
     list.append(htmlElement);
   }
+  setListeners();
 }
 renderItems();
 
 
 ///////Добавление картинки в дефолтный массив
 
-function createNewPlace (evt){
+function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
 
-//Чтение значения из инпута Название
-let nameNewPlaceInput = document.querySelector('#popupCards').value;
+  //Чтение значения из инпута Название
+  let nameNewPlaceInput = document.querySelector("#popupCards").value;
 
-//Чтение значения из инпута Ссылка
-let linkNewPlaceInput = document.querySelector('#popuplink').value;
+  //Чтение значения из инпута Ссылка
+  let linkNewPlaceInput = document.querySelector("#popuplink").value;
 
-//Добавление инпута Названия и Ссылки в дефолтный массив
-let addingValueToArray = {
-  name: nameNewPlaceInput,
-  link: linkNewPlaceInput,
-};
+  //Добавление инпута Названия и Ссылки в дефолтный массив
+  let addingValueToArray = {
+    name: nameNewPlaceInput,
+    link: linkNewPlaceInput,
+  };
 
-initialCards.splice(0,0,addingValueToArray);
-//Закрытие попапа с добавлением картинки
-popupCardsToggle(evt);
+  initialCards.splice(0, 0, addingValueToArray);
+  //Закрытие попапа с добавлением картинки
+  popupCardsToggle(evt);
 
-//Очистка страницы от старого массива с местами
-list.innerHTML = '';
-//Рендер нового массива
-renderItems();
+  //Очистка страницы от старого массива с местами
+  list.innerHTML = "";
+  //Рендер нового массива
+  renderItems();
 }
 
 // Находим форму в DOM
@@ -165,3 +167,18 @@ formSubmitPlaces.addEventListener("submit", createNewPlace);
 
 
 
+//Удаление карточек из массива
+function removeCard(event){
+ const index = event.target.parentNode.getAttribute('id');
+ initialCards.splice(index,1);
+ list.innerHTML = "";
+ //Рендер нового массива
+ renderItems();
+}
+
+
+function setListeners(){
+  document.querySelectorAll('.cardTrash').forEach((btn)=>{
+      btn.addEventListener('click',removeCard);
+    })
+}
