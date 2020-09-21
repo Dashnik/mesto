@@ -1,7 +1,7 @@
 @import url(./__caption/popupImage__caption.css);
 
 .popupImage {
- 
+ display: none;
   flex-direction: column;
   border: khaki 1px solid;
   max-height: 75vw;

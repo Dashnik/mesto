@@ -6,6 +6,11 @@ const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
+const popupImage = document.querySelector('.popupImage');  
+const popupImageOpenButton = document.querySelector('.elements');
+const popupImageCloseButton = document.querySelector('.popupImage__close');
+
+
 const popupToggle = function (event) {
   event.preventDefault();
   popup.classList.toggle("popup_opened");
@@ -18,11 +23,20 @@ const popupCardsToggle = function (event) {
   popupCards.reset();
 };
 
+const popupImageToggle = function (event) {
+  event.preventDefault();
+  popupImage.classList.toggle("popupImage_active");
+  popupImage.reset();
+};
+
 popupOpenButton.addEventListener("click", popupToggle);
 popupCloseButton.addEventListener("click", popupToggle);
 
 popupCardsOpenButton.addEventListener("click", popupCardsToggle);
 popupCardsCloseButton.addEventListener("click", popupCardsToggle);
+
+popupImageOpenButton.addEventListener('click',popupImageToggle);
+popupImageCloseButton.addEventListener('click', popupImageToggle);
 
 //установка значений для полей в попапе
 
@@ -120,8 +134,7 @@ function renderItems() {
       initialCards[i].name;
     htmlElement.querySelector('.rectangle').setAttribute('id', i);
      htmlElement.querySelector('.rectangle__like').addEventListener('click', function(evt){
-        evt.target.classList.toggle('song__like_active');});
-     
+        evt.target.classList.toggle('song__like_active');});     
     list.append(htmlElement);
   }
   setListeners();
@@ -165,8 +178,6 @@ let formSubmitPlaces = document.querySelector(".popup_cards"); // Восполь
 // он будет следить за событием “submit” - «отправка»
 formSubmitPlaces.addEventListener("submit", createNewPlace);
 
-
-
 //Удаление карточек из массива
 function removeCard(event){
  const index = event.target.parentNode.getAttribute('id');
@@ -176,7 +187,6 @@ function removeCard(event){
  renderItems();
 }
 
-
 function setListeners(){
   document.querySelectorAll('.cardTrash').forEach((btn)=>{
       btn.addEventListener('click',removeCard);
@@ -184,24 +194,9 @@ function setListeners(){
 }
 
 //Переключатель для увеличения картинки на главной форме
-const popupImage = document.querySelector(".popupImage");
-const popupImageClose = popup.querySelector(".popupImage__close");
 
+function increaseImage(){
+  const bigImage = document.querySelector('.bigImage');
+  bigImage.src = 'https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80';
+}
 
-const popupImageToggle = function (event) {
-  event.preventDefault();
-  popupImage.classList.toggle("popupImage_active");
-  popupImage.reset();
-};
-
-popupOpenButton.addEventListener("click", popupImageToggle);
-popupImageClose.addEventListener("click", popupImageToggle);
-
-
-///////////////////////////////////////////////
-
-//открыть попап
-
-//передать туда в качестве аргумента значение пути к картинке
-
-//передавать в качестве аргумента название картинки

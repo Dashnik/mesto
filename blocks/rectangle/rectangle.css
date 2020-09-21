@@ -1,6 +1,7 @@
 @import url(./__title/rectangle__title.css);
 @import url(./__like/rectangle__like.css);
 @import url(./__meta/rectangle__meta.css);
+@import url(./__cardTrash/rectangle__cardTrash.css);
 
 .rectangle {
   object-fit: contain;
@@ -20,13 +21,3 @@
   background: url(../../images/black_like.svg) center no-repeat;
 }
 
-
-.cardTrash{
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-.cardTrash :hover{
-  opacity: 0.1;
-}
