@@ -182,3 +182,26 @@ function setListeners(){
       btn.addEventListener('click',removeCard);
     })
 }
+
+//Переключатель для увеличения картинки на главной форме
+const popupImage = document.querySelector(".popupImage");
+const popupImageClose = popup.querySelector(".popupImage__close");
+
+
+const popupImageToggle = function (event) {
+  event.preventDefault();
+  popupImage.classList.toggle("popupImage_active");
+  popupImage.reset();
+};
+
+popupOpenButton.addEventListener("click", popupImageToggle);
+popupImageClose.addEventListener("click", popupImageToggle);
+
+
+///////////////////////////////////////////////
+
+//открыть попап
+
+//передать туда в качестве аргумента значение пути к картинке
+
+//передавать в качестве аргумента название картинки

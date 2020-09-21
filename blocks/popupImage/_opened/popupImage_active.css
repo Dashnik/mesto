@@ -1,0 +1,4 @@
+.popupImage_active {
+  display: flex;
+  border: 1px solid purple;
+}

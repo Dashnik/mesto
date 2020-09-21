@@ -1,0 +1,14 @@
+@import url(./__caption/popupImage__caption.css);
+
+.popupImage {
+ 
+  flex-direction: column;
+  border: khaki 1px solid;
+  max-height: 75vw;
+  max-height: 75vw;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+}
+
+
