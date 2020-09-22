@@ -15,6 +15,7 @@
 .image{  
   width: 282px;
   height: 282px;
+  border-radius: 10px;
 }
 
 .song__like_active{
