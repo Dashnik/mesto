@@ -184,26 +184,29 @@ function setListeners() {
   btn.addEventListener("click", removeCard);
   });
 
-  document.querySelectorAll('.image').forEach((btn)=>{
+  document.querySelectorAll('.image').forEach((btn) => {
     btn.addEventListener('click', handleImageIncrease);
-  })
+  });
 }
+const popupImage = document.querySelector(".popupImage");
 
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event){
+  popupImage.classList.toggle("popupImage_active"); 
   const index = event.target.parentNode.getAttribute('id');
   const text = initialCards[index];
   const valueFromLink = document.querySelector('.bigImage');
   valueFromLink.src = text.link;  
+  valueFromLink.alt = text.name;
   
   const valueFromName = document.querySelector('.popupImage__caption');
   valueFromName.textContent = text.name; 
 }
 
 
-const popupImage = document.querySelector(".popupImage");
-const popupImageOpenButton = document.querySelector(".image");
+//const popupImage = document.querySelector(".popupImage");
+//const popupImageOpenButton = document.querySelector(".image");
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
 const popupImageToggle = function (event) {
@@ -212,6 +215,6 @@ const popupImageToggle = function (event) {
   popupImage.reset();
 };
 
-popupImageOpenButton.addEventListener("click", popupImageToggle);
+//popupImageOpenButton.addEventListener("click", popupImageToggle);
 popupImageCloseButton.addEventListener("click", popupImageToggle);
 
