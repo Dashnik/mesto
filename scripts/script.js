@@ -6,9 +6,6 @@ const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
-const popupImage = document.querySelector('.popupImage');  
-const popupImageOpenButton = document.querySelector('.elements');
-const popupImageCloseButton = document.querySelector('.popupImage__close');
 
 
 const popupToggle = function (event) {
@@ -23,20 +20,13 @@ const popupCardsToggle = function (event) {
   popupCards.reset();
 };
 
-const popupImageToggle = function (event) {
-  event.preventDefault();
-  popupImage.classList.toggle("popupImage_active");
-  popupImage.reset();
-};
-
 popupOpenButton.addEventListener("click", popupToggle);
 popupCloseButton.addEventListener("click", popupToggle);
 
 popupCardsOpenButton.addEventListener("click", popupCardsToggle);
 popupCardsCloseButton.addEventListener("click", popupCardsToggle);
 
-popupImageOpenButton.addEventListener('click',popupImageToggle);
-popupImageCloseButton.addEventListener('click', popupImageToggle);
+
 
 //установка значений для полей в попапе
 
@@ -132,15 +122,17 @@ function renderItems() {
     htmlElement.querySelector(".image").alt = initialCards[i].name;
     htmlElement.querySelector(".rectangle__title").textContent =
       initialCards[i].name;
-    htmlElement.querySelector('.rectangle').setAttribute('id', i);
-     htmlElement.querySelector('.rectangle__like').addEventListener('click', function(evt){
-        evt.target.classList.toggle('song__like_active');});     
+    htmlElement.querySelector(".rectangle").setAttribute("id", i);
+    htmlElement
+      .querySelector(".rectangle__like")
+      .addEventListener("click", function (evt) {
+        evt.target.classList.toggle("song__like_active");
+      });
     list.append(htmlElement);
   }
   setListeners();
 }
 renderItems();
-
 
 ///////Добавление картинки в дефолтный массив
 
@@ -179,24 +171,47 @@ let formSubmitPlaces = document.querySelector(".popup_cards"); // Восполь
 formSubmitPlaces.addEventListener("submit", createNewPlace);
 
 //Удаление карточек из массива
-function removeCard(event){
- const index = event.target.parentNode.getAttribute('id');
- initialCards.splice(index,1);
- list.innerHTML = "";
- //Рендер нового массива
- renderItems();
+function removeCard(event) {
+  const index = event.target.parentNode.getAttribute("id");
+  initialCards.splice(index, 1);
+  list.innerHTML = "";
+  //Рендер нового массива
+  renderItems();
 }
 
-function setListeners(){
-  document.querySelectorAll('.cardTrash').forEach((btn)=>{
-      btn.addEventListener('click',removeCard);
-    })
+function setListeners() {
+  document.querySelectorAll(".cardTrash").forEach((btn) => {
+  btn.addEventListener("click", removeCard);
+  });
+
+  document.querySelectorAll('.image').forEach((btn)=>{
+    btn.addEventListener('click', handleImageIncrease);
+  })
 }
+
 
 //Переключатель для увеличения картинки на главной форме
-
-function increaseImage(){
-  const bigImage = document.querySelector('.bigImage');
-  bigImage.src = 'https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80';
+function handleImageIncrease(event){
+  const index = event.target.parentNode.getAttribute('id');
+  const text = initialCards[index];
+  const valueFromLink = document.querySelector('.bigImage');
+  valueFromLink.src = text.link;  
+  
+  const valueFromName = document.querySelector('.popupImage__caption');
+  valueFromName.textContent = text.name; 
 }
+
+
+const popupImage = document.querySelector(".popupImage");
+const popupImageOpenButton = document.querySelector(".image");
+const popupImageCloseButton = document.querySelector(".popupImage__close");
+
+const popupImageToggle = function (event) {
+  event.preventDefault();
+  popupImage.classList.toggle("popupImage_active");
+  popupImage.reset();
+};
+
+popupImageOpenButton.addEventListener("click", popupImageToggle);
+popupImageCloseButton.addEventListener("click", popupImageToggle);
 
