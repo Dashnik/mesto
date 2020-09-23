@@ -196,7 +196,7 @@ function handleImageIncrease(event){
   popupImage.classList.toggle("popupImage_active"); 
   const index = event.target.parentNode.getAttribute('id');
   const text = initialCards[index];
-  const valueFromLink = document.querySelector('.bigImage');
+  const valueFromLink = document.querySelector('.popupImage__bigImage');
   valueFromLink.src = text.link;  
   valueFromLink.alt = text.name;
   
@@ -204,9 +204,6 @@ function handleImageIncrease(event){
   valueFromName.textContent = text.name; 
 }
 
-
-//const popupImage = document.querySelector(".popupImage");
-//const popupImageOpenButton = document.querySelector(".image");
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
 const popupImageToggle = function (event) {
@@ -215,6 +212,5 @@ const popupImageToggle = function (event) {
   popupImage.reset();
 };
 
-//popupImageOpenButton.addEventListener("click", popupImageToggle);
 popupImageCloseButton.addEventListener("click", popupImageToggle);
 

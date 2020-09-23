@@ -3,12 +3,27 @@
 .popupImage {
  display: none;
   flex-direction: column;
-  border: khaki 1px solid;
   max-height: 75vw;
   max-height: 75vw;
   position: fixed;
-  left: 50%;
-  top: 50%;
+  left: 6%;
+  top: 16%;
+  transition: ease;
+  background: rgba(0,0,0,0.7);
 }
 
+
+@media screen and (min-width:1020px){
+  .popupImage{
+    left: 40%;
+    top: 40%;
+  }
+}
+
+@media screen and (min-width:760px){
+  .popupImage{
+    left: 30%;
+    top: 30%;
+  }
+}
 
