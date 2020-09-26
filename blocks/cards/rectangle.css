@@ -16,6 +16,8 @@
   width: 282px;
   height: 282px;
   border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .song__like_active{

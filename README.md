@@ -19,3 +19,7 @@
 * [Ссылка на макет в Figma по четвертой проектной работе](
 https://www.figma.com/file/nlYpT4VhFiwimn2YlncrcF/JavaScript.-Sprint-5?node-id=0%3A1)
 
+
+
+В будущем можно исправить следующие пункты:
+1) В html для элементов использовать списки.
