@@ -6,67 +6,89 @@ const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
-
-
-const popupToggle = function (event) {
-  event.preventDefault();
-  popup.classList.toggle("popup_opened");
-  popup.reset();
+const handleToggle = function (NameOfClass, value) {
+  NameOfClass.classList.toggle(value);
+  NameOfClass.reset();
 };
 
-const popupCardsToggle = function (event) {
-  event.preventDefault();
-  popupCards.classList.toggle("popup_opened");
-  popupCards.reset();
-};
+popupOpenButton.addEventListener("click", function(){
+  fillProfile();
+  handleToggle(popup,'popup_opened');
+});
+popupCloseButton.addEventListener("click", function(){
+  handleToggle(popup,'popup_opened');
+});
 
-popupOpenButton.addEventListener("click", popupToggle);
-popupCloseButton.addEventListener("click", popupToggle);
+popupCardsOpenButton.addEventListener("click",  function(){
+  handleToggle(popupCards,'popup_opened');
+});
+popupCardsCloseButton.addEventListener("click",  function(){
+  handleToggle(popupCards,'popup_opened');
+});
 
-popupCardsOpenButton.addEventListener("click", popupCardsToggle);
-popupCardsCloseButton.addEventListener("click", popupCardsToggle);
+function fillProfile(){
+  //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
+  const textProfileName = document.querySelector(".profile__name").textContent;
+  //у меня не получилось использовать ваш код const nameInput.value = profileName.textContent  поэтому теперь так,
+  //зато кода действительно стало меньше
+  //найти поле в которое хочешь записать значение на попапе и установить ему значение из нужного тебе поля
+  /*const nameInput =*/ document
+    .querySelector("#popupname")
+    .setAttribute("value", textProfileName);
 
+  //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
+  const profileDescription = document.querySelector(".profile__description")
+    .textContent;
+  document.querySelector("#popupjob").setAttribute("value", profileDescription);
 
+}
 
-//установка значений для полей в попапе
+////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
+// const popupToggle = function () {
+//   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
+//   const textProfileName = document.querySelector(".profile__name").textContent;
+//   //у меня не получилось использовать ваш код const nameInput.value = profileName.textContent  поэтому теперь так,
+//   //зато кода действительно стало меньше
+//   //найти поле в которое хочешь записать значение на попапе и установить ему значение из нужного тебе поля
+//   /*const nameInput =*/ document
+//     .querySelector("#popupname")
+//     .setAttribute("value", textProfileName);
 
-//Найти нужное поле на странице
-let ProfileName = document.querySelector(".profile__name");
-//извлечь оттуда текст и записать в переменную
-let textProfileName = ProfileName.textContent;
-//найти поле в которое хочешь записать значение на попапе
-let nameInput = document.querySelector("#popupname");
-//Присвоить текстовое значение в атрибут value в input
-nameInput.setAttribute("value", textProfileName);
+//   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
+//   const profileDescription = document.querySelector(".profile__description")
+//     .textContent;
+//   document.querySelector("#popupjob").setAttribute("value", profileDescription);
 
-//Найти нужное поле на странице
-let ProfileDescription = document.querySelector(".profile__description");
-//извлечь оттуда текст и записать в переменную
-let textProfileDescription = ProfileDescription.textContent;
-//найти поле в которое хочешь записать значение на попапе
-let jobInput = document.querySelector("#popupjob");
-//Присвоить текстовое значение в атрибут value в input
-jobInput.setAttribute("value", textProfileDescription);
+//   popup.classList.toggle("popup_opened");
+//   popup.reset();
+// };
 
-// Находим форму в DOM
-let formElement = document.querySelector(".popup"); // Воспользуйтесь методом querySelector()
+// const popupCardsToggle = function () {
+//   //event.preventDefault();
+//   popupCards.classList.toggle("popup_opened");
+//   popupCards.reset();
+// };
+
+//popupOpenButton.addEventListener("click", popupToggle);
+//popupCloseButton.addEventListener("click", popupToggle);
+
+//popupCardsOpenButton.addEventListener("click", popupCardsToggle);
+//popupCardsCloseButton.addEventListener("click", popupCardsToggle);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
 
   // Находим поля формы в DOM
-  let nameInput = document.getElementById("popupname").value; // Воспользуйтесь инструментом .querySelector()
-  let jobInput = document.getElementById("popupjob").value; // Воспользуйтесь инструментом .querySelector()
+  const nameInput = document.getElementById("popupname").value; // Воспользуйтесь инструментом .querySelector()
+  const jobInput = document.getElementById("popupjob").value; // Воспользуйтесь инструментом .querySelector()
 
   // Получите значение полей из свойства value
 
   // Выберите элементы, куда должны быть вставлены значения полей
-  let newNameInput = document.querySelector(".profile__name");
-  let newDescriptionInput = document.querySelector(".profile__description");
+  const newNameInput = document.querySelector(".profile__name");
+  const newDescriptionInput = document.querySelector(".profile__description");
   // Вставьте новые значения с помощью textContent
   newNameInput.textContent = nameInput;
   newDescriptionInput.textContent = jobInput;
@@ -76,7 +98,90 @@ function formSubmitHandler(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener("submit", formSubmitHandler);
+popup.addEventListener("submit", formSubmitHandler);
+
+
+///////Добавление картинки в дефолтный массив
+
+function createNewPlace(evt) {
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+  //Чтение значения из инпута Название
+  const nameNewPlaceInput = document.querySelector("#popupCards").value;
+
+  //Чтение значения из инпута Ссылка
+  const linkNewPlaceInput = document.querySelector("#popuplink").value;
+
+  //Добавление инпута Названия и Ссылки в дефолтный массив
+  const addingValueToArray = {
+    name: nameNewPlaceInput,
+    link: linkNewPlaceInput,
+  };
+
+  initialCards.splice(0, 0, addingValueToArray);
+  //Закрытие попапа с добавлением картинки
+  popupCardsToggle(evt);
+
+  //Очистка страницы от старого массива с местами
+  list.innerHTML = "";
+  //Рендер нового массива
+  renderItems();
+}
+
+// Находим форму в DOM
+//const formSubmitPlaces = document.querySelector(".popup_cards"); // Воспользуйтесь методом querySelector()
+//formSubmitPlaces.addEventListener("submit", createNewPlace);
+
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+popupCards.addEventListener("submit", createNewPlace);
+//Удаление карточек из массива
+function removeCard(event) {
+  const index = event.target.parentNode.getAttribute("id");
+  initialCards.splice(index, 1);
+  list.innerHTML = "";
+  //Рендер нового массива
+  renderItems();
+}
+
+function setListeners() {
+  document.querySelectorAll(".cardTrash").forEach((btn) => {
+    btn.addEventListener("click", removeCard);
+  });
+
+  document.querySelectorAll(".image").forEach((btn) => {
+    btn.addEventListener("click", handleImageIncrease);
+  });
+}
+const popupImage = document.querySelector(".popupImage");
+
+//Переключатель для увеличения картинки на главной форме
+function handleImageIncrease(event) {
+  popupImage.classList.toggle("popupImage_active");
+  const index = event.target.parentNode.getAttribute("id");
+  const text = initialCards[index];
+  const valueFromLink = document.querySelector(".popupImage__bigImage");
+  valueFromLink.src = text.link;
+  valueFromLink.alt = text.name;
+
+  const valueFromName = document.querySelector(".popupImage__caption");
+  valueFromName.textContent = text.name;
+}
+
+const popupImageCloseButton = document.querySelector(".popupImage__close");
+
+////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
+// const popupImageToggle = function (event) {
+//   popupImage.classList.toggle("popupImage_active");
+//   popupImage.reset();
+// };
+//popupImageCloseButton.addEventListener("click", popupImageToggle);
+
+popupImageCloseButton.addEventListener("click", function(){
+  handleToggle(popupImage,'popupImage_active');
+});
+
 
 // Дефолтные картинки при загрузке страницы
 const initialCards = [
@@ -133,84 +238,3 @@ function renderItems() {
   setListeners();
 }
 renderItems();
-
-///////Добавление картинки в дефолтный массив
-
-function createNewPlace(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-
-  //Чтение значения из инпута Название
-  let nameNewPlaceInput = document.querySelector("#popupCards").value;
-
-  //Чтение значения из инпута Ссылка
-  let linkNewPlaceInput = document.querySelector("#popuplink").value;
-
-  //Добавление инпута Названия и Ссылки в дефолтный массив
-  let addingValueToArray = {
-    name: nameNewPlaceInput,
-    link: linkNewPlaceInput,
-  };
-
-  initialCards.splice(0, 0, addingValueToArray);
-  //Закрытие попапа с добавлением картинки
-  popupCardsToggle(evt);
-
-  //Очистка страницы от старого массива с местами
-  list.innerHTML = "";
-  //Рендер нового массива
-  renderItems();
-}
-
-// Находим форму в DOM
-let formSubmitPlaces = document.querySelector(".popup_cards"); // Воспользуйтесь методом querySelector()
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formSubmitPlaces.addEventListener("submit", createNewPlace);
-
-//Удаление карточек из массива
-function removeCard(event) {
-  const index = event.target.parentNode.getAttribute("id");
-  initialCards.splice(index, 1);
-  list.innerHTML = "";
-  //Рендер нового массива
-  renderItems();
-}
-
-function setListeners() {
-  document.querySelectorAll(".cardTrash").forEach((btn) => {
-  btn.addEventListener("click", removeCard);
-  });
-
-  document.querySelectorAll('.image').forEach((btn) => {
-    btn.addEventListener('click', handleImageIncrease);
-  });
-}
-const popupImage = document.querySelector(".popupImage");
-
-
-//Переключатель для увеличения картинки на главной форме
-function handleImageIncrease(event){
-  popupImage.classList.toggle("popupImage_active"); 
-  const index = event.target.parentNode.getAttribute('id');
-  const text = initialCards[index];
-  const valueFromLink = document.querySelector('.popupImage__bigImage');
-  valueFromLink.src = text.link;  
-  valueFromLink.alt = text.name;
-  
-  const valueFromName = document.querySelector('.popupImage__caption');
-  valueFromName.textContent = text.name; 
-}
-
-const popupImageCloseButton = document.querySelector(".popupImage__close");
-
-const popupImageToggle = function (event) {
-  event.preventDefault();
-  popupImage.classList.toggle("popupImage_active");
-  popupImage.reset();
-};
-
-popupImageCloseButton.addEventListener("click", popupImageToggle);
-
