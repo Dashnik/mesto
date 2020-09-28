@@ -168,7 +168,15 @@ function setListeners() {
   document.querySelectorAll(".image").forEach((btn) => {
     btn.addEventListener("click", handleImageIncrease);
   });  
-}
+
+  document.querySelectorAll(".rectangle__like").forEach((btn) => {
+    btn.addEventListener("click", function (evt) {
+           evt.target.classList.toggle("song__like_active");
+        });
+  });  
+};
+
+
 const popupImage = document.querySelector(".popupImage");
 
 //Переключатель для увеличения картинки на главной форме
@@ -248,11 +256,6 @@ function renderItems() {
     htmlElement.querySelector(".rectangle__title").textContent =
       initialCards[i].name;
     htmlElement.querySelector(".rectangle").setAttribute("id", i);
-    htmlElement
-      .querySelector(".rectangle__like")
-      .addEventListener("click", function (evt) {
-        evt.target.classList.toggle("song__like_active");
-      });
     list.append(htmlElement);
   }//<вот эту часть вы хотите чтобы я вынес в отдельный метод?  
   setListeners();
