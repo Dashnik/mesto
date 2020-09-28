@@ -6,6 +6,8 @@ const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
+const popupImageCloseButton = document.querySelector(".popupImage__close");
+
 
 // const handleToggle = function (NameOfClass, value) {
 //   NameOfClass.classList.toggle(value);
@@ -30,6 +32,11 @@ popupCardsOpenButton.addEventListener("click",  function(){
 popupCardsCloseButton.addEventListener("click",  function(){
   handleToggle(popupCards,'popup_opened');
 });
+
+popupImageCloseButton.addEventListener("click", function(){
+  handleToggle(popupImage,'popupImage_active');
+});
+
 
 
 
@@ -160,7 +167,7 @@ function setListeners() {
 
   document.querySelectorAll(".image").forEach((btn) => {
     btn.addEventListener("click", handleImageIncrease);
-  });
+  });  
 }
 const popupImage = document.querySelector(".popupImage");
 
@@ -177,8 +184,8 @@ function handleImageIncrease(event) {
   valueFromName.textContent = text.name;
 }
 
-
-const popupImageCloseButton = document.querySelector(".popupImage__close");
+////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
+//const popupImageCloseButton = document.querySelector(".popupImage__close");
 
 ////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
 // const popupImageToggle = function (event) {
@@ -188,10 +195,10 @@ const popupImageCloseButton = document.querySelector(".popupImage__close");
 //popupImageCloseButton.addEventListener("click", popupImageToggle);
 
 
-
-popupImageCloseButton.addEventListener("click", function(){
-  handleToggle(popupImage,'popupImage_active');
-});
+////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
+// popupImageCloseButton.addEventListener("click", function(){
+//   handleToggle(popupImage,'popupImage_active');
+// });
 
 
 // Дефолтные картинки при загрузке страницы
@@ -232,6 +239,8 @@ const itemTemplate = document.querySelector(".placesTemplate").content;
 const list = document.querySelector(".elements");
 
 function renderItems() {
+
+  //вот эту часть вы хотите чтобы я вынес в отдельный метод?>
   for (let i = 0; i < initialCards.length; i++) {
     const htmlElement = itemTemplate.cloneNode(true);
     htmlElement.querySelector(".image").src = initialCards[i].link;
@@ -245,7 +254,7 @@ function renderItems() {
         evt.target.classList.toggle("song__like_active");
       });
     list.append(htmlElement);
-  }
+  }//<вот эту часть вы хотите чтобы я вынес в отдельный метод?  
   setListeners();
 }
 renderItems();
