@@ -6,7 +6,12 @@ const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
-const handleToggle = function (NameOfClass, value) {
+
+// const handleToggle = function (NameOfClass, value) {
+//   NameOfClass.classList.toggle(value);
+//   NameOfClass.reset();
+// };
+ function handleToggle(NameOfClass, value) {
   NameOfClass.classList.toggle(value);
   NameOfClass.reset();
 };
@@ -25,6 +30,9 @@ popupCardsOpenButton.addEventListener("click",  function(){
 popupCardsCloseButton.addEventListener("click",  function(){
   handleToggle(popupCards,'popup_opened');
 });
+
+
+
 
 function fillProfile(){
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
@@ -93,7 +101,7 @@ function formSubmitHandler(evt) {
   newNameInput.textContent = nameInput;
   newDescriptionInput.textContent = jobInput;
 
-  popupToggle(evt);
+  handleToggle(popup,'popup_opened');
 }
 
 // Прикрепляем обработчик к форме:
@@ -120,7 +128,7 @@ function createNewPlace(evt) {
 
   initialCards.splice(0, 0, addingValueToArray);
   //Закрытие попапа с добавлением картинки
-  popupCardsToggle(evt);
+  handleToggle(popupCards,'popup_opened');
 
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
@@ -169,6 +177,7 @@ function handleImageIncrease(event) {
   valueFromName.textContent = text.name;
 }
 
+
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
 ////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
@@ -177,6 +186,8 @@ const popupImageCloseButton = document.querySelector(".popupImage__close");
 //   popupImage.reset();
 // };
 //popupImageCloseButton.addEventListener("click", popupImageToggle);
+
+
 
 popupImageCloseButton.addEventListener("click", function(){
   handleToggle(popupImage,'popupImage_active');
@@ -238,3 +249,5 @@ function renderItems() {
   setListeners();
 }
 renderItems();
+
+
