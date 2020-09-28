@@ -247,8 +247,13 @@ const itemTemplate = document.querySelector(".placesTemplate").content;
 const list = document.querySelector(".elements");
 
 function renderItems() {
+  extractItems();
+  setListeners();
+}
+renderItems();
 
-  //вот эту часть вы хотите чтобы я вынес в отдельный метод?>
+
+function extractItems(){
   for (let i = 0; i < initialCards.length; i++) {
     const htmlElement = itemTemplate.cloneNode(true);
     htmlElement.querySelector(".image").src = initialCards[i].link;
@@ -257,9 +262,7 @@ function renderItems() {
       initialCards[i].name;
     htmlElement.querySelector(".rectangle").setAttribute("id", i);
     list.append(htmlElement);
-  }//<вот эту часть вы хотите чтобы я вынес в отдельный метод?  
-  setListeners();
+  }
 }
-renderItems();
 
 
