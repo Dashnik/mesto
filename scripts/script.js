@@ -160,21 +160,21 @@ function removeCard(event) {
   renderItems();
 }
 
-function setListeners() {
-  document.querySelectorAll(".cardTrash").forEach((btn) => {
-    btn.addEventListener("click", removeCard);
-  });
+// function setListeners() {
+//   document.querySelectorAll(".cardTrash").forEach((btn) => {
+//     btn.addEventListener("click", removeCard);
+//   });
 
-  document.querySelectorAll(".image").forEach((btn) => {
-    btn.addEventListener("click", handleImageIncrease);
-  });  
+//   document.querySelectorAll(".image").forEach((btn) => {
+//     btn.addEventListener("click", handleImageIncrease);
+//   });  
 
-  document.querySelectorAll(".rectangle__like").forEach((btn) => {
-    btn.addEventListener("click", function (evt) {
-           evt.target.classList.toggle("song__like_active");
-        });
-  });  
-};
+//   document.querySelectorAll(".rectangle__like").forEach((btn) => {
+//     btn.addEventListener("click", function (evt) {
+//            evt.target.classList.toggle("song__like_active");
+//         });
+//   });  
+// };
 
 
 const popupImage = document.querySelector(".popupImage");
@@ -248,7 +248,7 @@ const list = document.querySelector(".elements");
 
 function renderItems() {
   extractItems();
-  setListeners();
+//  setListeners();
 }
 renderItems();
 
@@ -261,6 +261,11 @@ function extractItems(){
     htmlElement.querySelector(".rectangle__title").textContent =
       initialCards[i].name;
     htmlElement.querySelector(".rectangle").setAttribute("id", i);
+    htmlElement.querySelector('.cardTrash').addEventListener('click',removeCard);
+    htmlElement.querySelector('.image').addEventListener('click',handleImageIncrease);
+    htmlElement.querySelector('.rectangle__like').addEventListener('click',function (evt) {
+      evt.target.classList.toggle("song__like_active");
+   });
     list.append(htmlElement);
   }
 }
