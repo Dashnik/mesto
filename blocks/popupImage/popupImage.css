@@ -1,30 +1,13 @@
 @import url(./__caption/popupImage__caption.css);
 
 .popupImage {
- display: none;
   flex-direction: column;
-  max-height: 75vw;
-  max-height: 75vw;
-  position: fixed;
-  left: 6%;
-  top: 16%;
+  max-width: 282px;
+  max-height: 282px;
+  background-color: transparent;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
   transition: ease;
- 
-}
-
-
-@media screen and (min-width:1020px){
-  .popupImage{
-    left: 40%;
-    top: 40%;
-  }
-}
-
-@media screen and (min-width:760px){
-  .popupImage{
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
 }
 

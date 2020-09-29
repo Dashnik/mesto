@@ -8,50 +8,19 @@ const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
+const itemTemplate = document.querySelector(".placesTemplate").content;
+const list = document.querySelector(".elements");
+const popupImage = document.querySelector(".popupImage");
+
 function handleToggle(NameOfClass, value) {
   NameOfClass.classList.toggle(value);
   NameOfClass.reset();
 }
 
-popupOpenButton.addEventListener("click", function () {
-  fillProfile();
-  handleToggle(popup, "popup_opened");
-});
-popupCloseButton.addEventListener("click", function () {
-  handleToggle(popup, "popup_opened");
-});
-
-popupCardsOpenButton.addEventListener("click", function () {
-  handleToggle(popupCards, "popup_opened");
-});
-popupCardsCloseButton.addEventListener("click", function () {
-  handleToggle(popupCards, "popup_opened");
-});
-
-popupImageCloseButton.addEventListener("click", function () {
-  handleToggle(popupImage, "popupImage_active");
-});
-//////////////////////////////////////////////////////////////////////////////
-//const page = document.querySelector('.page');
-
-// const Test = function (event) {
-//   console.log(event.target);
-//   console.log(event.currentTarget);
-//   //if (event.target !== event.currentTarget) return
-//  // handleToggle(popup,'popup_opened');
-// }
-
-// popup.addEventListener("click", Test);
-////////////////////////////////////////////////////////////////////////////////
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
-  //у меня не получилось использовать ваш код const nameInput.value = profileName.textContent  поэтому теперь так,
-  //зато кода действительно стало меньше
-  //найти поле в которое хочешь записать значение на попапе и установить ему значение из нужного тебе поля
-  /*const nameInput =*/ document
-    .querySelector("#popupname")
-    .setAttribute("value", textProfileName);
+document.querySelector("#popupname").setAttribute("value", textProfileName);
 
   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
   const profileDescription = document.querySelector(".profile__description")
@@ -80,12 +49,7 @@ function formSubmitHandler(evt) {
   handleToggle(popup, "popup_opened");
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-popup.addEventListener("submit", formSubmitHandler);
-
 ///////Добавление картинки в дефолтный массив
-
 function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
@@ -111,9 +75,6 @@ function createNewPlace(evt) {
   renderItems();
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-popupCards.addEventListener("submit", createNewPlace);
 //Удаление карточек из массива
 function removeCard(event) {
   const index = event.target.parentNode.getAttribute("id");
@@ -122,8 +83,6 @@ function removeCard(event) {
   //Рендер нового массива
   renderItems();
 }
-
-const popupImage = document.querySelector(".popupImage");
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
@@ -138,6 +97,35 @@ function handleImageIncrease(event) {
   valueFromName.textContent = text.name;
 }
 
+popupOpenButton.addEventListener("click", function () {
+  fillProfile();
+  handleToggle(popup, "popup_opened");
+});
+popupCloseButton.addEventListener("click", function () {
+  handleToggle(popup, "popup_opened");
+});
+
+popupCardsOpenButton.addEventListener("click", function () {
+  handleToggle(popupCards, "popup_opened");
+});
+popupCardsCloseButton.addEventListener("click", function () {
+  handleToggle(popupCards, "popup_opened");
+});
+
+popupImageCloseButton.addEventListener("click", function () {
+  handleToggle(popupImage, "popupImage_active");
+});
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+popup.addEventListener("submit", formSubmitHandler);
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+popupCards.addEventListener("submit", createNewPlace);
+
+
+// const popupImage = document.querySelector(".popupImage");
 
 // Дефолтные картинки при загрузке страницы
 const initialCards = [
@@ -173,12 +161,12 @@ const initialCards = [
   },
 ];
 
-const itemTemplate = document.querySelector(".placesTemplate").content;
-const list = document.querySelector(".elements");
+// const itemTemplate = document.querySelector(".placesTemplate").content;
+// const list = document.querySelector(".elements");
 
 function renderItems() {
   extractItems();
-  //  setListeners();
+  //addCard(list);
 }
 renderItems();
 
@@ -186,8 +174,7 @@ renderItems();
 
 function extractItems() {  
 
-
-  for (let i = 0; i < initialCards.length; i++) {
+    for (let i = 0; i < initialCards.length; i++) {
     const htmlElement = itemTemplate.cloneNode(true);
     const imageclass =  htmlElement.querySelector('.image');
     const imageTitle = htmlElement.querySelector(".rectangle__title");
@@ -207,3 +194,31 @@ function extractItems() {
     list.append(htmlElement);
   }
 }
+  
+function createCard() { 
+  const element = initialCards.forEach(function (i) {
+    //создается DOM элемент карточки 
+    const htmlElement = itemTemplate.cloneNode(true);
+    const imageclass =  htmlElement.querySelector('.image');
+    const imageTitle = htmlElement.querySelector(".rectangle__title");
+    const rectangle = htmlElement.querySelector(".rectangle");
+    const cardTrash = htmlElement.querySelector(".cardTrash");
+    const cardLike = htmlElement.querySelector(".rectangle__like");
+ 
+   //в карточку вставляются данные и навешиваются обработчики 
+    imageclass.src = initialCards.link;
+    imageclass.alt = initialCards.name;
+    imageTitle.textContent = initialCards.name;
+    rectangle.setAttribute("id", i);
+    cardTrash.addEventListener("click", removeCard);
+    imageclass.addEventListener("click", handleImageIncrease);
+    cardLike.addEventListener("click", function (evt) {
+       evt.target.classList.toggle("song__like_active");
+    });
+    return htmlElement;
+  })
+  } 
+
+  function addCard(listElement){
+    listElement.append();
+  }

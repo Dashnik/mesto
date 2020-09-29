@@ -10,20 +10,10 @@
 .popup 
  { 
   display: none;
-  
-  /*position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; */
-
-
   position: fixed;
-  /*top: 8%;
-  left: 1%;*/
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%) translateY(-50%);
   width: 290px; 
   height: 340px;
   background: #ffffff;
@@ -35,9 +25,8 @@
 @media screen and (min-width:768px)
 {
 .popup {
-  transform: translate(-50%, -50%);
   height: 330px;
   width: 430px;
+}  
 }
-  
-}
+
