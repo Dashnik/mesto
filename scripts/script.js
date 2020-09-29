@@ -8,40 +8,42 @@ const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
-
-// const handleToggle = function (NameOfClass, value) {
-//   NameOfClass.classList.toggle(value);
-//   NameOfClass.reset();
-// };
- function handleToggle(NameOfClass, value) {
+function handleToggle(NameOfClass, value) {
   NameOfClass.classList.toggle(value);
   NameOfClass.reset();
-};
+}
 
-popupOpenButton.addEventListener("click", function(){
+popupOpenButton.addEventListener("click", function () {
   fillProfile();
-  handleToggle(popup,'popup_opened');
+  handleToggle(popup, "popup_opened");
 });
-popupCloseButton.addEventListener("click", function(){
-  handleToggle(popup,'popup_opened');
-});
-
-popupCardsOpenButton.addEventListener("click",  function(){
-  handleToggle(popupCards,'popup_opened');
-});
-popupCardsCloseButton.addEventListener("click",  function(){
-  handleToggle(popupCards,'popup_opened');
+popupCloseButton.addEventListener("click", function () {
+  handleToggle(popup, "popup_opened");
 });
 
-popupImageCloseButton.addEventListener("click", function(){
-  handleToggle(popupImage,'popupImage_active');
+popupCardsOpenButton.addEventListener("click", function () {
+  handleToggle(popupCards, "popup_opened");
+});
+popupCardsCloseButton.addEventListener("click", function () {
+  handleToggle(popupCards, "popup_opened");
 });
 
+popupImageCloseButton.addEventListener("click", function () {
+  handleToggle(popupImage, "popupImage_active");
+});
+//////////////////////////////////////////////////////////////////////////////
+//const page = document.querySelector('.page');
 
+// const Test = function (event) {
+//   console.log(event.target);
+//   console.log(event.currentTarget);
+//   //if (event.target !== event.currentTarget) return
+//  // handleToggle(popup,'popup_opened');
+// }
 
-
-
-function fillProfile(){
+// popup.addEventListener("click", Test);
+////////////////////////////////////////////////////////////////////////////////
+function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
   //у меня не получилось использовать ваш код const nameInput.value = profileName.textContent  поэтому теперь так,
@@ -55,40 +57,7 @@ function fillProfile(){
   const profileDescription = document.querySelector(".profile__description")
     .textContent;
   document.querySelector("#popupjob").setAttribute("value", profileDescription);
-
 }
-
-////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
-// const popupToggle = function () {
-//   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
-//   const textProfileName = document.querySelector(".profile__name").textContent;
-//   //у меня не получилось использовать ваш код const nameInput.value = profileName.textContent  поэтому теперь так,
-//   //зато кода действительно стало меньше
-//   //найти поле в которое хочешь записать значение на попапе и установить ему значение из нужного тебе поля
-//   /*const nameInput =*/ document
-//     .querySelector("#popupname")
-//     .setAttribute("value", textProfileName);
-
-//   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
-//   const profileDescription = document.querySelector(".profile__description")
-//     .textContent;
-//   document.querySelector("#popupjob").setAttribute("value", profileDescription);
-
-//   popup.classList.toggle("popup_opened");
-//   popup.reset();
-// };
-
-// const popupCardsToggle = function () {
-//   //event.preventDefault();
-//   popupCards.classList.toggle("popup_opened");
-//   popupCards.reset();
-// };
-
-//popupOpenButton.addEventListener("click", popupToggle);
-//popupCloseButton.addEventListener("click", popupToggle);
-
-//popupCardsOpenButton.addEventListener("click", popupCardsToggle);
-//popupCardsCloseButton.addEventListener("click", popupCardsToggle);
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -108,13 +77,12 @@ function formSubmitHandler(evt) {
   newNameInput.textContent = nameInput;
   newDescriptionInput.textContent = jobInput;
 
-  handleToggle(popup,'popup_opened');
+  handleToggle(popup, "popup_opened");
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 popup.addEventListener("submit", formSubmitHandler);
-
 
 ///////Добавление картинки в дефолтный массив
 
@@ -135,18 +103,13 @@ function createNewPlace(evt) {
 
   initialCards.splice(0, 0, addingValueToArray);
   //Закрытие попапа с добавлением картинки
-  handleToggle(popupCards,'popup_opened');
+  handleToggle(popupCards, "popup_opened");
 
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
   //Рендер нового массива
   renderItems();
 }
-
-// Находим форму в DOM
-//const formSubmitPlaces = document.querySelector(".popup_cards"); // Воспользуйтесь методом querySelector()
-//formSubmitPlaces.addEventListener("submit", createNewPlace);
-
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
@@ -159,23 +122,6 @@ function removeCard(event) {
   //Рендер нового массива
   renderItems();
 }
-
-// function setListeners() {
-//   document.querySelectorAll(".cardTrash").forEach((btn) => {
-//     btn.addEventListener("click", removeCard);
-//   });
-
-//   document.querySelectorAll(".image").forEach((btn) => {
-//     btn.addEventListener("click", handleImageIncrease);
-//   });  
-
-//   document.querySelectorAll(".rectangle__like").forEach((btn) => {
-//     btn.addEventListener("click", function (evt) {
-//            evt.target.classList.toggle("song__like_active");
-//         });
-//   });  
-// };
-
 
 const popupImage = document.querySelector(".popupImage");
 
@@ -191,22 +137,6 @@ function handleImageIncrease(event) {
   const valueFromName = document.querySelector(".popupImage__caption");
   valueFromName.textContent = text.name;
 }
-
-////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
-//const popupImageCloseButton = document.querySelector(".popupImage__close");
-
-////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
-// const popupImageToggle = function (event) {
-//   popupImage.classList.toggle("popupImage_active");
-//   popupImage.reset();
-// };
-//popupImageCloseButton.addEventListener("click", popupImageToggle);
-
-
-////////////////////////////////////this part was obsolete if this work will be accepted so this code should be removed/////////////////////////////
-// popupImageCloseButton.addEventListener("click", function(){
-//   handleToggle(popupImage,'popupImage_active');
-// });
 
 
 // Дефолтные картинки при загрузке страницы
@@ -248,26 +178,32 @@ const list = document.querySelector(".elements");
 
 function renderItems() {
   extractItems();
-//  setListeners();
+  //  setListeners();
 }
 renderItems();
 
 
-function extractItems(){
+
+function extractItems() {  
+
+
   for (let i = 0; i < initialCards.length; i++) {
     const htmlElement = itemTemplate.cloneNode(true);
-    htmlElement.querySelector(".image").src = initialCards[i].link;
-    htmlElement.querySelector(".image").alt = initialCards[i].name;
-    htmlElement.querySelector(".rectangle__title").textContent =
-      initialCards[i].name;
-    htmlElement.querySelector(".rectangle").setAttribute("id", i);
-    htmlElement.querySelector('.cardTrash').addEventListener('click',removeCard);
-    htmlElement.querySelector('.image').addEventListener('click',handleImageIncrease);
-    htmlElement.querySelector('.rectangle__like').addEventListener('click',function (evt) {
-      evt.target.classList.toggle("song__like_active");
-   });
+    const imageclass =  htmlElement.querySelector('.image');
+    const imageTitle = htmlElement.querySelector(".rectangle__title");
+    const rectangle = htmlElement.querySelector(".rectangle");
+    const cardTrash = htmlElement.querySelector(".cardTrash");
+    const cardLike = htmlElement.querySelector(".rectangle__like");
+
+    imageclass.src = initialCards[i].link;
+    imageclass.alt = initialCards[i].name;
+    imageTitle.textContent = initialCards[i].name;
+    rectangle.setAttribute("id", i);
+    cardTrash.addEventListener("click", removeCard);
+    imageclass.addEventListener("click", handleImageIncrease);
+    cardLike.addEventListener("click", function (evt) {
+       evt.target.classList.toggle("song__like_active");
+    });
     list.append(htmlElement);
   }
 }
-
-
