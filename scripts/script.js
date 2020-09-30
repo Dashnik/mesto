@@ -8,7 +8,7 @@ const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 
-const itemTemplate = document.querySelector(".placesTemplate").content;
+const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 
@@ -20,7 +20,7 @@ function handleToggle(NameOfClass, value) {
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
-document.querySelector("#popupname").setAttribute("value", textProfileName);
+  document.querySelector("#popupname").setAttribute("value", textProfileName);
 
   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
   const profileDescription = document.querySelector(".profile__description")
@@ -71,7 +71,7 @@ function createNewPlace(evt) {
 
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
-  //Рендер нового массива
+  //Рендер нового массива с новым элементом
   renderItems();
 }
 
@@ -124,9 +124,6 @@ popup.addEventListener("submit", formSubmitHandler);
 // он будет следить за событием “submit” - «отправка»
 popupCards.addEventListener("submit", createNewPlace);
 
-
-// const popupImage = document.querySelector(".popupImage");
-
 // Дефолтные картинки при загрузке страницы
 const initialCards = [
   {
@@ -161,64 +158,59 @@ const initialCards = [
   },
 ];
 
-// const itemTemplate = document.querySelector(".placesTemplate").content;
-// const list = document.querySelector(".elements");
-
 function renderItems() {
+
   extractItems();
-  //addCard(list);
+  // PutInArray(list)
 }
 renderItems();
 
+function extractItems() {
+  const elements = [];
+  
+  for (let i = 0; i < initialCards.length; i++) {
+    const htmlElement = cardTemplate.cloneNode(true);
+    const cardimage = htmlElement.querySelector(".card__image");
+    const cardTitle = htmlElement.querySelector(".card__title");
+    const card = htmlElement.querySelector(".card");
+    const cardTrash = htmlElement.querySelector(".card__trash");
+    const cardLike = htmlElement.querySelector(".card__like");
 
-
-function extractItems() {  
-
-    for (let i = 0; i < initialCards.length; i++) {
-    const htmlElement = itemTemplate.cloneNode(true);
-    const imageclass =  htmlElement.querySelector('.image');
-    const imageTitle = htmlElement.querySelector(".rectangle__title");
-    const rectangle = htmlElement.querySelector(".rectangle");
-    const cardTrash = htmlElement.querySelector(".cardTrash");
-    const cardLike = htmlElement.querySelector(".rectangle__like");
-
-    imageclass.src = initialCards[i].link;
-    imageclass.alt = initialCards[i].name;
-    imageTitle.textContent = initialCards[i].name;
-    rectangle.setAttribute("id", i);
+    cardimage.src = initialCards[i].link;
+    cardimage.alt = initialCards[i].name;
+    cardTitle.textContent = initialCards[i].name;
+    card.setAttribute("id", i);
     cardTrash.addEventListener("click", removeCard);
-    imageclass.addEventListener("click", handleImageIncrease);
+    cardimage.addEventListener("click", handleImageIncrease);
     cardLike.addEventListener("click", function (evt) {
-       evt.target.classList.toggle("song__like_active");
+      evt.target.classList.toggle("song__like_active");
     });
     list.append(htmlElement);
   }
 }
-  
-function createCard() { 
-  const element = initialCards.forEach(function (i) {
-    //создается DOM элемент карточки 
-    const htmlElement = itemTemplate.cloneNode(true);
-    const imageclass =  htmlElement.querySelector('.image');
-    const imageTitle = htmlElement.querySelector(".rectangle__title");
-    const rectangle = htmlElement.querySelector(".rectangle");
-    const cardTrash = htmlElement.querySelector(".cardTrash");
-    const cardLike = htmlElement.querySelector(".rectangle__like");
- 
-   //в карточку вставляются данные и навешиваются обработчики 
-    imageclass.src = initialCards.link;
-    imageclass.alt = initialCards.name;
-    imageTitle.textContent = initialCards.name;
-    rectangle.setAttribute("id", i);
-    cardTrash.addEventListener("click", removeCard);
-    imageclass.addEventListener("click", handleImageIncrease);
-    cardLike.addEventListener("click", function (evt) {
-       evt.target.classList.toggle("song__like_active");
-    });
-    return htmlElement;
-  })
-  } 
 
-  function addCard(listElement){
-    listElement.append();
-  }
+function createCard(name, link){
+  const htmlElement = cardTemplate.cloneNode(true);
+  const cardimage = htmlElement.querySelector(".card__image");
+  const cardTitle = htmlElement.querySelector(".card__title");
+  const card = htmlElement.querySelector(".card");
+  const cardTrash = htmlElement.querySelector(".card__trash");
+  const cardLike = htmlElement.querySelector(".card__like");
+
+  
+  cardimage.src = initialCards[i].link;
+  cardimage.alt = initialCards[i].name;
+  cardTitle.textContent = initialCards[i].name;
+  card.setAttribute("id", i);
+  cardTrash.addEventListener("click", removeCard);
+  cardimage.addEventListener("click", handleImageIncrease);
+  cardLike.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("song__like_active");
+  });
+
+}
+
+function Test(){
+  createCard();
+  list.append(element);
+}

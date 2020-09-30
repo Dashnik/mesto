@@ -1,4 +1,4 @@
-.rectangle__like {
+.card__like {
   /* padding-left: 20%;*/
   width: 21.5px;
   height: 18px;
@@ -9,6 +9,10 @@
   background-repeat: no-repeat;
 }
 
-.rectangle__like:hover{
+.card__like:hover{
   opacity: 0.5;
+}
+
+.card__like_active{
+  background: url(../../images/black_like.svg) center no-repeat;
 }

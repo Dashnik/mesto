@@ -1,0 +1,14 @@
+@import url(./__title/card__title.css);
+@import url(./__like/card__like.css);
+@import url(./__body/card__body.css);
+@import url(./__trash/card_trash.css);
+@import url(./__image/card__image.css);
+
+.card {
+  object-fit: contain;
+  height: 361px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: relative;
+
+}

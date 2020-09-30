@@ -1,10 +1,10 @@
-.cardTrash {
+.card__trash {
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
 }
 
-.cardTrash:hover {
+.card__trash:hover {
   opacity: 0.5;
 }
