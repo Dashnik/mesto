@@ -158,15 +158,9 @@ const initialCards = [
   },
 ];
 
-function renderItems() {
 
-  extractItems();
-  // PutInArray(list)
-}
-renderItems();
 
 function extractItems() {
-  const elements = [];
   
   for (let i = 0; i < initialCards.length; i++) {
     const htmlElement = cardTemplate.cloneNode(true);
@@ -186,31 +180,45 @@ function extractItems() {
       evt.target.classList.toggle("song__like_active");
     });
     list.append(htmlElement);
+
   }
 }
 
-function createCard(name, link){
-  const htmlElement = cardTemplate.cloneNode(true);
-  const cardimage = htmlElement.querySelector(".card__image");
-  const cardTitle = htmlElement.querySelector(".card__title");
-  const card = htmlElement.querySelector(".card");
-  const cardTrash = htmlElement.querySelector(".card__trash");
-  const cardLike = htmlElement.querySelector(".card__like");
+function renderItems() {
+  extractItems();
+  }
+  renderItems();
 
+const element = function (){
+
+ initialCards.map(function (card){
+    const htmlElement = cardTemplate.cloneNode(true);
+    const cardimage = htmlElement.querySelector(".card__image");
+    const cardTitle = htmlElement.querySelector(".card__title");
+    //const card = htmlElement.querySelector(".card");
+    const cardTrash = htmlElement.querySelector(".card__trash");
+    const cardLike = htmlElement.querySelector(".card__like");
   
-  cardimage.src = initialCards[i].link;
-  cardimage.alt = initialCards[i].name;
-  cardTitle.textContent = initialCards[i].name;
-  card.setAttribute("id", i);
-  cardTrash.addEventListener("click", removeCard);
-  cardimage.addEventListener("click", handleImageIncrease);
-  cardLike.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("song__like_active");
-  });
-
+    
+    cardimage.src = card.link;
+    ///cardimage.alt = TestArray[element].name;
+    cardTitle.textContent = card.name;
+    //card.setAttribute("id", i);
+    cardTrash.addEventListener("click", removeCard);
+    cardimage.addEventListener("click", handleImageIncrease);
+    cardLike.addEventListener("click", function (evt) {
+      evt.target.classList.toggle("song__like_active");
+    });
+   // list.append(htmlElement); 
+    
+  }); 
 }
+ 
+ 
 
-function Test(){
-  createCard();
-  list.append(element);
+
+
+
+function addCard(container, cardElement){
+  container.append(cardElement);
 }
