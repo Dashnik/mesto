@@ -13,4 +13,8 @@
 
 }
 
+.card__like_active {
+  background: url(../../images/black_like.svg) center no-repeat;
+  border: orchid 1px solid;
+}
 

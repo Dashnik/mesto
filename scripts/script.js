@@ -220,7 +220,7 @@ const initialCards = [
 //     cardTrash.addEventListener("click", removeCard);
 //     cardimage.addEventListener("click", handleImageIncrease);
 //     cardLike.addEventListener("click", function (evt) {
-//       evt.target.classList.toggle("song__like_active");
+//       evt.target.classList.toggle("card__like_active");
 //     });
 //     list.append(htmlElement);
 //   }
@@ -246,8 +246,7 @@ const createCard = (name, link, index) => {
   cardTrash.addEventListener("click", removeCard);
   cardimage.addEventListener("click", handleImageIncrease);
    cardLike.addEventListener("click",function (evt) {
-     console.log(evt);
-     evt.target.classList.toggle("song__like_active");
+     evt.target.classList.toggle("card__like_active");
    } );
 
   return cardElement;
