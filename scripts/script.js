@@ -105,9 +105,9 @@ function handleImageIncrease(event) {
 // const page = document.querySelector(".page");
 
 // overlay.addEventListener('click',function(event){
-//   console.log(event.target);
-//   console.log(event.currentTarget);
-// if (event.target === event.currentTarget){
+//   // console.log(event.target);
+//   // console.log(event.currentTarget);
+// if (event.target == event.currentTarget){
 //   togglePopupVisibility(popup);
 // }
 // });
@@ -121,7 +121,7 @@ popupAll.forEach(function(item){
 
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
-  togglePopupVisibility(popup, "popup_opened");
+  togglePopupVisibility(popup);
 });
 
 
@@ -133,7 +133,7 @@ const popupName = document.querySelector(".popup__item");
 
 popupName.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    togglePopupVisibility(popup, "popup_opened");
+    togglePopupVisibility(popup);
   }
 });
 //////////////////////////обработчики событий для попапов//////////////////////
