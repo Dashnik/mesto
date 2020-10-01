@@ -18,6 +18,8 @@
   border-radius: 10px;
   box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
   transition: visibility 0s, opacity 0.5s linear;
+  z-index: 1001;
+
 }
 
 @media screen and (min-width:768px)
@@ -28,3 +30,19 @@
 }  
 }
 
+.overlay{
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  inset: 0px;
+  z-index: 1000;
+  background-color: #000A;
+  transition: visibility 0s, opacity 0.5s linear; 
+}
+
+.overlay.overlay_visible{
+  display: block;
+}

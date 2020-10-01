@@ -12,7 +12,3 @@
 @import url(../blocks/popupImage/popupImage.css);
 @import url(../blocks/popupImage/_opened/popupImage_active.css);
 
-.card__like_active {
-  background: url(../../images/black_like.svg) center no-repeat;
-  border: orchid 1px solid;
-}

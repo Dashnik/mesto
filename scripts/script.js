@@ -1,6 +1,7 @@
 const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
-const popupCloseButton = popup.querySelector(".popup__close");
+const popupAll = document.querySelectorAll(".popup");
+const overlay = document.querySelector('.overlay');
 
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -12,14 +13,10 @@ const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 
-function handleToggle(NameOfClass, value) {
-  NameOfClass.classList.toggle(value);
-  NameOfClass.reset();
-}
-
-function testhandleToggle() {
-  popup.classList.toggle("popup_opened");
+function togglePopupVisibility(popup) {
+  popup.classList.toggle('popup_opened');
   popup.reset();
+  overlay.classList.toggle('overlay_visible');
 }
 
 function fillProfile() {
@@ -51,7 +48,7 @@ function formSubmitHandler(evt) {
   newNameInput.textContent = nameInput;
   newDescriptionInput.textContent = jobInput;
 
-  handleToggle(popup, "popup_opened");
+  togglePopupVisibility(popup, "popup_opened");
 }
 
 ///////Добавление картинки в дефолтный массив
@@ -72,7 +69,7 @@ function createNewPlace(evt) {
 
   initialCards.splice(0, 0, addingValueToArray);
   //Закрытие попапа с добавлением картинки
-  handleToggle(popupCards, "popup_opened");
+  togglePopupVisibility(popupCards, "popup_opened");
 
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
@@ -93,7 +90,8 @@ function removeCard(event) {
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
-  popupImage.classList.toggle("popupImage_active");
+  togglePopupVisibility(popupImage);
+ // popupImage.classList.toggle("popupImage_active");
   const index = event.target.parentNode.getAttribute("id");
   const text = initialCards[index];
   const valueFromLink = document.querySelector(".popupImage__bigImage");
@@ -106,62 +104,39 @@ function handleImageIncrease(event) {
 
 // const page = document.querySelector(".page");
 
-// popup.addEventListener('click',function(event){
+// overlay.addEventListener('click',function(event){
 //   console.log(event.target);
 //   console.log(event.currentTarget);
+// if (event.target === event.currentTarget){
+//   togglePopupVisibility(popup);
+// }
 // });
-//////////////////////////////////тестовые обработчики для попапов////////////////////////////////////
-// popupOpenButton.addEventListener("click", function () {
-//     fillProfile();
-//     testhandleToggle(popup);
-//   });
 
-//   popupCloseButton.addEventListener("click", function(){
+popupAll.forEach(function(item){
+  item.addEventListener('click', function(event){
+   if (event.target.classList.contains('popup__close')){
+    togglePopupVisibility(item);} 
+  })
+})
 
-//     testhandleToggle(popup);
-//   });
-
-//   popupCardsOpenButton.addEventListener("click", function() {
-//     popupCards.classList.toggle("popup_opened");
-//     popupCards.reset();
-//   });
-
-//   popupCloseButton.addEventListener("click", function() {
-//     console.log('hello');
-//     popupCards.classList.toggle("popup_opened");
-//     popupCards.reset();
-//   });
-
-//////////////////////////обработчики событий для попапов//////////////////////
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
-  handleToggle(popup, "popup_opened");
+  togglePopupVisibility(popup, "popup_opened");
 });
 
-popupCloseButton.addEventListener("click", function () {
-  handleToggle(popup, "popup_opened");
-});
 
 popupCardsOpenButton.addEventListener("click", function () {
-  handleToggle(popupCards, "popup_opened");
-});
-
-popupCardsCloseButton.addEventListener("click", function () {
-  handleToggle(popupCards, "popup_opened");
-});
-
-popupImageCloseButton.addEventListener("click", function () {
-  handleToggle(popupImage, "popupImage_active");
+  togglePopupVisibility(popupCards);
 });
 
 const popupName = document.querySelector(".popup__item");
 
 popupName.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
-    handleToggle(popup, "popup_opened");
+    togglePopupVisibility(popup, "popup_opened");
   }
 });
-
+//////////////////////////обработчики событий для попапов//////////////////////
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 popup.addEventListener("submit", formSubmitHandler);
@@ -203,33 +178,6 @@ const initialCards = [
       "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
   },
 ];
-
-// function extractItems() {
-//   for (let i = 0; i < initialCards.length; i++) {
-//     const htmlElement = cardTemplate.cloneNode(true);
-//     const cardimage = htmlElement.querySelector(".card__image");
-//     const cardTitle = htmlElement.querySelector(".card__title");
-//     const card = htmlElement.querySelector(".card");
-//     const cardTrash = htmlElement.querySelector(".card__trash");
-//     const cardLike = htmlElement.querySelector(".card__like");
-
-//     cardimage.src = initialCards[i].link;
-//     cardimage.alt = initialCards[i].name;
-//     cardTitle.textContent = initialCards[i].name;
-//     card.setAttribute("id", i);
-//     cardTrash.addEventListener("click", removeCard);
-//     cardimage.addEventListener("click", handleImageIncrease);
-//     cardLike.addEventListener("click", function (evt) {
-//       evt.target.classList.toggle("card__like_active");
-//     });
-//     list.append(htmlElement);
-//   }
-// }
-
-// function renderItems() {
-//   extractItems();
-// }
-//   renderItems();
 
 const createCard = (name, link, index) => {
   const cardElement = cardTemplate.cloneNode(true);
