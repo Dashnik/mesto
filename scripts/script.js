@@ -17,6 +17,11 @@ function handleToggle(NameOfClass, value) {
   NameOfClass.reset();
 }
 
+function testhandleToggle() {
+  popup.classList.toggle("popup_opened");
+  popup.reset();
+}
+
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
@@ -72,7 +77,8 @@ function createNewPlace(evt) {
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
   //Рендер нового массива с новым элементом
-  renderItems();
+  //renderItems();
+  renderNew();
 }
 
 //Удаление карточек из массива
@@ -81,7 +87,8 @@ function removeCard(event) {
   initialCards.splice(index, 1);
   list.innerHTML = "";
   //Рендер нового массива
-  renderItems();
+  //renderItems();
+  renderNew();
 }
 
 //Переключатель для увеличения картинки на главной форме
@@ -97,10 +104,40 @@ function handleImageIncrease(event) {
   valueFromName.textContent = text.name;
 }
 
+// const page = document.querySelector(".page");
+
+// popup.addEventListener('click',function(event){
+//   console.log(event.target);
+//   console.log(event.currentTarget);
+// });
+//////////////////////////////////тестовые обработчики для попапов////////////////////////////////////
+// popupOpenButton.addEventListener("click", function () {
+//     fillProfile();
+//     testhandleToggle(popup);
+//   });
+
+//   popupCloseButton.addEventListener("click", function(){
+
+//     testhandleToggle(popup);
+//   });
+
+//   popupCardsOpenButton.addEventListener("click", function() {
+//     popupCards.classList.toggle("popup_opened");
+//     popupCards.reset();
+//   });
+
+//   popupCloseButton.addEventListener("click", function() {
+//     console.log('hello');
+//     popupCards.classList.toggle("popup_opened");
+//     popupCards.reset();
+//   });
+
+//////////////////////////обработчики событий для попапов//////////////////////
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
   handleToggle(popup, "popup_opened");
 });
+
 popupCloseButton.addEventListener("click", function () {
   handleToggle(popup, "popup_opened");
 });
@@ -108,12 +145,21 @@ popupCloseButton.addEventListener("click", function () {
 popupCardsOpenButton.addEventListener("click", function () {
   handleToggle(popupCards, "popup_opened");
 });
+
 popupCardsCloseButton.addEventListener("click", function () {
   handleToggle(popupCards, "popup_opened");
 });
 
 popupImageCloseButton.addEventListener("click", function () {
   handleToggle(popupImage, "popupImage_active");
+});
+
+const popupName = document.querySelector(".popup__item");
+
+popupName.addEventListener("keydown", function (evt) {
+  if (evt.key === "Escape") {
+    handleToggle(popup, "popup_opened");
+  }
 });
 
 // Прикрепляем обработчик к форме:
@@ -158,67 +204,65 @@ const initialCards = [
   },
 ];
 
+// function extractItems() {
+//   for (let i = 0; i < initialCards.length; i++) {
+//     const htmlElement = cardTemplate.cloneNode(true);
+//     const cardimage = htmlElement.querySelector(".card__image");
+//     const cardTitle = htmlElement.querySelector(".card__title");
+//     const card = htmlElement.querySelector(".card");
+//     const cardTrash = htmlElement.querySelector(".card__trash");
+//     const cardLike = htmlElement.querySelector(".card__like");
 
+//     cardimage.src = initialCards[i].link;
+//     cardimage.alt = initialCards[i].name;
+//     cardTitle.textContent = initialCards[i].name;
+//     card.setAttribute("id", i);
+//     cardTrash.addEventListener("click", removeCard);
+//     cardimage.addEventListener("click", handleImageIncrease);
+//     cardLike.addEventListener("click", function (evt) {
+//       evt.target.classList.toggle("song__like_active");
+//     });
+//     list.append(htmlElement);
+//   }
+// }
 
-function extractItems() {
-  
-  for (let i = 0; i < initialCards.length; i++) {
-    const htmlElement = cardTemplate.cloneNode(true);
-    const cardimage = htmlElement.querySelector(".card__image");
-    const cardTitle = htmlElement.querySelector(".card__title");
-    const card = htmlElement.querySelector(".card");
-    const cardTrash = htmlElement.querySelector(".card__trash");
-    const cardLike = htmlElement.querySelector(".card__like");
+// function renderItems() {
+//   extractItems();
+// }
+//   renderItems();
 
-    cardimage.src = initialCards[i].link;
-    cardimage.alt = initialCards[i].name;
-    cardTitle.textContent = initialCards[i].name;
-    card.setAttribute("id", i);
-    cardTrash.addEventListener("click", removeCard);
-    cardimage.addEventListener("click", handleImageIncrease);
-    cardLike.addEventListener("click", function (evt) {
-      evt.target.classList.toggle("song__like_active");
-    });
-    list.append(htmlElement);
+const createCard = (name, link, index) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardimage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardTrash = cardElement.querySelector(".card__trash");
+  const cardLike = cardElement.querySelector(".card__like");
+  const card = cardElement.querySelector(".card");
 
-  }
-}
+  cardimage.src = link;
+  cardimage.alt = name;
+  cardTitle.textContent = name;
+  card.setAttribute("id", index);
+  cardTrash.addEventListener("click", removeCard);
+  cardimage.addEventListener("click", handleImageIncrease);
+   cardLike.addEventListener("click",function (evt) {
+     console.log(evt);
+     evt.target.classList.toggle("song__like_active");
+   } );
 
-function renderItems() {
-  extractItems();
-  }
-  renderItems();
+  return cardElement;
+};
 
-const element = function (){
-
- initialCards.map(function (card){
-    const htmlElement = cardTemplate.cloneNode(true);
-    const cardimage = htmlElement.querySelector(".card__image");
-    const cardTitle = htmlElement.querySelector(".card__title");
-    //const card = htmlElement.querySelector(".card");
-    const cardTrash = htmlElement.querySelector(".card__trash");
-    const cardLike = htmlElement.querySelector(".card__like");
-  
-    
-    cardimage.src = card.link;
-    ///cardimage.alt = TestArray[element].name;
-    cardTitle.textContent = card.name;
-    //card.setAttribute("id", i);
-    cardTrash.addEventListener("click", removeCard);
-    cardimage.addEventListener("click", handleImageIncrease);
-    cardLike.addEventListener("click", function (evt) {
-      evt.target.classList.toggle("song__like_active");
-    });
-   // list.append(htmlElement); 
-    
-  }); 
-}
- 
- 
-
-
-
-
-function addCard(container, cardElement){
+const addCard = (container, cardElement) => {
   container.append(cardElement);
+};
+
+function renderNew() {
+  initialCards.forEach(function (card, index) {
+    const cardElement = createCard(card.name, card.link, index);
+
+    addCard(list, cardElement);
+  });
 }
+
+renderNew();
