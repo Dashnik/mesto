@@ -20,13 +20,13 @@ const popupImage = document.querySelector(".popupImage");
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.reset();
-  overlay.classList.toggle('overlay_visible');
+  overlay.classList.remove('overlay_visible');
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   popup.reset();
-  overlay.classList.toggle('overlay_visible');
+  overlay.classList.add('overlay_visible');
 }
 
 function fillProfile() {
@@ -128,7 +128,8 @@ overlay.addEventListener('click',function(event){
     closePopup(item);
   };
   });
-  });
+
+});
 
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
