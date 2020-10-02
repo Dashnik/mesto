@@ -11,8 +11,20 @@ const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 
-function togglePopupVisibility(popup) {
-  popup.classList.toggle('popup_opened');
+// function togglePopupVisibility(popup) {
+//   popup.classList.toggle('popup_opened');
+//   popup.reset();
+//   overlay.classList.toggle('overlay_visible');
+// }
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  popup.reset();
+  overlay.classList.toggle('overlay_visible');
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
   popup.reset();
   overlay.classList.toggle('overlay_visible');
 }
@@ -46,7 +58,8 @@ function formSubmitHandler(evt) {
   newNameInput.textContent = nameInput;
   newDescriptionInput.textContent = jobInput;
 
-  togglePopupVisibility(popup, "popup_opened");
+  //togglePopupVisibility(popup, "popup_opened");
+  closePopup(popup);
 }
 
 ///////Добавление картинки в дефолтный массив
@@ -67,8 +80,8 @@ function createNewPlace(evt) {
 
   initialCards.splice(0, 0, addingValueToArray);
   //Закрытие попапа с добавлением картинки
-  togglePopupVisibility(popupCards, "popup_opened");
-
+  //togglePopupVisibility(popupCards, "popup_opened");
+  closePopup(popupCards);
   //Очистка страницы от старого массива с местами
   list.innerHTML = "";
   //Рендер нового массива с новым элементом
@@ -88,7 +101,7 @@ function removeCard(event) {
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
-  togglePopupVisibility(popupImage);
+  openPopup(popupImage);
   const index = event.target.parentNode.getAttribute("id");
   const text = initialCards[index];
   const valueFromLink = document.querySelector(".popupImage__bigImage");
@@ -100,34 +113,34 @@ function handleImageIncrease(event) {
 }
 
 
-// overlay.addEventListener('click',function(event){
-// if (event.target === overlay){
-//   togglePopupVisibility(popup);
-// };
-// });
-
 popupAll.forEach(function(item){
   item.addEventListener('click', function(event){
    if (event.target.classList.contains('popup__close')){
-    togglePopupVisibility(item);} 
-    
-  //   item.addEventListener("keydown", function(event){
-  //    console.log(event.target);
-  //   });
+    closePopup(item);} 
    });
+  page.addEventListener('keydown', function(evt){
+  if (evt.key === "Escape"){
+    closePopup(item);
+  }
 });
+overlay.addEventListener('click',function(event){
+  if (event.target == overlay){
+    closePopup(item);
+  };
+  });
+  });
 
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
-  togglePopupVisibility(popup);
+  openPopup(popup);
 });
 
 
 popupCardsOpenButton.addEventListener("click", function () {
-  togglePopupVisibility(popupCards);
+  openPopup(popupCards);
 });
 
-const popupName = document.querySelector(".popup__item");
+//const popupName = document.querySelector(".popup__item");
 
 // popupName.addEventListener("keydown", function (evt) {
 //   if (evt.key === "Escape") {
