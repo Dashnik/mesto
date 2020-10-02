@@ -2,13 +2,11 @@ const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
 const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector('.overlay');
-
+const page = document.querySelector('.page');
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
-
 const popupImageCloseButton = document.querySelector(".popupImage__close");
-
 const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
@@ -91,7 +89,6 @@ function removeCard(event) {
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
   togglePopupVisibility(popupImage);
- // popupImage.classList.toggle("popupImage_active");
   const index = event.target.parentNode.getAttribute("id");
   const text = initialCards[index];
   const valueFromLink = document.querySelector(".popupImage__bigImage");
@@ -102,22 +99,23 @@ function handleImageIncrease(event) {
   valueFromName.textContent = text.name;
 }
 
-// const page = document.querySelector(".page");
 
 // overlay.addEventListener('click',function(event){
-//   // console.log(event.target);
-//   // console.log(event.currentTarget);
-// if (event.target == event.currentTarget){
+// if (event.target === overlay){
 //   togglePopupVisibility(popup);
-// }
+// };
 // });
 
 popupAll.forEach(function(item){
   item.addEventListener('click', function(event){
    if (event.target.classList.contains('popup__close')){
     togglePopupVisibility(item);} 
-  })
-})
+    
+  //   item.addEventListener("keydown", function(event){
+  //    console.log(event.target);
+  //   });
+   });
+});
 
 popupOpenButton.addEventListener("click", function () {
   fillProfile();
@@ -131,11 +129,12 @@ popupCardsOpenButton.addEventListener("click", function () {
 
 const popupName = document.querySelector(".popup__item");
 
-popupName.addEventListener("keydown", function (evt) {
-  if (evt.key === "Escape") {
-    togglePopupVisibility(popup);
-  }
-});
+// popupName.addEventListener("keydown", function (evt) {
+//   if (evt.key === "Escape") {
+//     togglePopupVisibility(popup);
+//   }
+// });
+
 //////////////////////////обработчики событий для попапов//////////////////////
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
