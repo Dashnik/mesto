@@ -30,12 +30,12 @@ function openPopup(popup) {
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
-  document.querySelector("#popupname").setAttribute("value", textProfileName);
+  document.querySelector(".popup__item_profile_name").setAttribute("value", textProfileName);
 
   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
   const profileDescription = document.querySelector(".profile__description")
     .textContent;
-  document.querySelector("#popupjob").setAttribute("value", profileDescription);
+  document.querySelector(".popup__item_profile_job").setAttribute("value", profileDescription);
 }
 
 // Обработчик «отправки» формы, хотя пока
@@ -44,8 +44,8 @@ function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   // Находим поля формы в DOM
-  const nameInput = document.getElementById("popupname").value; // Воспользуйтесь инструментом .querySelector()
-  const jobInput = document.getElementById("popupjob").value; // Воспользуйтесь инструментом .querySelector()
+  const nameInput = document.querySelector(".popup__item_profile_name").value; // Воспользуйтесь инструментом .querySelector()
+  const jobInput = document.querySelector(".popup__item_profile_job").value; // Воспользуйтесь инструментом .querySelector()
 
   // Получите значение полей из свойства value
 
@@ -65,10 +65,10 @@ function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   //Чтение значения из инпута Название
-  const nameNewPlaceInput = document.querySelector("#popupCards").value;
+  const nameNewPlaceInput = document.querySelector(".popup__item_input_name").value;
 
   //Чтение значения из инпута Ссылка
-  const linkNewPlaceInput = document.querySelector("#popuplink").value;
+  const linkNewPlaceInput = document.querySelector(".popup__item_input_url").value;
 
   //Добавление инпута Названия и Ссылки в дефолтный массив
   const addingValueToArray = {
