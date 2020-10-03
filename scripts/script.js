@@ -77,16 +77,11 @@ function createNewPlace(evt) {
     name: nameNewPlaceInput,
     link: linkNewPlaceInput,
   };
+  let newPlace =  createCard(addingValueToArray.name,addingValueToArray.link);
 
-  initialCards.splice(0, 0, addingValueToArray);
-  //Закрытие попапа с добавлением картинки
-  //togglePopupVisibility(popupCards, "popup_opened");
   closePopup(popupCards);
-  //Очистка страницы от старого массива с местами
-  list.innerHTML = "";
-  //Рендер нового массива с новым элементом
-  //renderItems();
-  renderNew();
+  //добавление нового элемента на страницу
+  addCard(list, newPlace);
 }
 
 //Удаление карточек из массива
@@ -159,6 +154,40 @@ popup.addEventListener("submit", formSubmitHandler);
 popupCards.addEventListener("submit", createNewPlace);
 
 // Дефолтные картинки при загрузке страницы
+
+
+const createCard = (name, link, index) => {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardimage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardTrash = cardElement.querySelector(".card__trash");
+  const cardLike = cardElement.querySelector(".card__like");
+  const card = cardElement.querySelector(".card");
+
+  cardimage.src = link;
+  cardimage.alt = name;
+  cardTitle.textContent = name;
+  card.setAttribute("id", index);
+  cardTrash.addEventListener("click", removeCard);
+  cardimage.addEventListener("click", handleImageIncrease);
+   cardLike.addEventListener("click",function (evt) {
+     evt.target.classList.toggle("card__like_active");
+   } );
+
+  return cardElement;
+};
+
+const addCard = (container, cardElement) => {
+  container.prepend(cardElement);
+};
+
+function renderNew() {
+  initialCards.forEach(function (card, index) {
+    const cardElement = createCard(card.name, card.link, index);
+
+    addCard(list, cardElement);
+  });
+}
 const initialCards = [
   {
     name: "Одесса",
@@ -191,38 +220,5 @@ const initialCards = [
       "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
   },
 ];
-
-const createCard = (name, link, index) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardimage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardTrash = cardElement.querySelector(".card__trash");
-  const cardLike = cardElement.querySelector(".card__like");
-  const card = cardElement.querySelector(".card");
-
-  cardimage.src = link;
-  cardimage.alt = name;
-  cardTitle.textContent = name;
-  card.setAttribute("id", index);
-  cardTrash.addEventListener("click", removeCard);
-  cardimage.addEventListener("click", handleImageIncrease);
-   cardLike.addEventListener("click",function (evt) {
-     evt.target.classList.toggle("card__like_active");
-   } );
-
-  return cardElement;
-};
-
-const addCard = (container, cardElement) => {
-  container.append(cardElement);
-};
-
-function renderNew() {
-  initialCards.forEach(function (card, index) {
-    const cardElement = createCard(card.name, card.link, index);
-
-    addCard(list, cardElement);
-  });
-}
-
 renderNew();
+
