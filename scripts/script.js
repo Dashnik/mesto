@@ -14,7 +14,6 @@ const popupAllIconTrash = document.querySelectorAll('.card__trash');
 const parentCards = document.querySelector('.elements');
 
 
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.reset();
