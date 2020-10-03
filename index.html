@@ -33,17 +33,18 @@
         <p class="footer__logo">&COPY; 2020 Mesto Russia</p>
     </footer>
     <div class="overlay"></div>
-    <form class="popup" name="popup">
+    <form novalidate class="popup" name="popup" >
         <div class="popup__container">
              <button type="button" class="popup__close" aria-label="закрыть попап"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
             <input type='text' value="" id="popupname" name="popup__name" class="popup__item" minlength="2" maxlength="40" required>
+            <span class="popup__input-error" id='name-input-error'>Вы пропустили это поле</span>
             <input type='text' value="" id="popupjob" name="popup__description" class="popup__item" minlength="2" maxlength="200" required>
             <button type="submit" class="popup__submit"> Сохранить</button>
         </div>
   
     </form>    
-     <form class="popup popup_cards" name="popup">   
+     <form class="popup popup_cards" name="popup" novalidate>   
         <div class="popup__container popup_cards__container">
                <button type="button" class="popup__close" aria-label="закрыть попап"></button>
             <h2 class="popup__title popup_cards__title">Новое место</h2>
@@ -53,7 +54,7 @@
             <button type="submit" class="popup__submit popup_cards__submit"> Создать</button>
         </div>
     </form>
-    <form class="popup popupImage" name="popupImage">
+    <form class="popup popupImage" name="popupImage" novalidate>
         <button type="button" class="popup__close" aria-label="закрыть попап"></button>
         <img class='popupImage__bigImage' src="" alt="">
         <h2 class="popupImage__caption"> </h2>
@@ -72,6 +73,7 @@
 
 
     <script src="./scripts/script.js"></script>   
+    <script src="./scripts/validate.js"></script>   
 </body>
 
 </html>

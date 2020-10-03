@@ -11,7 +11,8 @@
 
 
 /* .popup__item:invalid{
-  border-bottom: 1px solid red; /* красная рамка для некорректных данных 
+  border-bottom: 1px solid red;  
+  color:red;
 } */
 
 @media screen and (min-width:768px)

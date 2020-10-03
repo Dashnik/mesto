@@ -11,11 +11,31 @@ const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 
+
+/////////////////////////////////////Блок про валидацию///////////////////////////////////////////
+// const popupInput = document.querySelector('.popup__item');
+// const popupError = formElement.querySelector(`#${popupInput.id}-error`);
+
+
+
+
+// popup.addEventListener('submit', function (evt) {
+//   // Отменим стандартное поведение по сабмиту
+//   evt.preventDefault();
+// });
+
+// // Вызовем функцию isValid на каждый ввод символа
+// popup.addEventListener('input', checkInputValidity); 
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 // function togglePopupVisibility(popup) {
 //   popup.classList.toggle('popup_opened');
 //   popup.reset();
 //   overlay.classList.toggle('overlay_visible');
 // }
+
+
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
