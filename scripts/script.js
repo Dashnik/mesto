@@ -10,12 +10,10 @@ const popupImageCloseButton = document.querySelector(".popupImage__close");
 const cardTemplate = document.querySelector(".cardTemplate").content;
 const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
+const popupAllIconTrash = document.querySelectorAll('.card__trash');
+const parentCards = document.querySelector('.elements');
 
-// function togglePopupVisibility(popup) {
-//   popup.classList.toggle('popup_opened');
-//   popup.reset();
-//   overlay.classList.toggle('overlay_visible');
-// }
+
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -84,15 +82,12 @@ function createNewPlace(evt) {
   addCard(list, newPlace);
 }
 
-//Удаление карточек из массива
+//Удаление карточек
 function removeCard(event) {
-  const index = event.target.parentNode.getAttribute("id");
-  initialCards.splice(index, 1);
-  list.innerHTML = "";
-  //Рендер нового массива
-  //renderItems();
-  renderNew();
+  const cardChild = event.target.parentNode;
+  parentCards.removeChild(cardChild);
 }
+
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
@@ -123,7 +118,6 @@ overlay.addEventListener('click',function(event){
     closePopup(item);
   };
   });
-
 });
 
 popupOpenButton.addEventListener("click", function () {
@@ -135,14 +129,6 @@ popupOpenButton.addEventListener("click", function () {
 popupCardsOpenButton.addEventListener("click", function () {
   openPopup(popupCards);
 });
-
-//const popupName = document.querySelector(".popup__item");
-
-// popupName.addEventListener("keydown", function (evt) {
-//   if (evt.key === "Escape") {
-//     togglePopupVisibility(popup);
-//   }
-// });
 
 //////////////////////////обработчики событий для попапов//////////////////////
 // Прикрепляем обработчик к форме:
