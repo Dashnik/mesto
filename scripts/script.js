@@ -89,7 +89,7 @@ function createNewPlace(evt) {
     name: nameNewPlaceInput,
     link: linkNewPlaceInput,
   };
-  let newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
+  const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
 
   closePopup(popupCards);
   //добавление нового элемента на страницу

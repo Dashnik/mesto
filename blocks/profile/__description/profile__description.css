@@ -9,6 +9,9 @@
   text-align: center;
 
   color: #ffffff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 900px) {

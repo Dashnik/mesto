@@ -47,9 +47,16 @@
             maxlength="40" 
             required>
             <span class="popup__input-error" id='profile-name-error'>Вы пропустили это поле</span>
-            <input type='text' value="" id="popupjob" name="popup__description"
-                class="popup__input popup__item_profile_job" minlength="2" maxlength="200" required>
-            <span class="form__input-error" id='sign-in-email-error'></span>
+            <input 
+            type='text' 
+            value=""
+            id="profile-job"
+            name="popup__description"
+            class="popup__input popup__item_profile_job" 
+            minlength="2"
+             maxlength="200" 
+             required>
+            <span class="popup__input-error" id='profile-job-error'></span>
             <button type="submit" class="popup__submit"> Сохранить</button>
         </div>
 
@@ -58,13 +65,27 @@
         <div class="popup__container popup_cards__container">
             <button type="button" class="popup__close" aria-label="закрыть попап"></button>
             <h2 class="popup__title popup_cards__title">Новое место</h2>
-            <input type='text' value="" id="popupCards" name="popup__name" class="popup__input popup__item_input_name"
-                placeholder="Название" minlength="1" maxlength="30" required>
-            <span class="form__input-error" id='sign-in-email-error'></span>
-            <input type='url' value="" id="popuplink" name="popup__description"
-                class="popup__input popup__item_input_url" placeholder="Ссылка на картинку" required>
-            <span class="form__input-error" id='sign-in-email-error'></span>
-            <button type="submit" class="popup__submit popup_cards__submit"> Создать</button>
+            <input 
+            type='text' 
+            value="" 
+            id="place-name" 
+            name="popup__name" 
+            class="popup__input popup__item_input_name"
+            placeholder="Название" 
+            minlength="1" 
+            maxlength="30" 
+            required>
+            <span class="popup__input-error" id='place-name-error'></span>
+            <input 
+            type='url'
+            value="" 
+            id="place-link" 
+            name="popup__description"
+            class="popup__input popup__item_input_url" 
+            placeholder="Ссылка на картинку" 
+            required>
+            <span class="popup__input-error" id='place-link-error'></span>
+            <button type="submit" class="popup__submit popup_cards__submit popup__submit_inactive" disabled> Создать</button>
         </div>
     </form>
     <form class="popup popupImage" name="popupImage" novalidate>

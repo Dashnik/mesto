@@ -9,6 +9,9 @@
   text-align: center;
   color: #ffffff;
   width: 93%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 

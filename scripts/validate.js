@@ -1,7 +1,6 @@
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  console.log(errorElement);
 
   errorElement.textContent = errorMessage;
   errorElement.classList.add("popup__input-error_active");
@@ -15,12 +14,17 @@ const hideInputError = (formElement, inputElement) => {
   errorElement.classList.remove("popup__input-error_active");
 };
 
+const getErrorMessage = (inputElement) =>{
+
+    return inputElement.validationMessage;
+}
+
 // Функция, которая проверяет валидность поля
 const checkInputValidity = (formElement, inputElement) => {
   const isInputNotValid = !inputElement.validity.valid;
 
   if (isInputNotValid) {
-    const errorMessage = inputElement.validationMessage;
+    const errorMessage = getErrorMessage(inputElement);
     // Если поле не проходит валидацию, покажем ошибку
     showInputError(formElement, inputElement, errorMessage);
   } else {
@@ -30,10 +34,10 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
-const toggleButtonState = (inputList, buttonElement) =>{
+  const toggleButtonState = (inputList, buttonElement) =>{
     
     const hasInValidInput = inputList.some((inputElement) => !inputElement.validity.valid);
-    console.log(hasInValidInput);
+   
 
     if(hasInValidInput){
         buttonElement.classList.add('popup__submit_inactive');
@@ -45,9 +49,12 @@ const toggleButtonState = (inputList, buttonElement) =>{
     }
     }
 
+
+
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
   const buttonElement = formElement.querySelector('.popup__submit');
+
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
@@ -55,6 +62,8 @@ const setEventListeners = (formElement) => {
       toggleButtonState(inputList, buttonElement);
     });
   });
+
+  //toggleButtonState(inputList, buttonElement);
 };
 
 
@@ -69,3 +78,4 @@ const enableValidation = () => {
   });
 };
 enableValidation();
+
