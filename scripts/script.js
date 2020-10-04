@@ -29,9 +29,12 @@ function openPopup(popup) {
 
 function toggleEsc(event) {
   if (event.key === "Escape") {
-    closePopup(popup);
-    closePopup(popupCards);
-    closePopup(popupImage);
+    popupAll.forEach(function (item){
+      closePopup(item);
+    })
+    // closePopup(popup);
+    // closePopup(popupCards);
+    // closePopup(popupImage);
   }
 }
 
