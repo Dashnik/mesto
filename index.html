@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,24 +33,37 @@
         <p class="footer__logo">&COPY; 2020 Mesto Russia</p>
     </footer>
     <div class="overlay"></div>
-    <form  class="popup" name="popup" novalidate>
+    <form class="popup" name="popup" novalidate>
         <div class="popup__container">
-             <button type="button" class="popup__close" aria-label="закрыть попап"></button>
+            <button type="button" class="popup__close" aria-label="закрыть попап"></button>
             <h2 class="popup__title">Редактировать профиль</h2>
-            <input type='text' value="" id="popupname" name="popup__name" class="popup__input popup__item_profile_name" minlength="2" maxlength="40" required>
+            <input 
+            type='text' 
+            value="" 
+            id="profile-name"
+            name="popup__name" 
+            class="popup__input popup__item_profile_name"
+            minlength="2"
+            maxlength="40" 
+            required>
+            <span class="popup__input-error" id='profile-name-error'>Вы пропустили это поле</span>
+            <input type='text' value="" id="popupjob" name="popup__description"
+                class="popup__input popup__item_profile_job" minlength="2" maxlength="200" required>
             <span class="form__input-error" id='sign-in-email-error'></span>
-            <input type='text' value="" id="popupjob" name="popup__description" class="popup__input popup__item_profile_job" minlength="2" maxlength="200" required>
             <button type="submit" class="popup__submit"> Сохранить</button>
         </div>
-  
-    </form>    
-     <form class="popup popup_cards" name="popup" novalidate>   
+
+    </form>
+    <form class="popup popup_cards" name="popup" novalidate>
         <div class="popup__container popup_cards__container">
-               <button type="button" class="popup__close" aria-label="закрыть попап"></button>
+            <button type="button" class="popup__close" aria-label="закрыть попап"></button>
             <h2 class="popup__title popup_cards__title">Новое место</h2>
-            <input type='text' value="" id="popupCards" name="popup__name" class="popup__input popup__item_input_name" placeholder="Название" minlength="1" maxlength="30" required>
-            <input type='url' value="" id="popuplink" name="popup__description" class="popup__input popup__item_input_url"
-                placeholder="Ссылка на картинку" required>
+            <input type='text' value="" id="popupCards" name="popup__name" class="popup__input popup__item_input_name"
+                placeholder="Название" minlength="1" maxlength="30" required>
+            <span class="form__input-error" id='sign-in-email-error'></span>
+            <input type='url' value="" id="popuplink" name="popup__description"
+                class="popup__input popup__item_input_url" placeholder="Ссылка на картинку" required>
+            <span class="form__input-error" id='sign-in-email-error'></span>
             <button type="submit" class="popup__submit popup_cards__submit"> Создать</button>
         </div>
     </form>
@@ -59,20 +73,20 @@
         <h2 class="popupImage__caption"> </h2>
     </form>
 
-     <template class="cardTemplate">
+    <template class="cardTemplate">
         <div class="card">
-           <img class='card__image' src="" alt=''>
-           <img class="card__trash" src="./images/Trash.svg" alt="мусорка">
-           <div class="card__body">
+            <img class='card__image' src="" alt=''>
+            <img class="card__trash" src="./images/Trash.svg" alt="мусорка">
+            <div class="card__body">
                 <h2 class="card__title"></h2>
                 <button type="button" class=" card__like"></button>
             </div>
         </div>
-    </template> 
+    </template>
 
 
-    <script src="./scripts/script.js"></script>   
-    <script src="./scripts/validate.js"></script>   
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 
 </html>
