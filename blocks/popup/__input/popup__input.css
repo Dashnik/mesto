@@ -9,11 +9,6 @@
   margin-bottom: 29px;
 }
 
-
-/* .popup__item:invalid{
-  border-bottom: 1px solid red; /* красная рамка для некорректных данных 
-} */
-
 @media screen and (min-width:768px)
 {
 .popup__input {

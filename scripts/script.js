@@ -32,9 +32,6 @@ function toggleEsc(event) {
     popupAll.forEach(function (item){
       closePopup(item);
     })
-    // closePopup(popup);
-    // closePopup(popupCards);
-    // closePopup(popupImage);
   }
 }
 
@@ -107,16 +104,15 @@ function removeCard(event) {
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
-  openPopup(popupImage);
-  const index = event.target.parentNode.getAttribute("id");
-  const text = initialCards[index];
-  const valueFromLink = document.querySelector(".popupImage__bigImage");
-  valueFromLink.src = text.link;
-  valueFromLink.alt = text.name;
-
   const valueFromName = document.querySelector(".popupImage__caption");
-  valueFromName.textContent = text.name;
+  const valueFromLink = document.querySelector(".popupImage__bigImage");
+  openPopup(popupImage);
+  const dataFromCard = event.target;
+  valueFromLink.src = dataFromCard.src;
+  valueFromLink.alt = dataFromCard.alt;
+  valueFromName.textContent = dataFromCard.alt;
 }
+
 
 popupAll.forEach(function (item) {
   item.addEventListener("click", function (event) {
@@ -124,12 +120,6 @@ popupAll.forEach(function (item) {
       closePopup(item);
     }
   });
-
-  //   page.addEventListener('keydown', function(evt){
-  //   if (evt.key === "Escape"){
-  //     closePopup(item);
-  //   }
-  // });
   overlay.addEventListener("click", function (event) {
     if (event.target == overlay) {
       closePopup(item);
@@ -184,7 +174,7 @@ const addCard = (container, cardElement) => {
 
 function renderNew() {
   initialCards.forEach(function (card, index) {
-    const cardElement = createCard(card.name, card.link, index);
+    const cardElement = createCard(card.name, card.link,index);
 
     addCard(list, cardElement);
   });
