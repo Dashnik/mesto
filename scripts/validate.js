@@ -4,6 +4,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 
   errorElement.textContent = errorMessage;
   errorElement.classList.add("popup__input-error_active");
+  inputElement.classList.add('popup__input_type_error');
 };
 
 // Функция, которая удаляет класс с ошибкой
@@ -12,6 +13,8 @@ const hideInputError = (formElement, inputElement) => {
 
   errorElement.textContent = "";
   errorElement.classList.remove("popup__input-error_active");
+  inputElement.classList.remove('popup__input_type_error');
+  
 };
 
 const getErrorMessage = (inputElement) =>{
