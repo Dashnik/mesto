@@ -12,6 +12,8 @@ const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 const popupAllIconTrash = document.querySelectorAll(".card__trash");
 const parentCards = document.querySelector(".elements");
+const allSpan = document.querySelectorAll('.popup__input-error');
+const allInput = document.querySelectorAll('.popup__input');
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -19,6 +21,13 @@ function closePopup(popup) {
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
 
+allInput.forEach(function(popup__input_type_error){
+  popup__input_type_error.classList.remove('popup__input_type_error');
+})
+
+allSpan.forEach(function(span){
+    span.classList.remove('popup__input-error_active');
+  })
 }
 
 function openPopup(popup) {
