@@ -18,6 +18,7 @@ function closePopup(popup) {
   popup.reset();
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
+
 }
 
 function openPopup(popup) {

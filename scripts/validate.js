@@ -80,6 +80,7 @@ const formList = Array.from(document.querySelectorAll(params.formSelector));
     });
     setEventListeners(formElement);
   });
+
 };
 
 enableValidation(params = {
