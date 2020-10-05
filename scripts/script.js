@@ -8,7 +8,7 @@ const popupCardsOpenButton = document.querySelector(".profile__vector");
 const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
 const popupImageCloseButton = document.querySelector(".popupImage__close");
 const cardTemplate = document.querySelector(".cardTemplate").content;
-const list = document.querySelector(".elements");
+//const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
 const popupAllIconTrash = document.querySelectorAll(".card__trash");
 const parentCards = document.querySelector(".elements");
@@ -103,7 +103,7 @@ function createNewPlace(evt) {
 
   closePopup(popupCards);
   //добавление нового элемента на страницу
-  addCard(list, newPlace);
+  addCard(parentCards, newPlace);
 }
 
 //Удаление карточек
@@ -186,7 +186,7 @@ function renderNew() {
   initialCards.forEach(function (card, index) {
     const cardElement = createCard(card.name, card.link,index);
 
-    addCard(list, cardElement);
+    addCard(parentCards, cardElement);
   });
 }
 const initialCards = [
