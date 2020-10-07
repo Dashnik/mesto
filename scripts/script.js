@@ -18,7 +18,7 @@ const allInput = document.querySelectorAll(".popup__input");
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
  // popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
-  //Если формы не будут ресетиться при закрытии, то там будут оставаться ошибки
+  //Если формы не будут ресетиться при закрытии, то там будут оставаться  ошибки при повторном открытии!Вас это устраивает?
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
 
