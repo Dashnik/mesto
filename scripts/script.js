@@ -2,22 +2,22 @@ const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
 const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
-const page = document.querySelector(".page");
+//const page = document.querySelector(".page");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
-const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
-const popupImageCloseButton = document.querySelector(".popupImage__close");
+//const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
+//const popupImageCloseButton = document.querySelector(".popupImage__close");
 const cardTemplate = document.querySelector(".cardTemplate").content;
 //const list = document.querySelector(".elements");
 const popupImage = document.querySelector(".popupImage");
-const popupAllIconTrash = document.querySelectorAll(".card__trash");
+//const popupAllIconTrash = document.querySelectorAll(".card__trash");
 const parentCards = document.querySelector(".elements");
 const allSpan = document.querySelectorAll(".popup__input-error");
 const allInput = document.querySelectorAll(".popup__input");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  popup.reset();
+  popup.reset(); //Если формы не будут ресетиться при закрытии, то там будут оставаться ошибки
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
 
@@ -32,39 +32,31 @@ function closePopup(popup) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  popup.reset();
+  //popup.reset()рекомендация от ревьювера
   overlay.classList.add("overlay_visible");
   document.addEventListener("keyup", toggleEsc);
 
-  if (popup !== popupImage) {
-    const inputList = Array.from(popup.querySelectorAll(".popup__input"));
-    //const InputFromPopup = popup.querySelector(".popup__input");
-    const submitButtonFromPopup = popup.querySelector(".popup__submit");
-    //checkInputValidity(popup, InputFromPopup);
-    toggleButtonState(inputList, submitButtonFromPopup);
-  }
-
+  // if (popup !== popupImage) {
+  //   const inputList = Array.from(popup.querySelectorAll(".popup__input"));
+  //   const submitButtonFromPopup = popup.querySelector(".popup__submit");
+  //   toggleButtonState(inputList, submitButtonFromPopup);
+  // }
 }
-
-// if (popup !== popupImage){
-//   const inputList = Array.from(popup.querySelectorAll(".popup__input"));
-//   const InputFromPopup = popup.querySelector(".popup__input");
-//   const submitButtonFromPopup = popup.querySelector(".popup__submit");
-//   const hasInvalidInputs = inputList.map(input =>
-//     checkInputValidity(popup, input)
-//   ).includes(false);
-//  if(!hasInvalidInputs){
-//   toggleButtonState(inputList,submitButtonFromPopup);  }
-// }
-// }
 
 function toggleEsc(event) {
   if (event.key === "Escape") {
-    popupAll.forEach(function (item) {
-      closePopup(item);
-    });
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
   }
 }
+
+// function toggleEsc(event) {
+//   if (event.key === "Escape") {
+//     popupAll.forEach(function (item) {
+//       closePopup(item);
+//     });
+//   }
+// }
 
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
@@ -144,17 +136,25 @@ function handleImageIncrease(event) {
   valueFromName.textContent = dataFromCard.alt;
 }
 
+overlay.addEventListener("click", function (event) {
+  if (event.target == overlay) {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
+});
+
 popupAll.forEach(function (item) {
   item.addEventListener("click", function (event) {
     if (event.target.classList.contains("popup__close")) {
       closePopup(item);
     }
   });
-  overlay.addEventListener("click", function (event) {
-    if (event.target == overlay) {
-      closePopup(item);
-    }
-  });
+  // overlay.addEventListener("click", function (event) {
+  //   if (event.target == overlay) {
+  //     const popup = document.querySelector('.popup_opened');
+  //     closePopup(popup);
+  //   }
+  // });
 });
 
 popupOpenButton.addEventListener("click", function (event) {
