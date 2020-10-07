@@ -17,17 +17,19 @@ const allInput = document.querySelectorAll(".popup__input");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  popup.reset(); //Если формы не будут ресетиться при закрытии, то там будут оставаться ошибки
+ // popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
+  //Если формы не будут ресетиться при закрытии, то там будут оставаться ошибки
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
 
-  allInput.forEach(function (popup__input_type_error) {
-    popup__input_type_error.classList.remove("popup__input_type_error");
-  });
+  //hideInputError(popup,)
+  // allInput.forEach(function (popup__input_type_error) {
+  //   popup__input_type_error.classList.remove("popup__input_type_error");
+  // });
 
-  allSpan.forEach(function (span) {
-    span.classList.remove("popup__input-error_active");
-  });
+  // allSpan.forEach(function (span) {
+  //   span.classList.remove("popup__input-error_active");
+  // });
 }
 
 function openPopup(popup) {
