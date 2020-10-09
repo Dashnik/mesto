@@ -10,6 +10,8 @@ const parentCards = document.querySelector(".elements");
 const allSpan = document.querySelectorAll(".popup__input-error");
 const allInput = document.querySelectorAll(".popup__input");
 
+const textProfileName = document.querySelector(".profile__name");
+
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -49,19 +51,15 @@ function toggleEsc(event) {
 }
 
 function fillProfile() {
-  //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
-  const textProfileName = document.querySelector(".profile__name").textContent;
-  document
-    .querySelector(".popup__item_profile_name")
-    .setAttribute("value", textProfileName);
+  //А В ЧЕМ РАЗНИЦА?тАК У МЕНЯ СТАЛО НА ОДНУ СТРОЧКУ КОДА БОЛЬШЕ
+  const name = textProfileName.textContent;
+  document.querySelector(".popup__item_profile_name").setAttribute("value", name);
 
-  //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
-
+//А ВОТ В ТАКОМ КЕЙСЕ Я ЭКОНОМЛЮ СТРОЧКУ. 
+//p.s. капс был применен для привлечения внимания, я никого не хотел обидеть или накричать.
   const profileDescription = document.querySelector(".profile__description")
     .textContent;
-  document
-    .querySelector(".popup__item_profile_job")
-    .setAttribute("value", profileDescription);
+  document.querySelector(".popup__item_profile_job").setAttribute("value", profileDescription);
 }
 
 // Обработчик «отправки» формы, хотя пока
