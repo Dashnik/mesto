@@ -14,6 +14,10 @@ const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
+const placeInputName = document.querySelector(".popup__item_input_name");
+const placeInputLink = document.querySelector(".popup__item_input_url");
+const valueFromName = document.querySelector(".popupImage__caption");
+const valueFromLink = document.querySelector(".popupImage__bigImage");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -103,12 +107,14 @@ function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   //Чтение значения из инпута Название
-  const nameNewPlaceInput = document.querySelector(".popup__item_input_name")
-    .value;
+  // const nameNewPlaceInput = document.querySelector(".popup__item_input_name")
+  //   .value;
+  const nameNewPlaceInput = placeInputName.value;
 
   //Чтение значения из инпута Ссылка
-  const linkNewPlaceInput = document.querySelector(".popup__item_input_url")
-    .value;
+  // const linkNewPlaceInput = document.querySelector(".popup__item_input_url")
+  //   .value;
+  const linkNewPlaceInput = placeInputLink.value;
 
   //Добавление инпута Названия и Ссылки в дефолтный массив
   const addingValueToArray = {
@@ -126,18 +132,20 @@ function createNewPlace(evt) {
 //Удаление карточек
 function removeCard(event) {
   const cardChild = event.target.parentNode;
-  parentCards.removeChild(cardChild);
+  cardChild.remove();
+  // parentCards.removeChild(cardChild);
 }
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
-  const valueFromName = document.querySelector(".popupImage__caption");
-  const valueFromLink = document.querySelector(".popupImage__bigImage");
-  openPopup(popupImage);
+  // const valueFromName = document.querySelector(".popupImage__caption");
+  // const valueFromLink = document.querySelector(".popupImage__bigImage");
+  // openPopup(popupImage);
   const dataFromCard = event.target;
   valueFromLink.src = dataFromCard.src;
   valueFromLink.alt = dataFromCard.alt;
   valueFromName.textContent = dataFromCard.alt;
+  openPopup(popupImage);
 }
 
 overlay.addEventListener("click", function (event) {
