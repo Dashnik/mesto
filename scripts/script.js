@@ -5,7 +5,7 @@ const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const cardTemplate = document.querySelector(".card-template").content;
-const popupImage = document.querySelector(".popupImage");
+const popupImage = document.querySelector(".popup_image");
 const parentCards = document.querySelector(".elements");
 const allSpan = document.querySelectorAll(".popup__input-error");
 const allInput = document.querySelectorAll(".popup__input");
@@ -13,7 +13,7 @@ const allInput = document.querySelectorAll(".popup__input");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
+  //popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
   //Если формы не будут ресетиться при закрытии, то там будут оставаться  ошибки при повторном открытии!Вас это устраивает?
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
