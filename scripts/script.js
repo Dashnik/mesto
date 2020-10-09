@@ -11,7 +11,9 @@ const allSpan = document.querySelectorAll(".popup__input-error");
 const allInput = document.querySelectorAll(".popup__input");
 
 const textProfileName = document.querySelector(".profile__name");
-
+const profileDescription = document.querySelector(".profile__description");
+const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
+const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -51,36 +53,50 @@ function toggleEsc(event) {
 }
 
 function fillProfile() {
-
   const name = textProfileName.textContent;
-  document.querySelector(".popup__item_profile_name").setAttribute("value", name);
+  document
+    .querySelector(".popup__item_profile_name")
+    .setAttribute("value", name);
 
-  const profileDescription = document.querySelector(".profile__description")
-    .textContent;
-  document.querySelector(".popup__item_profile_job").setAttribute("value", profileDescription);
+  const description = profileDescription.textContent;
+  // const profileDescription = document.querySelector(".profile__description").textContent;
+  document
+    .querySelector(".popup__item_profile_job")
+    .setAttribute("value", description);
 }
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   // Находим поля формы в DOM
-  const nameInput = document.querySelector(".popup__item_profile_name").value; // Воспользуйтесь инструментом .querySelector()
-  const jobInput = document.querySelector(".popup__item_profile_job").value; // Воспользуйтесь инструментом .querySelector()
+  const nameInputValue = nameInput.value; // Воспользуйтесь инструментом .querySelector()
+  const jobInputValue = jobInput.value; // Воспользуйтесь инструментом .querySelector()
 
-  // Получите значение полей из свойства value
+  textProfileName.textContent = nameInputValue;
+  profileDescription.textContent = jobInputValue;
 
-  // Выберите элементы, куда должны быть вставлены значения полей
-  const newNameInput = document.querySelector(".profile__name");
-  const newDescriptionInput = document.querySelector(".profile__description");
-  // Вставьте новые значения с помощью textContent
-  newNameInput.textContent = nameInput;
-  newDescriptionInput.textContent = jobInput;
-
-  //togglePopupVisibility(popup, "popup_opened");
   closePopup(popup);
 }
+
+// function formSubmitHandler(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+//   // Находим поля формы в DOM
+//   const nameInput = document.querySelector(".popup__item_profile_name").value; // Воспользуйтесь инструментом .querySelector()
+//   const jobInput = document.querySelector(".popup__item_profile_job").value; // Воспользуйтесь инструментом .querySelector()
+
+//   // Получите значение полей из свойства value
+
+//   // Выберите элементы, куда должны быть вставлены значения полей
+//   const newNameInput = document.querySelector(".profile__name");
+//   const newDescriptionInput = document.querySelector(".profile__description");
+//   // Вставьте новые значения с помощью textContent
+//   newNameInput.textContent = nameInput;
+//   newDescriptionInput.textContent = jobInput;
+
+//   //togglePopupVisibility(popup, "popup_opened");
+//   closePopup(popup);
+// }
 
 ///////Добавление картинки в дефолтный массив
 function createNewPlace(evt) {
@@ -106,8 +122,6 @@ function createNewPlace(evt) {
   // addCard(parentCards, newPlace);
   addCardReverse(parentCards, newPlace);
 }
-
-
 
 //Удаление карточек
 function removeCard(event) {
@@ -186,10 +200,9 @@ const addCard = (container, cardElement) => {
   container.append(cardElement);
 };
 
-const addCardReverse = (container,cardElement) => {
-
-  container.prepend(cardElement)};
-
+const addCardReverse = (container, cardElement) => {
+  container.prepend(cardElement);
+};
 
 function renderNew() {
   initialCards.forEach(function (card, index) {
