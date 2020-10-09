@@ -2,22 +2,18 @@ const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
 const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
-//const page = document.querySelector(".page");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
-//const popupCardsCloseButton = popupCards.querySelector(".popup_cards__close");
-//const popupImageCloseButton = document.querySelector(".popupImage__close");
-const cardTemplate = document.querySelector(".cardTemplate").content;
-//const list = document.querySelector(".elements");
+const cardTemplate = document.querySelector(".card-template").content;
 const popupImage = document.querySelector(".popupImage");
-//const popupAllIconTrash = document.querySelectorAll(".card__trash");
 const parentCards = document.querySelector(".elements");
 const allSpan = document.querySelectorAll(".popup__input-error");
 const allInput = document.querySelectorAll(".popup__input");
 
+
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
- // popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
+  popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
   //Если формы не будут ресетиться при закрытии, то там будут оставаться  ошибки при повторном открытии!Вас это устраивает?
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
@@ -52,14 +48,6 @@ function toggleEsc(event) {
   }
 }
 
-// function toggleEsc(event) {
-//   if (event.key === "Escape") {
-//     popupAll.forEach(function (item) {
-//       closePopup(item);
-//     });
-//   }
-// }
-
 function fillProfile() {
   //Найти нужное поле на странице и извлечь оттуда текст и записать в переменную
   const textProfileName = document.querySelector(".profile__name").textContent;
@@ -68,6 +56,7 @@ function fillProfile() {
     .setAttribute("value", textProfileName);
 
   //Найти поле с описанием на странице и извлечь оттуда текст и записать в переменную
+
   const profileDescription = document.querySelector(".profile__description")
     .textContent;
   document
@@ -118,8 +107,11 @@ function createNewPlace(evt) {
 
   closePopup(popupCards);
   //добавление нового элемента на страницу
-  addCard(parentCards, newPlace);
+  // addCard(parentCards, newPlace);
+  addCardReverse(parentCards, newPlace);
 }
+
+
 
 //Удаление карточек
 function removeCard(event) {
@@ -139,7 +131,7 @@ function handleImageIncrease(event) {
 }
 
 overlay.addEventListener("click", function (event) {
-  if (event.target == overlay) {
+  if (event.target === event.currentTarget) {
     const popup = document.querySelector(".popup_opened");
     closePopup(popup);
   }
@@ -151,12 +143,6 @@ popupAll.forEach(function (item) {
       closePopup(item);
     }
   });
-  // overlay.addEventListener("click", function (event) {
-  //   if (event.target == overlay) {
-  //     const popup = document.querySelector('.popup_opened');
-  //     closePopup(popup);
-  //   }
-  // });
 });
 
 popupOpenButton.addEventListener("click", function (event) {
@@ -201,8 +187,13 @@ const createCard = (name, link, index) => {
 };
 
 const addCard = (container, cardElement) => {
-  container.prepend(cardElement);
+  container.append(cardElement);
 };
+
+const addCardReverse = (container,cardElement) => {
+
+  container.prepend(cardElement)};
+
 
 function renderNew() {
   initialCards.forEach(function (card, index) {

@@ -7,30 +7,27 @@
 @import url(./__bigImage/popupImage__bigImage.css);
 @import url(./__input-error/popup__input-error.css);
 
-
-.popup 
- { 
-  display: none;
+.popup {
+  /* display: none; transition не работает с display:none */
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  width: 290px; 
+  width: 290px;
   height: 340px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
-  transition: visibility 0s, opacity 0.5s linear;
   z-index: 1001;
-
+  visibility: hidden;
+  opacity: 0;
 }
 
-@media screen and (min-width:768px)
-{
-.popup {
-  height: 330px;
-  width: 430px;
-}  
+@media screen and (min-width: 768px) {
+  .popup {
+    height: 330px;
+    width: 430px;
+  }
 }
 
 .popupImage {
@@ -38,21 +35,19 @@
   max-height: 282px;
 }
 
-
-
-.overlay{
+.overlay {
   display: none;
   position: fixed;
-  top:0;
-  left:0;
-  bottom:0;
-  right:0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   inset: 0px;
   z-index: 1000;
-  background-color: #000A;
-  transition: visibility 0s, opacity 0.5s linear; 
+  background-color: #000a;
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
-.overlay.overlay_visible{
+.overlay.overlay_visible {
   display: block;
 }
