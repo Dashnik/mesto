@@ -51,12 +51,10 @@ function toggleEsc(event) {
 }
 
 function fillProfile() {
-  //А В ЧЕМ РАЗНИЦА?тАК У МЕНЯ СТАЛО НА ОДНУ СТРОЧКУ КОДА БОЛЬШЕ
+
   const name = textProfileName.textContent;
   document.querySelector(".popup__item_profile_name").setAttribute("value", name);
 
-//А ВОТ В ТАКОМ КЕЙСЕ Я ЭКОНОМЛЮ СТРОЧКУ. 
-//p.s. капс был применен для привлечения внимания, я никого не хотел обидеть или накричать.
   const profileDescription = document.querySelector(".profile__description")
     .textContent;
   document.querySelector(".popup__item_profile_job").setAttribute("value", profileDescription);
