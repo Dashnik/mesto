@@ -46,8 +46,6 @@ return valid;
 }
 
 const toggleButtonState = (buttonElement,object,invalid) => {
-
-  //if (invalid === true) { recommendation from reviewer make like below
     if (invalid) {
     buttonElement.classList.add(object.inactiveButtonClass);
  
@@ -55,7 +53,7 @@ const toggleButtonState = (buttonElement,object,invalid) => {
   } else {
     buttonElement.classList.remove(object.inactiveButtonClass);
  
-    // buttonElement.removeAttribute("disabled", true);recommendation from reviewer make like below
+    
     buttonElement.removeAttribute("disabled");
   }
 };
@@ -95,6 +93,3 @@ enableValidation({
   errorClass: 'popup__input-error_active',
   inputErrorClass: 'popup__input_type_error'
 });
-
-
-///все комментариии будут почищены после того как работа будет принята, они мне нужны!

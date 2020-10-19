@@ -21,32 +21,14 @@ const valueFromLink = document.querySelector(".popupImage__bigImage");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  //popup.reset(); //он не ресетится полностью, он фозвращает форму в дефолтное состояние
-  //Если формы не будут ресетиться при закрытии, то там будут оставаться  ошибки при повторном открытии!Вас это устраивает?
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
-
-  //hideInputError(popup,)
-  // allInput.forEach(function (popup__input_type_error) {
-  //   popup__input_type_error.classList.remove("popup__input_type_error");
-  // });
-
-  // allSpan.forEach(function (span) {
-  //   span.classList.remove("popup__input-error_active");
-  // });
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  //popup.reset()рекомендация от ревьювера
   overlay.classList.add("overlay_visible");
   document.addEventListener("keyup", toggleEsc);
-
-  // if (popup !== popupImage) {
-  //   const inputList = Array.from(popup.querySelectorAll(".popup__input"));
-  //   const submitButtonFromPopup = popup.querySelector(".popup__submit");
-  //   toggleButtonState(inputList, submitButtonFromPopup);
-  // }
 }
 
 function toggleEsc(event) {
@@ -63,7 +45,6 @@ function fillProfile() {
     .setAttribute("value", name);
 
   const description = profileDescription.textContent;
-  // const profileDescription = document.querySelector(".profile__description").textContent;
   document
     .querySelector(".popup__item_profile_job")
     .setAttribute("value", description);
@@ -82,38 +63,14 @@ function formSubmitHandler(evt) {
   closePopup(popup);
 }
 
-// function formSubmitHandler(evt) {
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-//   // Находим поля формы в DOM
-//   const nameInput = document.querySelector(".popup__item_profile_name").value; // Воспользуйтесь инструментом .querySelector()
-//   const jobInput = document.querySelector(".popup__item_profile_job").value; // Воспользуйтесь инструментом .querySelector()
-
-//   // Получите значение полей из свойства value
-
-//   // Выберите элементы, куда должны быть вставлены значения полей
-//   const newNameInput = document.querySelector(".profile__name");
-//   const newDescriptionInput = document.querySelector(".profile__description");
-//   // Вставьте новые значения с помощью textContent
-//   newNameInput.textContent = nameInput;
-//   newDescriptionInput.textContent = jobInput;
-
-//   //togglePopupVisibility(popup, "popup_opened");
-//   closePopup(popup);
-// }
 
 ///////Добавление картинки в дефолтный массив
 function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  //Чтение значения из инпута Название
-  // const nameNewPlaceInput = document.querySelector(".popup__item_input_name")
-  //   .value;
   const nameNewPlaceInput = placeInputName.value;
 
-  //Чтение значения из инпута Ссылка
-  // const linkNewPlaceInput = document.querySelector(".popup__item_input_url")
-  //   .value;
   const linkNewPlaceInput = placeInputLink.value;
 
   //Добавление инпута Названия и Ссылки в дефолтный массив
@@ -124,8 +81,6 @@ function createNewPlace(evt) {
   const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
 
   closePopup(popupCards);
-  //добавление нового элемента на страницу
-  // addCard(parentCards, newPlace);
   addCardReverse(parentCards, newPlace);
 }
 
@@ -133,14 +88,10 @@ function createNewPlace(evt) {
 function removeCard(event) {
   const cardChild = event.target.parentNode;
   cardChild.remove();
-  // parentCards.removeChild(cardChild);
 }
 
 //Переключатель для увеличения картинки на главной форме
 function handleImageIncrease(event) {
-  // const valueFromName = document.querySelector(".popupImage__caption");
-  // const valueFromLink = document.querySelector(".popupImage__bigImage");
-  // openPopup(popupImage);
   const dataFromCard = event.target;
   valueFromLink.src = dataFromCard.src;
   valueFromLink.alt = dataFromCard.alt;
@@ -172,13 +123,8 @@ popupCardsOpenButton.addEventListener("click", function (event) {
   openPopup(popupCards);
 });
 
-//////////////////////////обработчики событий для попапов//////////////////////
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 popup.addEventListener("submit", formSubmitHandler);
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 popupCards.addEventListener("submit", createNewPlace);
 
 // Дефолтные картинки при загрузке страницы
