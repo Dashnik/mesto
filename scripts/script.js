@@ -63,8 +63,6 @@ function formSubmitHandler(evt) {
   closePopup(popup);
 }
 
-
-
 ///////Добавление картинки в дефолтный массив
 function createNewPlace(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -198,3 +196,4 @@ const initialCards = [
   },
 ];
 renderNew();
+
