@@ -76,26 +76,29 @@ function createNewPlace(evt) {
     name: nameNewPlaceInput,
     link: linkNewPlaceInput,
   };
-  const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
+  // const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
+  const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
+  const newElement = newPlace.getElement();
 
   closePopup(popupCards);
-  addCardReverse(parentCards, newPlace);
+  // addCardReverse(parentCards, newPlace);
+  addCardReverse(parentCards, newElement);
 }
 
-//Удаление карточек
-function removeCard(event) {
-  const cardChild = event.target.parentNode;
-  cardChild.remove();
-}
+// //Удаление карточек
+// function removeCard(event) {
+//   const cardChild = event.target.parentNode;
+//   cardChild.remove();
+// }
 
 //Переключатель для увеличения картинки на главной форме
-function handleImageIncrease(event) {
-  const dataFromCard = event.target;
-  valueFromLink.src = dataFromCard.src;
-  valueFromLink.alt = dataFromCard.alt;
-  valueFromName.textContent = dataFromCard.alt;
-  openPopup(popupImage);
-}
+// function handleImageIncrease(event) {
+//   const dataFromCard = event.target;
+//   valueFromLink.src = dataFromCard.src;
+//   valueFromLink.alt = dataFromCard.alt;
+//   valueFromName.textContent = dataFromCard.alt;
+//   openPopup(popupImage);
+// }
 
 overlay.addEventListener("click", function (event) {
   if (event.target === event.currentTarget) {
@@ -127,73 +130,74 @@ popupCards.addEventListener("submit", createNewPlace);
 
 // Дефолтные картинки при загрузке страницы
 
-const createCard = (name, link, index) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardimage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardTrash = cardElement.querySelector(".card__trash");
-  const cardLike = cardElement.querySelector(".card__like");
-  const card = cardElement.querySelector(".card");
+// const createCard = (name, link) => {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardimage = cardElement.querySelector(".card__image");
+//   const cardTitle = cardElement.querySelector(".card__title");
+//   const cardTrash = cardElement.querySelector(".card__trash");
+//   const cardLike = cardElement.querySelector(".card__like");
+//   //const card = cardElement.querySelНector(".card");
 
-  cardimage.src = link;
-  cardimage.alt = name;
-  cardTitle.textContent = name;
-  card.setAttribute("id", index);
-  cardTrash.addEventListener("click", removeCard);
-  cardimage.addEventListener("click", handleImageIncrease);
-  cardLike.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("card__like_active");
-  });
+//   cardimage.src = link;
+//   cardimage.alt = name;
+//   cardTitle.textContent = name;
+//   //card.setAttribute("id", index);
+//   cardTrash.addEventListener("click", removeCard);
+//   cardimage.addEventListener("click", handleImageIncrease);
+//   cardLike.addEventListener("click", function (evt) {
+//     evt.target.classList.toggle("card__like_active");
+//   });
 
-  return cardElement;
-};
+//   return cardElement;
+// };
 
-const addCard = (container, cardElement) => {
-  container.append(cardElement);
-};
+// const addCard = (container, cardElement) => {
+//   container.append(cardElement);
+// };
 
 const addCardReverse = (container, cardElement) => {
   container.prepend(cardElement);
 };
 
-function renderNew() {
-  initialCards.forEach(function (card, index) {
-    const cardElement = createCard(card.name, card.link, index);
+// function renderNew() {
+//   initialCards.forEach(function (card, index) {
+//     const cardElement = createCard(card.name, card.link, index);
 
-    addCard(parentCards, cardElement);
-  });
-}
-const initialCards = [
-  {
-    name: "Одесса",
-    link:
-      "https://images.unsplash.com/photo-1600352761482-96c43e9088ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-  {
-    name: "Лондон",
-    link:
-      "https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-  {
-    name: "Израиль",
-    link:
-      "https://images.unsplash.com/photo-1600356381284-f331cdd4a9c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-  {
-    name: "Горы в Италии",
-    link:
-      "https://images.unsplash.com/photo-1600352751860-f4ba11b3f170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-  {
-    name: "Норвегия",
-    link:
-      "https://images.unsplash.com/photo-1600256698643-1d9345bfd9ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-  {
-    name: "Калифорния",
-    link:
-      "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-  },
-];
-renderNew();
+//     addCard(parentCards, cardElement);
+//   });
+// }
 
+// renderNew();
+
+// const initialCards = [
+//   {
+//     name: "Одесса",
+//     link:
+//       "https://images.unsplash.com/photo-1600352761482-96c43e9088ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+//   {
+//     name: "Лондон",
+//     link:
+//       "https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+//   {
+//     name: "Израиль",
+//     link:
+//       "https://images.unsplash.com/photo-1600356381284-f331cdd4a9c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+//   {
+//     name: "Горы в Италии",
+//     link:
+//       "https://images.unsplash.com/photo-1600352751860-f4ba11b3f170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+//   {
+//     name: "Норвегия",
+//     link:
+//       "https://images.unsplash.com/photo-1600256698643-1d9345bfd9ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+//   {
+//     name: "Калифорния",
+//     link:
+//       "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+//   },
+// ];
