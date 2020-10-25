@@ -25,7 +25,7 @@ const placeInputLink = document.querySelector(".popup__item_input_url");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  popup.reset(); 
+  //popup.reset(); 
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
 }
