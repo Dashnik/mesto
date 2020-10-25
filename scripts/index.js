@@ -45,14 +45,12 @@ function toggleEsc(event) {
 
 function fillProfile() {
   const name = textProfileName.textContent;
-  document
-    .querySelector(".popup__item_profile_name")
-    .setAttribute("value", name);
+  nameInput.value = name;
+  // document.querySelector(".popup__item_profile_name").setAttribute("value", name);
 
   const description = profileDescription.textContent;
-  document
-    .querySelector(".popup__item_profile_job")
-    .setAttribute("value", description);
+  jobInput.value = description;
+  // document.querySelector(".popup__item_profile_job").setAttribute("value", description);
 }
 
 function formSubmitHandler(evt) {
@@ -89,8 +87,6 @@ function createNewPlace(evt) {
 
   addCardReverse(parentCards, newElement);
 
-  // placeInputName.value = '';
-  // placeInputLink.value = '';
 }
 
 
@@ -109,12 +105,12 @@ popupAll.forEach(function (item) {
   });
 });
 
-popupOpenButton.addEventListener("click", function (event) {
-  fillProfile();
+popupOpenButton.addEventListener("click", function () {
   openPopup(popup);
+  fillProfile();
 });
 
-popupCardsOpenButton.addEventListener("click", function (event) {
+popupCardsOpenButton.addEventListener("click", function () {
   openPopup(popupCards);
 });
 
