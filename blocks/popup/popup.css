@@ -9,6 +9,7 @@
 
 .popup {
   /* display: none; transition не работает с display:none */
+   
   position: fixed;
   left: 50%;
   top: 50%;
@@ -20,8 +21,8 @@
   box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
   z-index: 1001;
   visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.5s, linear 0.5s;
+  opacity: 0; 
+  transition: visibility 0s, opacity 0.5s, linear 0.5s; 
 }
 
 @media screen and (min-width: 768px) {
@@ -50,6 +51,5 @@
 }
 
 .overlay.overlay_visible {
-  display: block;
-  
+  display: block;  
 }
