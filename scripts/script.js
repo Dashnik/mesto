@@ -4,11 +4,11 @@ const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
-const cardTemplate = document.querySelector(".card-template").content;
-const popupImage = document.querySelector(".popup_image");
+//const cardTemplate = document.querySelector(".card-template").content;
+//const popupImage = document.querySelector(".popup_image");
 const parentCards = document.querySelector(".elements");
-const allSpan = document.querySelectorAll(".popup__input-error");
-const allInput = document.querySelectorAll(".popup__input");
+//const allSpan = document.querySelectorAll(".popup__input-error");
+//const allInput = document.querySelectorAll(".popup__input");
 
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -16,8 +16,8 @@ const nameInput = document.querySelector(".popup__item_profile_name"); // Вос
 const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
 const placeInputName = document.querySelector(".popup__item_input_name");
 const placeInputLink = document.querySelector(".popup__item_input_url");
-const valueFromName = document.querySelector(".popupImage__caption");
-const valueFromLink = document.querySelector(".popupImage__bigImage");
+// const valueFromName = document.querySelector(".popupImage__caption");
+// const valueFromLink = document.querySelector(".popupImage__bigImage");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
@@ -201,3 +201,22 @@ const addCardReverse = (container, cardElement) => {
 //       "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
 //   },
 // ];
+
+
+const object = ({
+  formSelector: '.popup',
+  formSelectorCard: '.popup_cards',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  errorClass: 'popup__input-error_active',
+  inputErrorClass: 'popup__input_type_error'
+});
+
+
+
+const formPopup = new FormValidator(object.formSelector, object);
+formPopup.enableValidation();
+
+const formCardPopup = new FormValidator(object.formSelectorCard, object);
+formCardPopup.enableValidation();

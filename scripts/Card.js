@@ -1,3 +1,7 @@
+const valueFromName = document.querySelector(".popupImage__caption");
+const valueFromLink = document.querySelector(".popupImage__bigImage");
+const popupImage = document.querySelector(".popup_image");
+
 const initialCards = [
   {
     name: "Одесса",
