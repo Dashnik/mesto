@@ -1,4 +1,4 @@
-import {openPopup} from './script.js';
+import {openPopup} from './index.js';
 
 const valueFromName = document.querySelector(".popupImage__caption");
 const valueFromLink = document.querySelector(".popupImage__bigImage");

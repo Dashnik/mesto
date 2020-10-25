@@ -18,16 +18,16 @@ const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
-const placeInputName = document.querySelector(".popup__item_input_name");
-const placeInputLink = document.querySelector(".popup__item_input_url");
+let placeInputName = document.querySelector(".popup__item_input_name");
+let placeInputLink = document.querySelector(".popup__item_input_url");
 // const valueFromName = document.querySelector(".popupImage__caption");
 // const valueFromLink = document.querySelector(".popupImage__bigImage");
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  //popup.reset(); 
   overlay.classList.remove("overlay_visible");
   document.removeEventListener("keyup", toggleEsc);
+
 }
 
 export function openPopup(popup) {
@@ -59,8 +59,8 @@ function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   // Находим поля формы в DOM
-  const nameInputValue = nameInput.value; // Воспользуйтесь инструментом .querySelector()
-  const jobInputValue = jobInput.value; // Воспользуйтесь инструментом .querySelector()
+  const nameInputValue = nameInput.value; 
+  const jobInputValue = jobInput.value; 
 
   textProfileName.textContent = nameInputValue;
   profileDescription.textContent = jobInputValue;
@@ -81,20 +81,18 @@ function createNewPlace(evt) {
     name: nameNewPlaceInput,
     link: linkNewPlaceInput,
   };
-  // const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
+
   const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
   const newElement = newPlace.getElement();
 
   closePopup(popupCards);
-  // addCardReverse(parentCards, newPlace);
+
   addCardReverse(parentCards, newElement);
+
+  // placeInputName.value = '';
+  // placeInputLink.value = '';
 }
 
-//Удаление карточек
-function removeCard(event) {
-  const cardChild = event.target.parentNode;
-  cardChild.remove();
-}
 
 overlay.addEventListener("click", function (event) {
   if (event.target === event.currentTarget) {
@@ -217,7 +215,11 @@ formCardPopup.enableValidation();
 //   container.append(cardElement);
 // };
 
-
+// //Удаление карточек
+// function removeCard(event) {
+//   const cardChild = event.target.parentNode;
+//   cardChild.remove();
+// }
 
 // function renderNew() {
 //   initialCards.forEach(function (card, index) {
