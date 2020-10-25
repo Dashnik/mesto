@@ -95,7 +95,7 @@
 // });
 
 
-class FormValidator {
+export class FormValidator {
   constructor(formSelector, object) {
     this._formSelector = formSelector;
     this._formElement = document.querySelector(formSelector);
@@ -187,13 +187,3 @@ class FormValidator {
     this._setEventListeners(this._formElement, this._object);
   }
 }
-
-// enableValidation({
-//   formSelector: '.popup',
-//   formSelectorCard: '.popup_cards',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__submit',
-//   inactiveButtonClass: 'popup__submit_inactive',
-//   errorClass: 'popup__input-error_active',
-//   inputErrorClass: 'popup__input_type_error'
-// });

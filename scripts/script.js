@@ -1,89 +1,89 @@
-const popup = document.querySelector(".popup");
-const popupOpenButton = document.querySelector(".profile__name-edit");
-const popupAll = document.querySelectorAll(".popup");
-const overlay = document.querySelector(".overlay");
-const popupCards = document.querySelector(".popup_cards");
-const popupCardsOpenButton = document.querySelector(".profile__vector");
-//const cardTemplate = document.querySelector(".card-template").content;
-//const popupImage = document.querySelector(".popup_image");
-const parentCards = document.querySelector(".elements");
-//const allSpan = document.querySelectorAll(".popup__input-error");
-//const allInput = document.querySelectorAll(".popup__input");
+// const popup = document.querySelector(".popup");
+// const popupOpenButton = document.querySelector(".profile__name-edit");
+// const popupAll = document.querySelectorAll(".popup");
+// const overlay = document.querySelector(".overlay");
+// const popupCards = document.querySelector(".popup_cards");
+// const popupCardsOpenButton = document.querySelector(".profile__vector");
+// // const cardTemplate = document.querySelector(".card-template").content;
+// const popupImage = document.querySelector(".popup_image");
+//const parentCards = document.querySelector(".elements");
+// // const allSpan = document.querySelectorAll(".popup__input-error");
+// // const allInput = document.querySelectorAll(".popup__input");
 
-const textProfileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
-const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
-const placeInputName = document.querySelector(".popup__item_input_name");
-const placeInputLink = document.querySelector(".popup__item_input_url");
+// const textProfileName = document.querySelector(".profile__name");
+// const profileDescription = document.querySelector(".profile__description");
+// const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
+// const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
+// const placeInputName = document.querySelector(".popup__item_input_name");
+// const placeInputLink = document.querySelector(".popup__item_input_url");
 // const valueFromName = document.querySelector(".popupImage__caption");
 // const valueFromLink = document.querySelector(".popupImage__bigImage");
 
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  overlay.classList.remove("overlay_visible");
-  document.removeEventListener("keyup", toggleEsc);
-}
+// function closePopup(popup) {
+//   popup.classList.remove("popup_opened");
+//   overlay.classList.remove("overlay_visible");
+//   document.removeEventListener("keyup", toggleEsc);
+// }
 
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  overlay.classList.add("overlay_visible");
-  document.addEventListener("keyup", toggleEsc);
-}
+// function openPopup(popup) {
+//   popup.classList.add("popup_opened");
+//   overlay.classList.add("overlay_visible");
+//   document.addEventListener("keyup", toggleEsc);
+// }
 
-function toggleEsc(event) {
-  if (event.key === "Escape") {
-    const popup = document.querySelector(".popup_opened");
-    closePopup(popup);
-  }
-}
+// function toggleEsc(event) {
+//   if (event.key === "Escape") {
+//     const popup = document.querySelector(".popup_opened");
+//     closePopup(popup);
+//   }
+// }
 
-function fillProfile() {
-  const name = textProfileName.textContent;
-  document
-    .querySelector(".popup__item_profile_name")
-    .setAttribute("value", name);
+// function fillProfile() {
+//   const name = textProfileName.textContent;
+//   document
+//     .querySelector(".popup__item_profile_name")
+//     .setAttribute("value", name);
 
-  const description = profileDescription.textContent;
-  document
-    .querySelector(".popup__item_profile_job")
-    .setAttribute("value", description);
-}
+//   const description = profileDescription.textContent;
+//   document
+//     .querySelector(".popup__item_profile_job")
+//     .setAttribute("value", description);
+// }
 
-function formSubmitHandler(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+// function formSubmitHandler(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  // Находим поля формы в DOM
-  const nameInputValue = nameInput.value; // Воспользуйтесь инструментом .querySelector()
-  const jobInputValue = jobInput.value; // Воспользуйтесь инструментом .querySelector()
+//   // Находим поля формы в DOM
+//   const nameInputValue = nameInput.value; // Воспользуйтесь инструментом .querySelector()
+//   const jobInputValue = jobInput.value; // Воспользуйтесь инструментом .querySelector()
 
-  textProfileName.textContent = nameInputValue;
-  profileDescription.textContent = jobInputValue;
+//   textProfileName.textContent = nameInputValue;
+//   profileDescription.textContent = jobInputValue;
 
-  closePopup(popup);
-}
+//   closePopup(popup);
+// }
 
-///////Добавление картинки в дефолтный массив
-function createNewPlace(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+// /////Добавление картинки в дефолтный массив
+// function createNewPlace(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  const nameNewPlaceInput = placeInputName.value;
+//   const nameNewPlaceInput = placeInputName.value;
 
-  const linkNewPlaceInput = placeInputLink.value;
+//   const linkNewPlaceInput = placeInputLink.value;
 
-  //Добавление инпута Названия и Ссылки в дефолтный массив
-  const addingValueToArray = {
-    name: nameNewPlaceInput,
-    link: linkNewPlaceInput,
-  };
-  // const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
-  const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
-  const newElement = newPlace.getElement();
+//   //Добавление инпута Названия и Ссылки в дефолтный массив
+//   const addingValueToArray = {
+//     name: nameNewPlaceInput,
+//     link: linkNewPlaceInput,
+//   };
+//   // const newPlace = createCard(addingValueToArray.name, addingValueToArray.link);
+//   const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
+//   const newElement = newPlace.getElement();
 
-  closePopup(popupCards);
-  // addCardReverse(parentCards, newPlace);
-  addCardReverse(parentCards, newElement);
-}
+//   closePopup(popupCards);
+//   // addCardReverse(parentCards, newPlace);
+//   addCardReverse(parentCards, newElement);
+// }
 
 // //Удаление карточек
 // function removeCard(event) {
@@ -91,7 +91,7 @@ function createNewPlace(evt) {
 //   cardChild.remove();
 // }
 
-//Переключатель для увеличения картинки на главной форме
+// //Переключатель для увеличения картинки на главной форме
 // function handleImageIncrease(event) {
 //   const dataFromCard = event.target;
 //   valueFromLink.src = dataFromCard.src;
@@ -100,33 +100,33 @@ function createNewPlace(evt) {
 //   openPopup(popupImage);
 // }
 
-overlay.addEventListener("click", function (event) {
-  if (event.target === event.currentTarget) {
-    const popup = document.querySelector(".popup_opened");
-    closePopup(popup);
-  }
-});
+// overlay.addEventListener("click", function (event) {
+//   if (event.target === event.currentTarget) {
+//     const popup = document.querySelector(".popup_opened");
+//     closePopup(popup);
+//   }
+// });
 
-popupAll.forEach(function (item) {
-  item.addEventListener("click", function (event) {
-    if (event.target.classList.contains("popup__close")) {
-      closePopup(item);
-    }
-  });
-});
+// popupAll.forEach(function (item) {
+//   item.addEventListener("click", function (event) {
+//     if (event.target.classList.contains("popup__close")) {
+//       closePopup(item);
+//     }
+//   });
+// });
 
-popupOpenButton.addEventListener("click", function (event) {
-  fillProfile();
-  openPopup(popup);
-});
+// popupOpenButton.addEventListener("click", function (event) {
+//   fillProfile();
+//   openPopup(popup);
+// });
 
-popupCardsOpenButton.addEventListener("click", function (event) {
-  openPopup(popupCards);
-});
+// popupCardsOpenButton.addEventListener("click", function (event) {
+//   openPopup(popupCards);
+// });
 
-popup.addEventListener("submit", formSubmitHandler);
+// popup.addEventListener("submit", formSubmitHandler);
 
-popupCards.addEventListener("submit", createNewPlace);
+// popupCards.addEventListener("submit", createNewPlace);
 
 // Дефолтные картинки при загрузке страницы
 
@@ -155,9 +155,9 @@ popupCards.addEventListener("submit", createNewPlace);
 //   container.append(cardElement);
 // };
 
-const addCardReverse = (container, cardElement) => {
-  container.prepend(cardElement);
-};
+// const addCardReverse = (container, cardElement) => {
+//   container.prepend(cardElement);
+// };
 
 // function renderNew() {
 //   initialCards.forEach(function (card, index) {
@@ -169,39 +169,50 @@ const addCardReverse = (container, cardElement) => {
 
 // renderNew();
 
-// const initialCards = [
-//   {
-//     name: "Одесса",
-//     link:
-//       "https://images.unsplash.com/photo-1600352761482-96c43e9088ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-//   {
-//     name: "Лондон",
-//     link:
-//       "https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-//   {
-//     name: "Израиль",
-//     link:
-//       "https://images.unsplash.com/photo-1600356381284-f331cdd4a9c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-//   {
-//     name: "Горы в Италии",
-//     link:
-//       "https://images.unsplash.com/photo-1600352751860-f4ba11b3f170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-//   {
-//     name: "Норвегия",
-//     link:
-//       "https://images.unsplash.com/photo-1600256698643-1d9345bfd9ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-//   {
-//     name: "Калифорния",
-//     link:
-//       "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
-//   },
-// ];
+const initialCards = [
+  {
+    name: "Одесса",
+    link:
+      "https://images.unsplash.com/photo-1600352761482-96c43e9088ab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+  {
+    name: "Лондон",
+    link:
+      "https://images.unsplash.com/photo-1600362189809-aad4924fbd6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+  {
+    name: "Израиль",
+    link:
+      "https://images.unsplash.com/photo-1600356381284-f331cdd4a9c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+  {
+    name: "Горы в Италии",
+    link:
+      "https://images.unsplash.com/photo-1600352751860-f4ba11b3f170?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+  {
+    name: "Норвегия",
+    link:
+      "https://images.unsplash.com/photo-1600256698643-1d9345bfd9ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+  {
+    name: "Калифорния",
+    link:
+      "https://images.unsplash.com/photo-1600230825276-1d770a31f29c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&h=282&q=80",
+  },
+];
 
+
+import {Card, parentCards} from './Card.js';
+
+initialCards.forEach((card) => {
+  const cardElement = new Card(".card-template", card.link, card.name);
+  const element = cardElement.getElement();
+
+  parentCards.append(element);
+});
+
+import {FormValidator} from './FormValidator.js';
 
 const object = ({
   formSelector: '.popup',
@@ -220,3 +231,4 @@ formPopup.enableValidation();
 
 const formCardPopup = new FormValidator(object.formSelectorCard, object);
 formCardPopup.enableValidation();
+
