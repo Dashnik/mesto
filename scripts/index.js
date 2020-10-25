@@ -16,8 +16,8 @@ const parentCards = document.querySelector(".elements");
 
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
-const nameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
-const jobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
+const profileNameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
+const profileJobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
 let placeInputName = document.querySelector(".popup__item_input_name");
 let placeInputLink = document.querySelector(".popup__item_input_url");
 // const valueFromName = document.querySelector(".popupImage__caption");
@@ -45,20 +45,19 @@ function toggleEsc(event) {
 
 function fillProfile() {
   const name = textProfileName.textContent;
-  nameInput.value = name;
-  // document.querySelector(".popup__item_profile_name").setAttribute("value", name);
+  profileNameInput.value = name;
 
   const description = profileDescription.textContent;
-  jobInput.value = description;
-  // document.querySelector(".popup__item_profile_job").setAttribute("value", description);
+  profileJobInput.value = description;
+ 
 }
 
 function formSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   // Находим поля формы в DOM
-  const nameInputValue = nameInput.value; 
-  const jobInputValue = jobInput.value; 
+  const nameInputValue = profileNameInput.value; 
+  const jobInputValue = profileJobInput.value; 
 
   textProfileName.textContent = nameInputValue;
   profileDescription.textContent = jobInputValue;
