@@ -21,6 +21,7 @@
   z-index: 1001;
   visibility: hidden;
   opacity: 0;
+  transition: visibility 0s, opacity 0.5s, linear 0.5s;
 }
 
 @media screen and (min-width: 768px) {
@@ -45,9 +46,10 @@
   inset: 0px;
   z-index: 1000;
   background-color: #000a;
-  transition: visibility 0s, opacity 0.5s linear;
+  /* transition: visibility 0s, opacity 0.5s linear; */
 }
 
 .overlay.overlay_visible {
   display: block;
+  
 }
