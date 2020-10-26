@@ -11,15 +11,13 @@ const popupCardsOpenButton = document.querySelector(".profile__vector");
 // const cardTemplate = document.querySelector(".card-template").content;
 // const popupImage = document.querySelector(".popup_image");
 const parentCards = document.querySelector(".elements");
-// const allSpan = document.querySelectorAll(".popup__input-error");
-// const allInput = document.querySelectorAll(".popup__input");
 
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const profileNameInput = document.querySelector(".popup__item_profile_name"); // Воспользуйтесь инструментом .querySelector()
 const profileJobInput = document.querySelector(".popup__item_profile_job"); // Воспользуйтесь инструментом .querySelector()
-let placeInputName = document.querySelector(".popup__item_input_name");
-let placeInputLink = document.querySelector(".popup__item_input_url");
+const placeInputName = document.querySelector(".popup__item_input_name");
+const placeInputLink = document.querySelector(".popup__item_input_url");
 // const valueFromName = document.querySelector(".popupImage__caption");
 // const valueFromLink = document.querySelector(".popupImage__bigImage");
 
@@ -52,7 +50,7 @@ function fillProfile() {
  
 }
 
-function formSubmitHandler(evt) {
+function handleFormProfileSubmit(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
   // Находим поля формы в DOM
@@ -117,7 +115,7 @@ const addCardReverse = (container, cardElement) => {
   container.prepend(cardElement);
 };
 
-popup.addEventListener("submit", formSubmitHandler);
+popup.addEventListener("submit", handleFormProfileSubmit);
 
 popupCards.addEventListener("submit", createNewPlace);
 
