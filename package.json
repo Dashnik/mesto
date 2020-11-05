@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Вы можете ознакомиться с проектом по следующей ссылке:https://dashnik.github.io/mesto/index.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dashnik/mesto.git"
+  },
+  "author": "Alexey Kovalev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dashnik/mesto/issues"
+  },
+  "homepage": "https://github.com/Dashnik/mesto#readme"
+}

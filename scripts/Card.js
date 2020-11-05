@@ -4,13 +4,12 @@ const valueFromName = document.querySelector(".popupImage__caption");
 const valueFromLink = document.querySelector(".popupImage__bigImage");
 const popupImage = document.querySelector(".popup_image");
 
-
-export class Card {
-  constructor(selector, cardimage, cardTitle) {
-    this._selector = selector;
-    this._cardimage = cardimage;
-    this._cardTitle = cardTitle;
-  }
+  export class Card {
+    constructor(selector, card) {
+      this._selector = selector;
+      this._cardimage = card.link;
+      this._cardTitle = card.name;
+    }
 
   _getTemplate() {
     return document.querySelector(this._selector).content.cloneNode(true);
