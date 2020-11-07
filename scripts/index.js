@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {parentCards, Section} from '../components/Section.js';
+import Popup from '../components/Popup.js';
 
 const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
@@ -38,7 +39,7 @@ function toggleEsc(event) {
   }
 }
 
-function fillProfile() {
+export function fillProfile() {
   const name = textProfileName.textContent;
   profileNameInput.value = name;
 
@@ -90,21 +91,27 @@ overlay.addEventListener("click", function (event) {
   }
 });
 
-popupAll.forEach(function (item) {
-  item.addEventListener("click", function (event) {
-    if (event.target.classList.contains("popup__close")) {
-      closePopup(item);
-    }
-  });
-});
+
+// popupAll.forEach(function (item) {
+//   item.addEventListener("click", function (event) {
+//     if (event.target.classList.contains("popup__close")) {
+//      const closePopups = new Popup(item);
+//      closePopups.close();
+//     }
+//   });
+// });
+
+// const popup1 = document.querySelector(".popup");
 
 popupOpenButton.addEventListener("click", function () {
-  openPopup(popup);
+  const profilePopUp = new Popup(popup);
+  profilePopUp.open();
   fillProfile();
 });
 
 popupCardsOpenButton.addEventListener("click", function () {
-  openPopup(popupCards);
+  const addingNewCards = new Popup(popupCards);
+  addingNewCards.open();
 });
 
 const addCardReverse = (container, cardElement) => {
@@ -148,14 +155,6 @@ const initialCards = [
 ];
 
 
-// initialCards.forEach((card) => {
-//   const cardElement = new Card(".card-template", card);
-//   const element = cardElement.getElement();
-
-//   parentCards.append(element);
-// });
-
-
 const object = ({
   formSelector: '.popup',
   formSelectorCard: '.popup_cards',
@@ -185,3 +184,4 @@ const cardsList = new Section({
 });
 
 cardsList.renderItem();
+
