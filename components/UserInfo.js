@@ -1,0 +1,6 @@
+class UserInfo{
+
+    getUserInfo(){}
+    
+    setUserInfo(){}
+}

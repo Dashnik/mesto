@@ -1,4 +1,4 @@
-import {openPopup} from './index.js';
+import Popup from '../components/Popup.js';
 
 const valueFromName = document.querySelector(".popupImage__caption");
 const valueFromLink = document.querySelector(".popupImage__bigImage");
@@ -25,7 +25,9 @@ const popupImage = document.querySelector(".popup_image");
     valueFromLink.src = dataFromCard.src;
     valueFromLink.alt = dataFromCard.alt;
     valueFromName.textContent = dataFromCard.alt;
-    openPopup(popupImage);
+//    openPopup(popupImage);
+    const increaseImage =  new Popup (popupImage);
+    increaseImage.open();
   }
 
   _like(evt) {

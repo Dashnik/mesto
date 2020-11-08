@@ -1,6 +1,6 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-import {parentCards, Section} from '../components/Section.js';
+import {Section} from '../components/Section.js';
 import Popup from '../components/Popup.js';
 
 const popup = document.querySelector(".popup");
@@ -9,7 +9,7 @@ const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
-//const parentCards = document.querySelector(".elements");
+const parentCards = document.querySelector(".elements");
 
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -22,22 +22,22 @@ const placeInputLink = document.querySelector(".popup__item_input_url");
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   overlay.classList.remove("overlay_visible");
-  document.removeEventListener("keyup", toggleEsc);
+ // document.removeEventListener("keyup", toggleEsc);
 
 }
 
-export function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  overlay.classList.add("overlay_visible");
-  document.addEventListener("keyup", toggleEsc);
-}
+// export function openPopup(popup) {
+//   popup.classList.add("popup_opened");
+//   overlay.classList.add("overlay_visible");
+//   document.addEventListener("keyup", toggleEsc);
+// }
 
-function toggleEsc(event) {
-  if (event.key === "Escape") {
-    const popup = document.querySelector(".popup_opened");
-    closePopup(popup);
-  }
-}
+// function toggleEsc(event) {
+//   if (event.key === "Escape") {
+//     const popup = document.querySelector(".popup_opened");
+//     closePopup(popup);
+//   }
+// }
 
 export function fillProfile() {
   const name = textProfileName.textContent;
@@ -180,8 +180,8 @@ const cardsList = new Section({
 
     cardsList.addItem(element);
   },
-// },".card-template");
-});
+ },parentCards);
+
 
 cardsList.renderItem();
 

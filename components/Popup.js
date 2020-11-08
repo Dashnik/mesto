@@ -6,7 +6,7 @@ export default class Popup {
     this._popupElement = popupSelector;
     this._handleEscClose = this._handleEscClose.bind(this);
     this.setEventListeners = this.setEventListeners.bind(this);
-    
+    console.log(this._popupElement.setEventListeners());
   }
 
   open() {
@@ -14,6 +14,7 @@ export default class Popup {
     overlay.classList.add("overlay_visible");
     document.addEventListener("keyup", this._handleEscClose);
     document.addEventListener("click", this.setEventListeners);
+
   }
 
   close() {
