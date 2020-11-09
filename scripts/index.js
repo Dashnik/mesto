@@ -5,7 +5,7 @@ import Popup from '../components/Popup.js';
 
 const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
-const popupAll = document.querySelectorAll(".popup");
+//const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -107,6 +107,7 @@ popupOpenButton.addEventListener("click", function () {
   const profilePopUp = new Popup(popup);
   profilePopUp.open();
   fillProfile();
+  // profilePopUp.setEventListeners();
 });
 
 popupCardsOpenButton.addEventListener("click", function () {

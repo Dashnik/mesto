@@ -1,5 +1,5 @@
 import Popup from '../components/Popup.js';
-
+import PopupWithImage from '../components/PopupWithImage.js';
 const valueFromName = document.querySelector(".popupImage__caption");
 const valueFromLink = document.querySelector(".popupImage__bigImage");
 const popupImage = document.querySelector(".popup_image");
@@ -25,7 +25,11 @@ const popupImage = document.querySelector(".popup_image");
     valueFromLink.src = dataFromCard.src;
     valueFromLink.alt = dataFromCard.alt;
     valueFromName.textContent = dataFromCard.alt;
-//    openPopup(popupImage);
+   
+    valueFromLink.src = this._cardimage;
+    valueFromLink.alt = this._cardTitle;
+    valueFromName.textContent = this._cardTitle;
+////openPopup(popupImage);
     const increaseImage =  new Popup (popupImage);
     increaseImage.open();
   }
