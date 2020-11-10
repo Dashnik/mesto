@@ -13,9 +13,5 @@ open(){
    valueFromLink.alt = dataFromCard.alt;
    valueFromName.textContent = dataFromCard.alt;
    super.open();
-  
-
 }
-
-
 }

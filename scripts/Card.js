@@ -26,9 +26,9 @@ const popupImage = document.querySelector(".popup_image");
     valueFromLink.alt = dataFromCard.alt;
     valueFromName.textContent = dataFromCard.alt;
    
-    valueFromLink.src = this._cardimage;
-    valueFromLink.alt = this._cardTitle;
-    valueFromName.textContent = this._cardTitle;
+    // valueFromLink.src = this._cardimage;
+    // valueFromLink.alt = this._cardTitle;
+    // valueFromName.textContent = this._cardTitle;
 ////openPopup(popupImage);
     const increaseImage =  new Popup (popupImage);
     increaseImage.open();

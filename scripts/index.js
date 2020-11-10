@@ -103,12 +103,15 @@ overlay.addEventListener("click", function (event) {
 
 // const popup1 = document.querySelector(".popup");
 
+const profilePopUp = new Popup(popup);
+
 popupOpenButton.addEventListener("click", function () {
-  const profilePopUp = new Popup(popup);
   profilePopUp.open();
-  fillProfile();
-  // profilePopUp.setEventListeners();
+  fillProfile(); 
+
 });
+profilePopUp.setEventListeners();
+
 
 popupCardsOpenButton.addEventListener("click", function () {
   const addingNewCards = new Popup(popupCards);
