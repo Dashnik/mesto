@@ -5,11 +5,11 @@ import PopupWithImage from '../components/PopupWithImage.js';
 const popupImage = document.querySelector(".popup_image");
 
   export class Card {
-    constructor(selector, card, handleCardClick) {
+    constructor(selector, card) {
       this._selector = selector;
       this._cardimage = card.link;
       this._cardTitle = card.name;
-      this._handleCardClick = handleCardClick;
+     // this._handleCardClick = handleCardClick;
     }
 
   _getTemplate() {
@@ -26,7 +26,6 @@ const popupImage = document.querySelector(".popup_image");
     imagePopup.open(this._cardimage,this._cardTitle);
     // imagePopup.setEventListeners();
   }
-
 
   // _handleImageIncrease(event) {
   //   const dataFromCard = event.target; 
