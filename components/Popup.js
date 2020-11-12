@@ -12,14 +12,12 @@ export default class Popup {
     this._popupElement.classList.add("popup_opened");
     overlay.classList.add("overlay_visible");
     document.addEventListener("keyup", this._handleEscClose);
-    // document.addEventListener("click", this.setEventListeners);
   }
 
   close() {
     this._popupElement.classList.remove("popup_opened");
     overlay.classList.remove("overlay_visible");
     document.removeEventListener("keyup", this._handleEscClose);
-    // document.removeEventListener("click", this.setEventListeners);
   }
 
   _handleEscClose(event) {

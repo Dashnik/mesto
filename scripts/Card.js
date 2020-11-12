@@ -1,14 +1,15 @@
 import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-const valueFromName = document.querySelector(".popupImage__caption");
-const valueFromLink = document.querySelector(".popupImage__bigImage");
+// const valueFromName = document.querySelector(".popupImage__caption");
+// const valueFromLink = document.querySelector(".popupImage__bigImage");
 const popupImage = document.querySelector(".popup_image");
 
   export class Card {
-    constructor(selector, card) {
+    constructor(selector, card, handleCardClick) {
       this._selector = selector;
       this._cardimage = card.link;
       this._cardTitle = card.name;
+      this._handleCardClick = handleCardClick;
     }
 
   _getTemplate() {
@@ -19,20 +20,21 @@ const popupImage = document.querySelector(".popup_image");
     const cardChild = event.target.parentNode;
     cardChild.remove();
   }
-
-  _handleImageIncrease(event) {
-    const dataFromCard = event.target;
-    valueFromLink.src = dataFromCard.src;
-    valueFromLink.alt = dataFromCard.alt;
-    valueFromName.textContent = dataFromCard.alt;
-   
-    // valueFromLink.src = this._cardimage;
-    // valueFromLink.alt = this._cardTitle;
-    // valueFromName.textContent = this._cardTitle;
-////openPopup(popupImage);
-    const increaseImage =  new Popup (popupImage);
-    increaseImage.open();
+ 
+  handleCardClick(){
+    const imagePopup =  new PopupWithImage (popupImage);
+    imagePopup.open(this._cardimage,this._cardTitle);
+    // imagePopup.setEventListeners();
   }
+
+
+  // _handleImageIncrease(event) {
+  //   const dataFromCard = event.target; 
+  //   valueFromLink.src = dataFromCard.src; 
+  //   valueFromLink.alt = dataFromCard.alt; 
+  //   valueFromName.textContent = dataFromCard.alt; 
+  //  openPopup(popupImage);     
+  // }
 
   _like(evt) {
     evt.target.classList.toggle("card__like_active");
@@ -42,9 +44,12 @@ const popupImage = document.querySelector(".popup_image");
     this._element
       .querySelector(".card__trash")
       .addEventListener("click", this._deleteHandler);
+   
     this._element
-      .querySelector(".card__image")
-      .addEventListener("click", this._handleImageIncrease);
+    .querySelector(".card__image")
+    .addEventListener("click", () => {
+      this.handleCardClick();
+    });
     this._element
       .querySelector(".card__like")
       .addEventListener("click", this._like);

@@ -179,12 +179,18 @@ formCardPopup.enableValidation();
 const cardsList = new Section({
   items:initialCards,
   renderer: (card) => {
-    const cardElement = new Card(".card-template", card);
+    const cardElement = new Card(".card-template", card, {
+      handleCardClick: () =>{
+        this._element.querySelector(".card__image").addEventListener("click", () => {
+      this.handleCardClick();
+    });
+      }});
     const element = cardElement.getElement();
 
     cardsList.addItem(element);
   },
  },parentCards);
+
 
 
 cardsList.renderItem();
