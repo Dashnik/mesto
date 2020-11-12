@@ -2,6 +2,7 @@ import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {Section} from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
@@ -10,7 +11,7 @@ const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const parentCards = document.querySelector(".elements");
-
+const popupImage = document.querySelector(".popup_image");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const profileNameInput = document.querySelector(".popup__item_profile_name"); 
@@ -112,11 +113,12 @@ popupOpenButton.addEventListener("click", function () {
 });
 profilePopUp.setEventListeners();
 
-
+const addingNewCards = new Popup(popupCards);
 popupCardsOpenButton.addEventListener("click", function () {
-  const addingNewCards = new Popup(popupCards);
+  // const addingNewCards = new Popup(popupCards);
   addingNewCards.open();
 });
+addingNewCards.setEventListeners();
 
 const addCardReverse = (container, cardElement) => {
   container.prepend(cardElement);
@@ -170,16 +172,24 @@ const object = ({
 });
 
 const formPopup = new FormValidator(object.formSelector, object);
-formPopup.enableValidation();
+formPopup.enableValidation(); //надо ли?
 
 const formCardPopup = new FormValidator(object.formSelectorCard, object);
 formCardPopup.enableValidation();
 
 
+const imagePopup =  new PopupWithImage (popupImage);
+imagePopup.setEventListeners();
+
+function handleCardClick(link,name){
+  imagePopup.open(link,name);
+}
+
 const cardsList = new Section({
   items:initialCards,
   renderer: (card) => {
-    const cardElement = new Card(".card-template", card);
+    const cardElement = new Card(".card-template",card,handleCardClick);
+
     const element = cardElement.getElement();
 
     cardsList.addItem(element);

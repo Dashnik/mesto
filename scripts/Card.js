@@ -2,14 +2,14 @@ import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 // const valueFromName = document.querySelector(".popupImage__caption");
 // const valueFromLink = document.querySelector(".popupImage__bigImage");
-const popupImage = document.querySelector(".popup_image");
+//const popupImage = document.querySelector(".popup_image");
 
   export class Card {
-    constructor(selector, card) {
+    constructor(selector, card,handleCardClick) {
       this._selector = selector;
       this._cardimage = card.link;
       this._cardTitle = card.name;
-     // this._handleCardClick = handleCardClick;
+      this._handleCardClick = handleCardClick;
     }
 
   _getTemplate() {
@@ -19,14 +19,8 @@ const popupImage = document.querySelector(".popup_image");
   _deleteHandler(event) {
     const cardChild = event.target.parentNode;
     cardChild.remove();
-  }
+  } 
  
-  handleCardClick(){
-    const imagePopup =  new PopupWithImage (popupImage);
-    imagePopup.open(this._cardimage,this._cardTitle);
-    // imagePopup.setEventListeners();
-  }
-
   // _handleImageIncrease(event) {
   //   const dataFromCard = event.target; 
   //   valueFromLink.src = dataFromCard.src; 
@@ -47,7 +41,7 @@ const popupImage = document.querySelector(".popup_image");
     this._element
     .querySelector(".card__image")
     .addEventListener("click", () => {
-      this.handleCardClick();
+      this._handleCardClick(this._cardimage,this._cardTitle);
     });
     this._element
       .querySelector(".card__like")
