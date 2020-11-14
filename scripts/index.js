@@ -8,7 +8,6 @@ import UserInfo from '../components/UserInfo.js';
 
 const popup = document.querySelector(".popup");
 const popupOpenButton = document.querySelector(".profile__name-edit");
-const popupAll = document.querySelectorAll(".popup");
 const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -16,48 +15,7 @@ const parentCards = document.querySelector(".elements");
 const popupImage = document.querySelector(".popup_image");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
-const profileNameInput = document.querySelector(".popup__item_profile_name"); 
-const profileJobInput = document.querySelector(".popup__item_profile_job"); 
-const placeInputName = document.querySelector(".popup__item_input_name");
-const placeInputLink = document.querySelector(".popup__item_input_url");
 
-
-
-
-// function handleFormProfileSubmit(evt) {
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-//   // Находим поля формы в DOM
-//   const nameInputValue = profileNameInput.value; 
-//   const jobInputValue = profileJobInput.value; 
-
-//   textProfileName.textContent = nameInputValue;
-//   profileDescription.textContent = jobInputValue;
-
-//   closePopup(popup);
-// }
-
-/////Добавление картинки в дефолтный массив
-function createNewPlace(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-  const nameNewPlaceInput = placeInputName.value;
-  const linkNewPlaceInput = placeInputLink.value;
-
-  //Добавление инпута Названия и Ссылки в дефолтный массив
-  const addingValueToArray = {
-    name: nameNewPlaceInput,
-    link: linkNewPlaceInput,
-  };
-
-  const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
-  const newElement = newPlace.getElement();
-
-  closePopup(popupCards);
-
-  addCardReverse(parentCards, newElement);
-
-}
 
 
 overlay.addEventListener("click", function (event) {
@@ -65,39 +23,45 @@ overlay.addEventListener("click", function (event) {
     const popup = document.querySelector(".popup_opened");
    const popupClass = new Popup(popup);
    popupClass.close();
-    // closePopup(popup);
   }
 });
+
+
 const loadingProfileDataFromPage = new UserInfo(textProfileName,profileDescription);
 const profilePopUp = new PopupWithForm(popup);
+
 popupOpenButton.addEventListener("click", function () {
   profilePopUp.open();
- 
   loadingProfileDataFromPage.getUserInfo();
-  //  fillProfile(); 
 });
 profilePopUp.setEventListeners();
 
+popup.addEventListener("submit", function(){
+  loadingProfileDataFromPage.setUserInfo();
+  profilePopUp.close();
+});
 
 
-//const creatingNewPlaceSubmit = document.querySelector('.popup__submit');
+
 
 const addingNewCards = new PopupWithForm(popupCards);
 popupCardsOpenButton.addEventListener("click", function () { 
   addingNewCards.open();
 });
 addingNewCards.setEventListeners();
+popupCards.addEventListener('submit', ()=>{
+  const objectNewCards = addingNewCards._getInputValues();
+  const newPlace = new Card(".card-template", objectNewCards,handleCardClick);
+    const newElement = newPlace.getElement();
+  
+    parentCards.prepend(newElement);
+    addingNewCards.close();
+}
+);
 
-const addCardReverse = (container, cardElement) => {
-  container.prepend(cardElement);
-};
 
-// popup.addEventListener("submit", handleFormProfileSubmit);
-popup.addEventListener("submit", function(){
-  loadingProfileDataFromPage.setUserInfo();
-  profilePopUp.close();
-});
-popupCards.addEventListener("submit", createNewPlace);
+
+
 
 const initialCards = [
   {
@@ -158,11 +122,10 @@ function handleCardClick(link,name){
 }
 
 
-
 const cardsList = new Section({
   items:initialCards,
   renderer: (card) => {
-    const cardElement = new Card(".card-template",card,handleCardClick);
+     const cardElement = new Card(".card-template",card,handleCardClick);
 
     const element = cardElement.getElement();
 
@@ -171,6 +134,14 @@ const cardsList = new Section({
  },parentCards);
 
 cardsList.renderItem();
+
+
+
+//const popupAll = document.querySelectorAll(".popup");
+// const profileNameInput = document.querySelector(".popup__item_profile_name"); 
+// const profileJobInput = document.querySelector(".popup__item_profile_job"); 
+// const placeInputName = document.querySelector(".popup__item_input_name");
+// const placeInputLink = document.querySelector(".popup__item_input_url");
 
 // popupAll.forEach(function (item) {
 //   item.addEventListener("click", function (event) {
@@ -209,4 +180,50 @@ cardsList.renderItem();
 //   const description = profileDescription.textContent;
 //   profileJobInput.value = description;
  
+// }
+
+// popup.addEventListener("submit", handleFormProfileSubmit);
+// function handleFormProfileSubmit(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+//   // Находим поля формы в DOM
+//   const nameInputValue = profileNameInput.value; 
+//   const jobInputValue = profileJobInput.value; 
+
+//   textProfileName.textContent = nameInputValue;
+//   profileDescription.textContent = jobInputValue;
+
+//   closePopup(popup);
+// }
+
+//const creatingNewPlaceSubmit = document.querySelector('.popup__submit');
+
+//addingNewCards.setEventListeners();
+
+//  const addCardReverse = (container, cardElement) => {
+//   container.prepend(cardElement);
+// };
+
+// popupCards.addEventListener("submit", createNewPlace);
+
+///Добавление картинки в дефолтный массив
+// function createNewPlace(evt) {
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+
+//   const nameNewPlaceInput = placeInputName.value;
+//   const linkNewPlaceInput = placeInputLink.value;
+
+//   //Добавление инпута Названия и Ссылки в дефолтный массив
+//   const addingValueToArray = {
+//     name: nameNewPlaceInput,
+//     link: linkNewPlaceInput,
+//   };
+
+//   const newPlace = new Card(".card-template", addingValueToArray.link,  addingValueToArray.name);
+//   const newElement = newPlace.getElement();
+
+//   closePopup(popupCards);
+
+//   addCardReverse(parentCards, newElement);
+
 // }
