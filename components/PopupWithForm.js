@@ -1,13 +1,8 @@
 //const { default: Popup } = require("./Popup");
 import Popup from "./Popup.js";
-import {Card} from '../scripts/Card.js';
 
-
-const parentCards = document.querySelector(".elements");
 const placeInputName = document.querySelector(".popup__item_input_name");
 const placeInputLink = document.querySelector(".popup__item_input_url");
-const overlay = document.querySelector(".overlay");
-const popupCards = document.querySelector(".popup_cards");
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {

@@ -1,5 +1,5 @@
-import Popup from '../components/Popup.js';
-import PopupWithImage from '../components/PopupWithImage.js';
+//import Popup from '../components/Popup.js';
+//import PopupWithImage from '../components/PopupWithImage.js';
 // const valueFromName = document.querySelector(".popupImage__caption");
 // const valueFromLink = document.querySelector(".popupImage__bigImage");
 //const popupImage = document.querySelector(".popup_image");
