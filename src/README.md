@@ -2,6 +2,12 @@
 
 Вы можете ознакомиться с проектом по следующей ссылке:https://dashnik.github.io/mesto/index.html
 
+# В рамках восьмой проектной работы были выполнены следующие пункты!
+
+  - Были созданы новые классы: Section, Popup, PopupWithImage, PopupWithForm, UserInfo и вся реализация теперь выполняется в них.
+  - Реализована работа с WebPack' ом в рамках которого были созданы следущие файлы: babel.config.json,package-lock.json, package.json, postcss.config.js, webpack.config.js.
+  - В рамках Webpack'а были созданы две сборки build and dev. Для работы у пользователя и на локали, соответственно.
+
 
 # В рамках седьмой проектной работы были выполнены следующие пункты!
 
