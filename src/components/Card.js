@@ -1,12 +1,7 @@
-//import Popup from '../components/Popup.js';
-//import PopupWithImage from '../components/PopupWithImage.js';
-// const valueFromName = document.querySelector(".popupImage__caption");
-// const valueFromLink = document.querySelector(".popupImage__bigImage");
-//const popupImage = document.querySelector(".popup_image");
 
   export class Card {
-    constructor(selector, card,handleCardClick) {
-      this._selector = selector;
+    constructor(cardSelector, card,handleCardClick) {
+      this._selector = cardSelector;
       this._cardimage = card.link;
       this._cardTitle = card.name;
       this._handleCardClick = handleCardClick;
@@ -16,27 +11,19 @@
     return document.querySelector(this._selector).content.cloneNode(true);
   }
 
-  _deleteHandler(event) {
+  _deleteCardHandler(event) {
     const cardChild = event.target.parentNode;
     cardChild.remove();
   } 
- 
-  // _handleImageIncrease(event) {
-  //   const dataFromCard = event.target; 
-  //   valueFromLink.src = dataFromCard.src; 
-  //   valueFromLink.alt = dataFromCard.alt; 
-  //   valueFromName.textContent = dataFromCard.alt; 
-  //  openPopup(popupImage);     
-  // }
 
-  _like(evt) {
+  _likeCardHandler(evt) {
     evt.target.classList.toggle("card__like_active");
   }
 
   _setListeners() {
     this._element
       .querySelector(".card__trash")
-      .addEventListener("click", this._deleteHandler);
+      .addEventListener("click", this._deleteCardHandler);
    
     this._element
     .querySelector(".card__image")
@@ -45,7 +32,7 @@
     });
     this._element
       .querySelector(".card__like")
-      .addEventListener("click", this._like);
+      .addEventListener("click", this._likeCardHandler);
   }
 
   getElement() {
