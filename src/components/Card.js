@@ -1,11 +1,10 @@
-
-  export class Card {
-    constructor(cardSelector, card,handleCardClick) {
-      this._selector = cardSelector;
-      this._cardimage = card.link;
-      this._cardTitle = card.name;
-      this._handleCardClick = handleCardClick;
-    }
+export class Card {
+  constructor(cardSelector, card, handleCardClick) {
+    this._selector = cardSelector;
+    this._cardimage = card.link;
+    this._cardTitle = card.name;
+    this._handleCardClick = handleCardClick;
+  }
 
   _getTemplate() {
     return document.querySelector(this._selector).content.cloneNode(true);
@@ -14,7 +13,7 @@
   _deleteCardHandler(event) {
     const cardChild = event.target.parentNode;
     cardChild.remove();
-  } 
+  }
 
   _likeCardHandler(evt) {
     evt.target.classList.toggle("card__like_active");
@@ -24,12 +23,12 @@
     this._element
       .querySelector(".card__trash")
       .addEventListener("click", this._deleteCardHandler);
-   
+
     this._element
-    .querySelector(".card__image")
-    .addEventListener("click", () => {
-      this._handleCardClick(this._cardimage,this._cardTitle);
-    });
+      .querySelector(".card__image")
+      .addEventListener("click", () => {
+        this._handleCardClick(this._cardimage, this._cardTitle);
+      });
     this._element
       .querySelector(".card__like")
       .addEventListener("click", this._likeCardHandler);

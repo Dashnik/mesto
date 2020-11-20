@@ -1,7 +1,5 @@
 //const { default: Popup } = require("./Popup");
 import Popup from '../components/Popup.js';
-const valueFromName = document.querySelector(".popupImage__caption");
-const valueFromLink = document.querySelector(".popupImage__bigImage");
 
 export default class PopupWithImage extends Popup{
 
@@ -9,8 +7,8 @@ export default class PopupWithImage extends Popup{
       super.open(); //вызываем родительский метод
  
       //дополним open новой функциональностью
-      valueFromLink.src = imageLink; 
-      valueFromLink.alt = imageTitle; 
-      valueFromName.textContent = imageTitle; 
+     this._popupElement.querySelector(".popupImage__bigImage").alt = imageTitle;
+     this._popupElement.querySelector(".popupImage__bigImage").src = imageLink;
+     this._popupElement.querySelector(".popupImage__caption").textContent = imageTitle;
    }
 }

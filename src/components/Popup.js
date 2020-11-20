@@ -1,9 +1,9 @@
-const overlay = document.querySelector(".overlay");
-
+// const overlay = document.querySelector(".overlay");
+import {overlay} from '../scripts/constants.js';
 
 export default class Popup {
   constructor(popupSelector) {
-    this._popupElement = popupSelector;
+    this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     this.setEventListeners = this.setEventListeners.bind(this);
   }
@@ -22,6 +22,7 @@ export default class Popup {
   }
 
   _handleEscClose(event) {
+    event.preventDefault();
     if (event.key === "Escape") {
       this.close();
     }
