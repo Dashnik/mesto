@@ -24,6 +24,10 @@ const cardTemplate = ".card-template";
 const popupEditProfileSelector = '.popup_editUserProfile';
 const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
+const profileNameInput = document.querySelector(".popup__item_profile_name");
+const profileJobInput = document.querySelector(".popup__item_profile_job");
+
+const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
 
 
 overlay.addEventListener("click", function (event) {
@@ -34,24 +38,49 @@ overlay.addEventListener("click", function (event) {
   }
 });
 
+function clearProfileErrors(){
+  const popupInput = document.querySelectorAll('.popup__input_type_error')
+  const popupSubmit = document.querySelector('.popup__submit ');
+  const popupInputError = document.querySelectorAll('.popup__input-error');
+  if (popupInput.length !== 0 ){
+    popupInput.forEach((item) => {
+      item.classList.remove('popup__input_type_error');
+    })
+ popupSubmit.classList.remove('popup__submit_inactive');
+ if (popupInputError.length !== 0){
+  popupInputError.forEach((item) => {
+    item.classList.remove('popup__input-error_active');
+  })
+ }
+}
+}
+
 const userInfo = new UserInfo(textProfileName,profileDescription);
 
 const profilePopUp = new PopupWithForm(popupEditProfileSelector);
 
 popupOpenProfileButton.addEventListener("click", function () {
+  
   profilePopUp.open();
-  userInfo.getUserInfo();
+  clearProfileErrors();
+  const profileDataFromPage = userInfo.getUserInfo();
+  profileNameInput.value = profileDataFromPage.userName; 
+  profileJobInput.value = profileDataFromPage.userDescription; 
+  
 });
+
 profilePopUp.setEventListeners();
 
 popup.addEventListener("submit", function(){
-  userInfo.setUserInfo();
+
+  userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 });
 
 const addingNewCards = new PopupWithForm(popupCardsSelector);
 popupCardsOpenButton.addEventListener("click", function () { 
   addingNewCards.open();
+  addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
 });
 addingNewCards.setEventListeners();
 
@@ -65,7 +94,6 @@ popupCards.addEventListener('submit', ()=>{
     const newElement = newPlace.getElement();
   
     cardsContainer.prepend(newElement);
-    const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
     addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
     addingNewCards.close();
 }
