@@ -8,12 +8,16 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const nameNewPlaceInput = this._popupElement.querySelector(
-      ".popup__item_input_name"
-    ).value;
-    const linkNewPlaceInput = this._popupElement.querySelector(
-      ".popup__item_input_url"
-    ).value;
+    const arr = [];
+    const valuesFromInputs = this._popupElement.querySelectorAll(
+      ".popup__input"
+    );
+    valuesFromInputs.forEach((element) => {
+      arr.push(element.value);
+    });
+
+    const nameNewPlaceInput = arr[0];
+    const linkNewPlaceInput = arr[1];
 
     const addingValueToArray = {
       name: nameNewPlaceInput,
