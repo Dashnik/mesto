@@ -75,7 +75,7 @@ popupEditProfileElement.addEventListener("submit", function(){
   profilePopUp.close();
 });
 
-const addingCardPopup = new PopupWithForm(popupCardsSelector); //переменные следует называть существительными
+const addingCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //переменные следует называть существительными
 
 popupCardsOpenButton.addEventListener("click", function () { 
   addingCardPopup.open();
@@ -83,16 +83,15 @@ popupCardsOpenButton.addEventListener("click", function () {
 });
 addingCardPopup.setEventListeners();
 
-popupCards.addEventListener('submit', ()=>{
-  const objectNewCards = addingCardPopup._getInputValues();
+function handleFormSubmit(objectNewCards){
+  
   const newPlace = new Card(cardTemplate, objectNewCards,handleCardClick);
     const newElement = newPlace.getElement();
   
     cardsContainer.prepend(newElement);
     addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
     addingCardPopup.close();
-}
-);
+  }
 
 const editUserProfileValidator = new FormValidator(validationConfig.formSelector, validationConfig);
 editUserProfileValidator.enableValidation();
