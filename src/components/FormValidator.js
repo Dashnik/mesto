@@ -1,8 +1,11 @@
+import {validationConfig} from '../scripts/constants.js';
+
+
 export class FormValidator {
   constructor(formSelector, object) {
     this._formSelector = formSelector;
     this._formElement = document.querySelector(formSelector);
-    this._object = object; 
+    this._object = object;
     this._inputSelector = object.inputSelector;
     this._submitButtonSelector = object.submitButtonSelector;
     this._inactiveButtonClass = object.inactiveButtonClass;
@@ -84,9 +87,27 @@ export class FormValidator {
   }
 
   enableValidation() {
-   this._formElement.addEventListener("submit", (event) => {
+    this._formElement.addEventListener("submit", (event) => {
       event.preventDefault();
     });
     this._setEventListeners(this._formElement, this._object);
   }
+
+  clearProfileErrors() {
+    const popupInput = document.querySelectorAll(validationConfig.formProfileInputsSelector);
+    const popupSubmit = document.querySelector(validationConfig.submitButtonSelector);
+    const popupInputError = document.querySelectorAll(validationConfig.formProfileInputsErrorsSelector);
+    if (popupInput.length !== 0) {
+      popupInput.forEach((item) => {
+        item.classList.remove(validationConfig.inputErrorClass);
+      });
+      popupSubmit.classList.remove(validationConfig.inactiveButtonClass);
+      if (popupInputError.length !== 0) {
+        popupInputError.forEach((item) => {
+          item.classList.remove(validationConfig.errorClass);
+        });
+      }
+    }
+  }
+
 }
