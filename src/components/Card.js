@@ -36,8 +36,13 @@ export class Card {
 
   getElement() {
     this._element = this._getTemplate();
-    this._element.querySelector(".card__image").src = this._cardimage;
-    this._element.querySelector(".card__image").alt = this._cardTitle;
+    const cardImageElement = this._element.querySelector(".card__image");
+    cardImageElement.src = this._cardimage;
+    cardImageElement.alt = this._cardTitle;
+
+    //  this._element.querySelector(".card__image").src = this._cardimage;
+    // this._element.querySelector(".card__image").alt = this._cardTitle;
+   
     this._element.querySelector(".card__title").textContent = this._cardTitle;
     this._setListeners();
     return this._element;
