@@ -2,7 +2,7 @@ export const overlay = document.querySelector(".overlay");
 
 export const validationConfig = {
   // formSelector: ".popup",
-  formSelector: ".popup_editUserProfile",
+  formSelector: ".popup_edit-user-profile",
   formSelectorCard: ".popup_cards",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit",

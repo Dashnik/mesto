@@ -19,7 +19,7 @@ export default class Popup {
     this._popupElement.classList.remove("popup_opened");
     overlay.classList.remove("overlay_visible");
     document.removeEventListener("keyup", this._handleEscClose);
-   
+
   }
 
   _handleEscClose(event) {
@@ -37,8 +37,10 @@ export default class Popup {
          this.close();
      }  
     } );
+    overlay.addEventListener("click", (event) => { 
+      if (event.target === event.currentTarget) { 
+        this.close();
+      } 
+    }); 
   }
-
-
 }
-

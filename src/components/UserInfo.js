@@ -1,6 +1,3 @@
-const profileNameInput = document.querySelector(".popup__item_profile_name");
-const profileJobInput = document.querySelector(".popup__item_profile_job");
-
 export default class UserInfo {
   constructor(userNameElement, userDescriptionElement) {
     this._selectorName = userNameElement;
@@ -9,16 +6,14 @@ export default class UserInfo {
 
   getUserInfo() {
     const name = this._selectorName.textContent; 
-    //profileNameInput.value = name;  
     const description = this._selectorDescription.textContent; 
-    //profileJobInput.value = description; 
       
-     const ObjectWithUserProfileData = {
+     const userData = {
       userName : name,
       userDescription : description,
     }
     
-  return ObjectWithUserProfileData;
+  return userData;
   }
 
   setUserInfo(userName, userDescription) {

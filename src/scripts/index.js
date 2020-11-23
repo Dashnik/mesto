@@ -2,26 +2,22 @@ import '../pages/style.css';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
-//import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
-import {overlay} from './constants.js';
+//import {overlay} from './constants.js';
 
 const popup = document.querySelector(".popup");
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
-//const overlay = document.querySelector(".overlay");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const cardsContainer = document.querySelector(".elements");
-//const popupImage = document.querySelector(".popup_image");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
-//const popupEditProfile = document.querySelector('.popup_editUserProfile');
-const popupEditProfileSelector = '.popup_editUserProfile';
+const popupEditProfileSelector = '.popup_edit-user-profile';
 const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
 const profileNameInput = document.querySelector(".popup__item_profile_name");
@@ -30,13 +26,13 @@ const profileJobInput = document.querySelector(".popup__item_profile_job");
 const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
 
 
-overlay.addEventListener("click", function (event) {
-  if (event.target === event.currentTarget) {
-    profilePopUp.close();
-    addingNewCards.close();
-    imagePopup.close();
-  }
-});
+// overlay.addEventListener("click", function (event) {
+//   if (event.target === event.currentTarget) {
+//     profilePopUp.close();
+//     addingNewCards.close();
+//     imagePopup.close();
+//   }
+// });
 
 function clearProfileErrors(){
   const popupInput = document.querySelectorAll('.popup__input_type_error')
@@ -83,10 +79,6 @@ popupCardsOpenButton.addEventListener("click", function () {
   addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
 });
 addingNewCards.setEventListeners();
-
-// function handleFormSubmit(){
-//   addingNewCards.addEventListener('submit',this._getInputValues);
-// }
 
 popupCards.addEventListener('submit', ()=>{
   const objectNewCards = addingNewCards._getInputValues();
