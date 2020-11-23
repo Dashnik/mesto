@@ -63,7 +63,6 @@ function handleFormSubmit(objectNewCards) {
 
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
-  addingCardPopup.close();
 }
 
 function createCard(card){
