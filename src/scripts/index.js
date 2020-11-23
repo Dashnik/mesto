@@ -9,7 +9,7 @@ import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
 //import {overlay} from './constants.js';
 
-const popup = document.querySelector(".popup");
+//const popup = document.querySelector(".popup");
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
 const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -18,6 +18,7 @@ const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
 const popupEditProfileSelector = '.popup_edit-user-profile';
+const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
 const profileNameInput = document.querySelector(".popup__item_profile_name");
@@ -68,27 +69,28 @@ popupOpenProfileButton.addEventListener("click", function () {
 
 profilePopUp.setEventListeners();
 
-popup.addEventListener("submit", function(){
+popupEditProfileElement.addEventListener("submit", function(){
 
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 });
 
-const addingNewCards = new PopupWithForm(popupCardsSelector);
+const addingCardPopup = new PopupWithForm(popupCardsSelector); //переменные следует называть существительными
+
 popupCardsOpenButton.addEventListener("click", function () { 
-  addingNewCards.open();
+  addingCardPopup.open();
   addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
 });
-addingNewCards.setEventListeners();
+addingCardPopup.setEventListeners();
 
 popupCards.addEventListener('submit', ()=>{
-  const objectNewCards = addingNewCards._getInputValues();
+  const objectNewCards = addingCardPopup._getInputValues();
   const newPlace = new Card(cardTemplate, objectNewCards,handleCardClick);
     const newElement = newPlace.getElement();
   
     cardsContainer.prepend(newElement);
     addingInactiveClassForSubmit.classList.add('popup__submit_inactive');
-    addingNewCards.close();
+    addingCardPopup.close();
 }
 );
 
