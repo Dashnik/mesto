@@ -8,7 +8,6 @@ import UserInfo from '../components/UserInfo.js';
 import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
 
-//const popup = document.querySelector(".popup");
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
 //const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -27,12 +26,11 @@ const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submi
 
 const userInfo = new UserInfo(textProfileName,profileDescription);
 
-const profilePopUp = new PopupWithForm(popupEditProfileSelector);
+const profilePopUp = new PopupWithForm(popupEditProfileSelector,handleProfileFormSubmit);
 
 popupOpenProfileButton.addEventListener("click", function () {
   
   profilePopUp.open();
-  // clearProfileErrors();
   editUserProfileValidator.clearProfileErrors();
   const profileDataFromPage = userInfo.getUserInfo();
   profileNameInput.value = profileDataFromPage.userName; 
@@ -42,23 +40,30 @@ popupOpenProfileButton.addEventListener("click", function () {
 
 profilePopUp.setEventListeners();
 
-popupEditProfileElement.addEventListener("submit", function(){
+// popupEditProfileElement.addEventListener("submit", function(){
 
-  userInfo.setUserInfo(profileNameInput, profileJobInput);
-  profilePopUp.close();
-});
+//   userInfo.setUserInfo(profileNameInput, profileJobInput);
+//    profilePopUp.close();
+// });
 
-const addingCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //переменные следует называть существительными
 
+const addingCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //не могу согласиться
+//в английском нет существительного add.
+//add может быть только глаголом и прилагательным 
+//ссылка на источник https://dictionary.cambridge.org/dictionary/english/add
+// а в чеклисте есть требование "переменные следует называть существительными". Быть может я не правильно интерпретирую мысль, но пока так. 
 popupCardsOpenButton.addEventListener("click", function () { 
   addingCardPopup.open();
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
 });
 addingCardPopup.setEventListeners();
 
+function handleProfileFormSubmit(){
+  userInfo.setUserInfo(profileNameInput, profileJobInput);
+  profilePopUp.close();
+}
+
 function handleFormSubmit(objectNewCards) {
-  // const newPlace = new Card(cardTemplate, objectNewCards, handleCardClick);
-  // const newElement = newPlace.getElement();
   const newElement = createCard(objectNewCards)
 
   cardsContainer.prepend(newElement);
@@ -88,8 +93,6 @@ function handleCardClick(link,name){
 const cardsList = new Section({
   items:initialCards,
   renderer: (card) => {
-    //  const cardElement = new Card(cardTemplate,card,handleCardClick);
-    // const element = cardElement.getElement();
     const element = createCard(card)
 
     cardsList.addItem(element);
