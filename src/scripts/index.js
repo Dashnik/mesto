@@ -21,8 +21,19 @@ const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
 const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
-
 const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
+
+function handleProfileFormSubmit(){
+  userInfo.setUserInfo(profileNameInput, profileJobInput);
+  profilePopUp.close();
+}
+
+function handleFormSubmit(objectNewCards) {
+  const newElement = createCard(objectNewCards)
+
+  cardsContainer.prepend(newElement);
+  addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
+}
 
 const userInfo = new UserInfo(textProfileName,profileDescription);
 
@@ -40,35 +51,16 @@ popupOpenProfileButton.addEventListener("click", function () {
 
 profilePopUp.setEventListeners();
 
-// popupEditProfileElement.addEventListener("submit", function(){
-
-//   userInfo.setUserInfo(profileNameInput, profileJobInput);
-//    profilePopUp.close();
-// });
-
-
-const addingCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //не могу согласиться
+const addCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //не могу согласиться
 //в английском нет существительного add.
 //add может быть только глаголом и прилагательным 
 //ссылка на источник https://dictionary.cambridge.org/dictionary/english/add
 // а в чеклисте есть требование "переменные следует называть существительными". Быть может я не правильно интерпретирую мысль, но пока так. 
 popupCardsOpenButton.addEventListener("click", function () { 
-  addingCardPopup.open();
+  addCardPopup.open();
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
 });
-addingCardPopup.setEventListeners();
-
-function handleProfileFormSubmit(){
-  userInfo.setUserInfo(profileNameInput, profileJobInput);
-  profilePopUp.close();
-}
-
-function handleFormSubmit(objectNewCards) {
-  const newElement = createCard(objectNewCards)
-
-  cardsContainer.prepend(newElement);
-  addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
-}
+addCardPopup.setEventListeners();
 
 function createCard(card){
   const cardElement = new Card(cardTemplate,card,handleCardClick);
