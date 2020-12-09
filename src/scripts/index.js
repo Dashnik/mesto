@@ -24,22 +24,22 @@ const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
 const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
 
-export const apiProfile = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
-  headers: {
-    authorization: "2be0f169-5c86-4181-b303-3b009feba466",
-    "Content-Type": "application/json",
-  },
-});
-
- apiProfile.getProfileInfo().then((profile)=>{
-   const profileImage = document.querySelector('.profile__image');
-   profileImage.src = profile.avatar;
-  textProfileName.textContent = profile.name;
-  profileDescription.textContent = profile.about;
-   console.log(profile);
+ const apiProfile = new Api({
+   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
+   headers: {
+     authorization: "2be0f169-5c86-4181-b303-3b009feba466",
+     "Content-Type": "application/json",
+   },
  });
 
+ apiProfile.getProfileInfo().then((profile) => {
+   const profileImage = document.querySelector(".profile__image");
+   profileImage.src = profile.avatar;
+   textProfileName.textContent = profile.name;
+   profileDescription.textContent = profile.about;
+ });
+
+ 
 
 function handleProfileFormSubmit(){
   
@@ -54,7 +54,7 @@ function handleFormSubmit(objectNewCards) {
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
 }
 
-const userInfo = new UserInfo(textProfileName,profileDescription);  //original row
+const userInfo = new UserInfo(textProfileName,profileDescription); 
 
 const profilePopUp = new PopupWithForm(popupEditProfileSelector,handleProfileFormSubmit);
 
@@ -100,13 +100,36 @@ function handleCardClick(link,name){
   imagePopup.open(link,name);
 }
 
-const cardsList = new Section({
-  items:initialCards,
-  renderer: (card) => {
-    const element = createCard(card)
-
-    cardsList.addItem(element);
+const apiCards = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/cards ",
+  headers: {
+    authorization: "2be0f169-5c86-4181-b303-3b009feba466",
+    "Content-Type": "application/json",
   },
- },cardsContainer);
+});
 
-cardsList.renderItems();
+apiCards.getInitialCards().then(cards =>{
+  console.log(cards);
+  const cardsList = new Section({
+    items:cards,
+    renderer: (card) => {
+      const element = createCard(card)
+  
+      cardsList.addItem(element);
+    },
+   },cardsContainer);
+  
+  cardsList.renderItems();
+})
+
+
+// const cardsList = new Section({
+//   items:initialCards,
+//   renderer: (card) => {
+//     const element = createCard(card)
+
+//     cardsList.addItem(element);
+//   },
+//  },cardsContainer);
+
+// cardsList.renderItems();

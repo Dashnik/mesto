@@ -13,4 +13,13 @@ export default class Api {
         return result;
       });
   }
+
+  getInitialCards() {
+    return fetch(this.baseUrl, {
+      headers: this.headers })
+      .then((res) => res.json())
+      .then((result) => {
+        return result;
+      });
+  }
 }
