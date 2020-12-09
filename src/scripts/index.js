@@ -7,6 +7,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
+import Api from '../components/Api.js';
 
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
 //const popupCards = document.querySelector(".popup_cards");
@@ -16,14 +17,32 @@ const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
 const popupEditProfileSelector = '.popup_edit-user-profile';
-const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
+//const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
 const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
 const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
 
+export const apiProfile = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
+  headers: {
+    authorization: "2be0f169-5c86-4181-b303-3b009feba466",
+    "Content-Type": "application/json",
+  },
+});
+
+ apiProfile.getProfileInfo().then((profile)=>{
+   const profileImage = document.querySelector('.profile__image');
+   profileImage.src = profile.avatar;
+  textProfileName.textContent = profile.name;
+  profileDescription.textContent = profile.about;
+   console.log(profile);
+ });
+
+
 function handleProfileFormSubmit(){
+  
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 }
@@ -35,7 +54,7 @@ function handleFormSubmit(objectNewCards) {
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
 }
 
-const userInfo = new UserInfo(textProfileName,profileDescription);
+const userInfo = new UserInfo(textProfileName,profileDescription);  //original row
 
 const profilePopUp = new PopupWithForm(popupEditProfileSelector,handleProfileFormSubmit);
 
@@ -44,18 +63,17 @@ popupOpenProfileButton.addEventListener("click", function () {
   profilePopUp.open();
   editUserProfileValidator.clearProfileErrors();
   const profileDataFromPage = userInfo.getUserInfo();
+
   profileNameInput.value = profileDataFromPage.userName; 
   profileJobInput.value = profileDataFromPage.userDescription; 
   
 });
 
+
+
 profilePopUp.setEventListeners();
 
-const addCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit); //не могу согласиться
-//в английском нет существительного add.
-//add может быть только глаголом и прилагательным 
-//ссылка на источник https://dictionary.cambridge.org/dictionary/english/add
-// а в чеклисте есть требование "переменные следует называть существительными". Быть может я не правильно интерпретирую мысль, но пока так. 
+const addCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit);  
 popupCardsOpenButton.addEventListener("click", function () { 
   addCardPopup.open();
   addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
