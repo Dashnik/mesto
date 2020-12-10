@@ -33,16 +33,22 @@ const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submi
  });
 
  apiProfile.getProfileInfo().then((profile) => {
+   //console.log(profile);
    const profileImage = document.querySelector(".profile__image");
    profileImage.src = profile.avatar;
    textProfileName.textContent = profile.name;
    profileDescription.textContent = profile.about;
  });
-
+ 
  
 
-function handleProfileFormSubmit(){
-  
+function handleProfileFormSubmit() {
+  const profileInfo = {
+    name: profileNameInput.value,
+    about: profileJobInput.value,
+  }
+  apiProfile.changeProfile(profileInfo);
+
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 }
@@ -109,7 +115,7 @@ const apiCards = new Api({
 });
 
 apiCards.getInitialCards().then(cards =>{
-  console.log(cards);
+  //console.log(cards);
   const cardsList = new Section({
     items:cards,
     renderer: (card) => {
