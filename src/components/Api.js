@@ -25,20 +25,43 @@ export default class Api {
       });
   }
 
-  changeProfile(profileInfo,) {
+  changeProfile(profileInfo) {
     return fetch(this.baseUrl, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(profileInfo),
-    }).then((result) => {
-      if (!result.ok) {
-        return Promise.reject('Server error');
-      }
-      return result.json();
-    }).then((data) => {
-      return data;
-    }).catch(err => {
-      alert(err);
     })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  postCardOnTheServer(newCard) {
+    return fetch(this.baseUrl, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify(newCard),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 }

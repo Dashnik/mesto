@@ -33,7 +33,7 @@ const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submi
  });
 
  apiProfile.getProfileInfo().then((profile) => {
-   //console.log(profile);
+  
    const profileImage = document.querySelector(".profile__image");
    profileImage.src = profile.avatar;
    textProfileName.textContent = profile.name;
@@ -54,10 +54,12 @@ function handleProfileFormSubmit() {
 }
 
 function handleFormSubmit(objectNewCards) {
-  const newElement = createCard(objectNewCards)
-
+  const newElement = createCard(objectNewCards);
+  apiCards.postCardOnTheServer(objectNewCards);
   cardsContainer.prepend(newElement);
-  addingInactiveClassForSubmit.classList.add(validationConfig.inactiveButtonClass);
+  addingInactiveClassForSubmit.classList.add(
+    validationConfig.inactiveButtonClass
+  );
 }
 
 const userInfo = new UserInfo(textProfileName,profileDescription); 
@@ -115,7 +117,7 @@ const apiCards = new Api({
 });
 
 apiCards.getInitialCards().then(cards =>{
-  //console.log(cards);
+  console.log(cards);
   const cardsList = new Section({
     items:cards,
     renderer: (card) => {
