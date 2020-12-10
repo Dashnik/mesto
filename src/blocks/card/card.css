@@ -3,6 +3,7 @@
 @import url(./__body/card__body.css);
 @import url(./__trash/card_trash.css);
 @import url(./__image/card__image.css);
+@import url(./__counter-like/card__counter-like.css);
 
 .card {
   object-fit: contain;
