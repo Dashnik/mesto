@@ -117,7 +117,7 @@ const apiCards = new Api({
 });
 
 apiCards.getInitialCards().then(cards =>{
-  console.log(cards);
+ // console.log(cards);
   const cardsList = new Section({
     items:cards,
     renderer: (card) => {

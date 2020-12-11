@@ -6,6 +6,8 @@
 @import url(./__caption/popupImage__caption.css);
 @import url(./__bigImage/popupImage__bigImage.css);
 @import url(./__input-error/popup__input-error.css);
+@import url(./__title_removing_card/popup-title__removing_card.css);
+@import url(./__removing/popup__removing.css);
 
 .popup {
   /* display: none; transition не работает с display:none */
