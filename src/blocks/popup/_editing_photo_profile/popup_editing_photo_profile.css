@@ -1,0 +1,9 @@
+.popup_editing_photo_profile {
+  max-width: 430px;
+  max-height: 272px;
+  /* visibility: visible;
+  opacity: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

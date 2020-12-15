@@ -65,6 +65,25 @@ export default class Api {
       });
   }
 
+  changeAvatar(link){
+    return fetch(this.baseUrl, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify(link),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
 
   
 }

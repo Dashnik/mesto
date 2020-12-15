@@ -102,6 +102,25 @@
             </form>
         </div>
     </div>
+
+    <div class="popup popup_editing_photo_profile" name="popupEditingPhotoProfile">
+        <button type="button" class="popup__close" aria-label="закрыть попап"></button>
+        <div class="popup__editing_photo_container">
+            <h3 class="popup__title">Обновить аватар</h3>
+            <input 
+            type='url'
+            value="" 
+            id="avatar-link" 
+            name="avatar"
+            class="popup__input popup__item_input_url" 
+            placeholder="Ссылка на аватар" 
+            required>
+            <form>
+                <button type="submit" class="popup__submit">Сохранить</button>
+            </form>
+        </div>
+    </div>
+
         <template class="card-template">
         <div class="card">
             <img class='card__image' src="#" alt=''>
