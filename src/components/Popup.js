@@ -12,7 +12,6 @@ export default class Popup {
     this._popupElement.classList.add("popup_opened");
     overlay.classList.add("overlay_visible");
     document.addEventListener("keyup", this._handleEscClose);
-   
   }
 
   close() {
@@ -27,8 +26,7 @@ export default class Popup {
     if (event.key === "Escape") {
       this.close();
     }
-  }
- 
+  } 
 
   setEventListeners() { 
     this._popupElement.addEventListener("click", (event) =>{

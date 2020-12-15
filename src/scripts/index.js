@@ -4,6 +4,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import ApproveForm from '../components/ApproveForm.js';
 import UserInfo from '../components/UserInfo.js';
 import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
@@ -20,9 +21,13 @@ const popupEditProfileSelector = '.popup_edit-user-profile';
 //const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
 const popupImageSelector = ".popup_image";
+const popupTrashSelector = ".popup_removing_card";
+
 const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
 const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submit');
+
+
 
  const apiProfile = new Api({
    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
@@ -62,6 +67,10 @@ function handleFormSubmit(objectNewCards) {
   );
 }
 
+function handleRemovingFormSubmit(cardElement){
+  cardElement;
+}
+
 const userInfo = new UserInfo(textProfileName,profileDescription); 
 
 const profilePopUp = new PopupWithForm(popupEditProfileSelector,handleProfileFormSubmit);
@@ -76,10 +85,11 @@ popupOpenProfileButton.addEventListener("click", function () {
   profileJobInput.value = profileDataFromPage.userDescription; 
   
 });
-
-
-
 profilePopUp.setEventListeners();
+
+
+
+
 
 const addCardPopup = new PopupWithForm(popupCardsSelector,handleFormSubmit);  
 popupCardsOpenButton.addEventListener("click", function () { 
@@ -89,7 +99,7 @@ popupCardsOpenButton.addEventListener("click", function () {
 addCardPopup.setEventListeners();
 
 function createCard(card){
-  const cardElement = new Card(cardTemplate,card,handleCardClick);
+  const cardElement = new Card(cardTemplate,card,handleCardClick,handleTrashClick);
 
   const element = cardElement.getElement();
   return element;
@@ -104,9 +114,21 @@ addCardValidator.enableValidation();
 const imagePopup =  new PopupWithImage (popupImageSelector);
 imagePopup.setEventListeners();
 
+
+
+
 function handleCardClick(link,name){
   imagePopup.open(link,name);
 }
+const trashPopup = new ApproveForm(popupTrashSelector,handleRemovingFormSubmit);
+
+function handleTrashClick(event){
+  const cardChild = event.target.parentNode;
+  console.log(cardChild);
+ 
+  trashPopup.open();
+}
+
 
 const apiCards = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/cards ",
@@ -116,8 +138,15 @@ const apiCards = new Api({
   },
 });
 
+// apiCards.getInitialCards().then(cards =>{
+//   // const likes = cards[10].likes.length;
+//   const likes = cards;
+//   //const likesArray = likes.length; 
+//   console.log(likes);
+// })
+
 apiCards.getInitialCards().then(cards =>{
- // console.log(cards);
+
   const cardsList = new Section({
     items:cards,
     renderer: (card) => {
@@ -130,6 +159,18 @@ apiCards.getInitialCards().then(cards =>{
   cardsList.renderItems();
 })
 
+
+
+
+
+
+
+
+// function handleCardClick(link,name){
+//   imagePopup.open(link,name);
+// }
+
+trashPopup.setEventListeners();
 
 // const cardsList = new Section({
 //   items:initialCards,

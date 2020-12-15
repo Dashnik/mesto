@@ -1,9 +1,13 @@
+import PopupWithForm from "./PopupWithForm";
+
 export class Card {
-  constructor(cardSelector, card, handleCardClick) {
+  constructor(cardSelector, card, handleCardClick,handleTrashClick) {
     this._selector = cardSelector;
     this._cardimage = card.link;
     this._cardTitle = card.name;
+    this._cardLikes = card.likes;
     this._handleCardClick = handleCardClick;
+    this._handleTrashClick = handleTrashClick; 
   }
 
   _getTemplate() {
@@ -22,7 +26,7 @@ export class Card {
   _setListeners() {
     this._element
       .querySelector(".card__trash")
-      .addEventListener("click", this._deleteCardHandler);
+      .addEventListener("click",this._handleTrashClick);  
 
     this._element
       .querySelector(".card__image")
@@ -39,10 +43,10 @@ export class Card {
     const cardImageElement = this._element.querySelector(".card__image");
     cardImageElement.src = this._cardimage;
     cardImageElement.alt = this._cardTitle;
-
-    //  this._element.querySelector(".card__image").src = this._cardimage;
-    // this._element.querySelector(".card__image").alt = this._cardTitle;
    
+    const counterLikesElement = this._element.querySelector('.card__counter-like');
+    counterLikesElement.textContent = this._cardLikes.length;
+
     this._element.querySelector(".card__title").textContent = this._cardTitle;
     this._setListeners();
     return this._element;

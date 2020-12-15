@@ -1,11 +1,11 @@
 import Popup from "./Popup.js";
 
-export default class PopupWithForm extends Popup {
-  constructor(popupSelector,handleFormSubmit) {
+export default class ApproveForm extends Popup {
+  constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
   }
-
+  
   _getInputValues() {
     const inputValues = {};
     const valuesFromInputs = this._popupElement.querySelectorAll(
@@ -17,19 +17,16 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  
   setEventListeners() {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+      console.log(this._popupElement);
+     // this._handleFormSubmit(this._removeCard);
       this.close();
     })
    
   }
-
-  close() {
-    super.close();
-      this._popupElement.reset();   
-  }
-
+  
 }
