@@ -84,11 +84,16 @@ function handleProfileFormSubmit() {
 
 function handleFormSubmit(objectNewCards) {
   const newElement = createCard(objectNewCards);
-  apiCards.postCardOnTheServer(objectNewCards);
+  console.log(objectNewCards);
+  //apiCards.postCardOnTheServer(objectNewCards);
+  console.log(newElement);
   cardsContainer.prepend(newElement);
+ 
+  
   addingInactiveClassForSubmit.classList.add(
     validationConfig.inactiveButtonClass
   );
+ 
 }
 
 function handleRemovingFormSubmit(cardElement){
@@ -172,7 +177,7 @@ const apiCards = new Api({
 // })
 
 apiCards.getInitialCards().then(cards =>{
-
+console.log(cards);
   const cardsList = new Section({
     items:cards,
     renderer: (card) => {
