@@ -31,18 +31,7 @@ const addingInactiveClassForSubmit = document.querySelector('.popup_cards__submi
 
 const profileImage = document.querySelector(".profile__image");
 const profilePhotoContainer = document.querySelector(".profile__photo_container");
-const submitButton =  document.querySelector('.popup__profile_submit');
-const submitTest = document.querySelectorAll('.popup__submit');
 
-
-// function renderLoading(isLoading){
-
-//   if (isLoading){
-//     submitTest.innerHTML = 'Сохранение...';
-//   } else {
-//     submitTest.innerHTML = 'Сохранить';
-//   }
-//   };
 
  const apiProfile = new Api({
    baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
@@ -65,7 +54,6 @@ const submitTest = document.querySelectorAll('.popup__submit');
 
  popupWithEditPhoto.setEventListeners();
 
-//  profileImage.addEventListener('click', function(){
   profilePhotoContainer.addEventListener('click', function(){
   popupWithEditPhoto.open();
  });
@@ -80,7 +68,7 @@ const submitTest = document.querySelectorAll('.popup__submit');
  });
  
  function handleEditPhotoProfileSubmit(newLink){
- //apiAvatar.changeAvatar(newLink);
+ apiAvatar.changeAvatar(newLink);
  //apiProfile.changeAvatar(newLink);
   //apiAvatar.changeAvatar(newLink.avatar);
    profileImage.src = newLink.avatar;
@@ -103,7 +91,7 @@ function handleProfileFormSubmit() {
 function handleFormSubmit(objectNewCards) {
   const newElement = createCard(objectNewCards);
 
-  //apiCards.postCardOnTheServer(objectNewCards);
+  apiCards.postCardOnTheServer(objectNewCards);
  
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(
