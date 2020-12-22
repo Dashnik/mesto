@@ -18,6 +18,7 @@ const cardsContainer = document.querySelector(".elements");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
+const cardTemplateWithoutTrashIcon = '.card-template-without-Trash-Icon';
 const popupEditProfileSelector = '.popup_edit-user-profile';
 //const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
@@ -126,8 +127,27 @@ popupCardsOpenButton.addEventListener("click", function () {
 });
 addCardPopup.setEventListeners();
 
-function createCard(card){
-  const cardElement = new Card(cardTemplate,card,handleCardClick,handleTrashClick);
+const myID = "2911d40eec43f0326fe3701b";
+
+function createCard(card) {
+    const cardElement = new Card(
+      cardTemplate,
+      card,
+      handleCardClick,
+      handleTrashClick
+    );
+  
+    const element = cardElement.getElement();
+    return element;
+}
+
+function createCardWithoutTrashIcon(card) {
+  const cardElement = new Card(
+    cardTemplateWithoutTrashIcon,
+    card,
+    handleCardClick,
+    handleTrashClick
+  );
 
   const element = cardElement.getElement();
   return element;
@@ -166,20 +186,30 @@ const apiCards = new Api({
   },
 });
 
-apiCards.getInitialCards().then(cards =>{
+apiCards.getInitialCards().then((cards) => {
+  //console.log(cards);
 
+  const cardsList = new Section(
+    {
+      items: cards,
+      renderer: (card) => {
+        if (card.owner._id === myID) {
+          const element = createCard(card);
 
-  const cardsList = new Section({
-    items:cards,
-    renderer: (card) => {
-      const element = createCard(card)
-  
-      cardsList.addItem(element);
+          cardsList.addItem(element);
+        }
+        else {
+          const element = createCardWithoutTrashIcon(card);
+
+          cardsList.addItem(element);
+        }
+      },
     },
-   },cardsContainer);
-  
+    cardsContainer
+  );
+
   cardsList.renderItems();
-})
+});
 
 
 

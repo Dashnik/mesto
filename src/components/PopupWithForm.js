@@ -19,20 +19,7 @@ export default class PopupWithForm extends Popup {
    
     return inputValues;
   }
-
-  // renderLoading(isLoading){
-  //   const submitButtons = document.querySelectorAll('.popup__submit');
-  //   submitButtons.forEach(submit => {
-  //     if (isLoading){
-  //       submit.innerHTML = 'Сохранение...';
-        
-  //     } else {
-  //       submit.innerHTML = 'Сохранить';
-  //     }
-  //   })
-   
-  //   };
-
+  
   renderLoading(isLoading){
     const submitButton = this._popupElement.querySelector('.popup__submit');
       if (isLoading){

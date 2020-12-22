@@ -130,7 +130,21 @@
         <template class="card-template">
         <div class="card">
             <img class='card__image' src="#" alt=''>
-            <img class="card__trash" src="./images/Trash.svg" alt="мусорка">
+            <img class="card__trash" src="./images/Trash.svg" alt="Иконка мусорки">
+            <div class="card__body">
+                <h2 class="card__title"></h2>
+                <div class="card__likes">
+                <button type="button" class=" card__like"></button>
+                <p class="card__counter-like">0</p>
+                 </div>
+            </div>
+        </div>
+    </template>
+
+    <template class="card-template-without-Trash-Icon">
+        <div class="card">
+            <img class='card__image' src="./images/Trash.svg" alt='test'>
+            <img class="card__trash card__trash_turned-off " src="#" alt="мусорка">
             <div class="card__body">
                 <h2 class="card__title"></h2>
                 <div class="card__likes">

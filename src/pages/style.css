@@ -15,3 +15,8 @@
 @import url(../blocks/popup/_popup-Image/popup_popup-Image.css);
 @import url(../blocks/popup/_removing_card/popup_removing_card.css);
 @import url(../blocks/popup/_editing_photo_profile/popup_editing_photo_profile.css);
+
+
+.card__trash_turned-off{
+    display: none;
+}
