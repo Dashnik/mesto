@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export default class ApproveForm extends Popup {
+export default class PopupWithDelete extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
@@ -17,16 +17,20 @@ export default class ApproveForm extends Popup {
     return inputValues;
   }
 
+  _deleteCard(){
+    //пойми какую карточку нужно удалить
+    
+    //удали её
+  }
   
   setEventListeners() {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      console.log(this._popupElement);
+      _deleteCard();
      // this._handleFormSubmit(this._removeCard);
       this.close();
-    })
-   
+    });  
   }
   
 }

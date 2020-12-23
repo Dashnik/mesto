@@ -4,7 +4,7 @@ import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import ApproveForm from '../components/ApproveForm.js';
+import PopupWithDelete from '../components/PopupWithDelete.js';
 import UserInfo from '../components/UserInfo.js';
 //import {initialCards} from './Defaults-cards.js';
 import {validationConfig} from './constants.js';
@@ -34,22 +34,13 @@ const profileImage = document.querySelector(".profile__image");
 const profilePhotoContainer = document.querySelector(".profile__photo_container");
 
 
- const apiProfile = new Api({
-   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me",
+ const apiPraktikum = new Api({
+   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
    headers: {
      authorization: "2be0f169-5c86-4181-b303-3b009feba466",
      "Content-Type": "application/json",
    },
  });
-
- const apiAvatar = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/users/me/avatar",
-  headers: {
-    authorization: "2be0f169-5c86-4181-b303-3b009feba466",
-    "Content-Type": "application/json",
-  },
-});
-
 
  const popupWithEditPhoto = new PopupWithForm(popupEditProfilePhotoSelector,handleEditPhotoProfileSubmit);
 
@@ -59,19 +50,29 @@ const profilePhotoContainer = document.querySelector(".profile__photo_container"
   popupWithEditPhoto.open();
  });
 
- apiProfile.getProfileInfo().then((profile) => {
-  console.log(profile);  
- console.log(profile.name);
- console.log(profile._id);
+
+ function handleRemovingFormSubmit(cardID){
+//  delete.card where id=cardID;
+}
+
+const trashPopup = new PopupWithDelete(popupTrashSelector,handleRemovingFormSubmit);
+
+trashPopup.setEventListeners();
+
+function handleTrashClick(event){
+  const cardChild = event.target.parentNode;
+  console.log(cardChild);
+  trashPopup.open();
+}
+
+apiPraktikum.getProfileInfo().then((profile) => {
    profileImage.src = profile.avatar;
    textProfileName.textContent = profile.name;
    profileDescription.textContent = profile.about;
  });
  
- function handleEditPhotoProfileSubmit(newLink){
- apiAvatar.changeAvatar(newLink);
- //apiProfile.changeAvatar(newLink);
-  //apiAvatar.changeAvatar(newLink.avatar);
+ function handleEditPhotoProfileSubmit(newLink) {
+  apiPraktikum.changeAvatar(newLink);
    profileImage.src = newLink.avatar;
  }
 
@@ -82,7 +83,7 @@ function handleProfileFormSubmit() {
     about: profileJobInput.value,
   }
  
-  apiProfile.changeProfile(profileInfo);
+  apiPraktikum.changeProfile(profileInfo);
 
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
@@ -92,16 +93,12 @@ function handleProfileFormSubmit() {
 function handleFormSubmit(objectNewCards) {
   const newElement = createCard(objectNewCards);
 
-  apiCards.postCardOnTheServer(objectNewCards);
+  apiPraktikum.postCardOnTheServer(objectNewCards);
  
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(
     validationConfig.inactiveButtonClass
   );
-}
-
-function handleRemovingFormSubmit(cardElement){
-  cardElement;
 }
 
 const userInfo = new UserInfo(textProfileName,profileDescription); 
@@ -162,32 +159,12 @@ addCardValidator.enableValidation();
 const imagePopup =  new PopupWithImage (popupImageSelector);
 imagePopup.setEventListeners();
 
-
-
-
 function handleCardClick(link,name){
   imagePopup.open(link,name);
 }
-const trashPopup = new ApproveForm(popupTrashSelector,handleRemovingFormSubmit);
 
-trashPopup.setEventListeners();
-
-function handleTrashClick(event){
-  const cardChild = event.target.parentNode;
-  console.log(cardChild);
-  trashPopup.open();
-}
-
-const apiCards = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17/cards ",
-  headers: {
-    authorization: "2be0f169-5c86-4181-b303-3b009feba466",
-    "Content-Type": "application/json",
-  },
-});
-
-apiCards.getInitialCards().then((cards) => {
-  //console.log(cards);
+apiPraktikum.getInitialCards().then((cards) => {
+ // console.log(cards);
 
   const cardsList = new Section(
     {

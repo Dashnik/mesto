@@ -6,7 +6,7 @@ export default class Api {
   }
 
   getProfileInfo() {
-    return fetch(this.baseUrl, {
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
     })
       .then((res) => res.json())
@@ -16,7 +16,7 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(this.baseUrl, {
+    return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
     })
       .then((res) => res.json())
@@ -26,7 +26,7 @@ export default class Api {
   }
 
   changeProfile(profileInfo) {
-    return fetch(this.baseUrl, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(profileInfo),
@@ -46,7 +46,7 @@ export default class Api {
   }
 
   postCardOnTheServer(newCard) {
-    return fetch(this.baseUrl, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify(newCard),
@@ -66,7 +66,7 @@ export default class Api {
   }
 
   changeAvatar(link){
-    return fetch(this.baseUrl, {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(link),
@@ -85,5 +85,24 @@ export default class Api {
       });
   }
 
+  deleteCard(cardID){
+    return fetch(`${this.baseUrl}/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+      body: JSON.stringify(cardID),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
   
 }
