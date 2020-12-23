@@ -11,10 +11,10 @@
   background: #ffffff;
   border-radius: 10px;
   position: relative;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .card__like_active {
   background: url(../../images/black_like.svg) center no-repeat;
 }
-

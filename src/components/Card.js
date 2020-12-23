@@ -19,7 +19,7 @@ export class Card {
     const cardChild = event.target.parentNode;
     cardChild.remove();
   }
-
+  
   _likeCardHandler(evt) {
     evt.target.classList.toggle("card__like_active");
   }
@@ -28,7 +28,8 @@ export class Card {
     this._element
       .querySelector(".card__trash")
       .addEventListener("click", this._handleTrashClick);
-    //.addEventListener("click",this._deleteCardHandler);
+     //.addEventListener("click", this._deleteCardHandler);  
+    
 
     this._element
       .querySelector(".card__image")

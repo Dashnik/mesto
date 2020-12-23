@@ -10,7 +10,6 @@ import UserInfo from '../components/UserInfo.js';
 import {validationConfig} from './constants.js';
 import Api from '../components/Api.js';
 
-
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
 //const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
@@ -52,7 +51,7 @@ const profilePhotoContainer = document.querySelector(".profile__photo_container"
 
 
  function handleRemovingFormSubmit(cardID){
-//  delete.card where id=cardID;
+  cardID.remove();
 }
 
 const trashPopup = new PopupWithDelete(popupTrashSelector,handleRemovingFormSubmit);
@@ -61,8 +60,8 @@ trashPopup.setEventListeners();
 
 function handleTrashClick(event){
   const cardChild = event.target.parentNode;
-  console.log(cardChild);
-  trashPopup.open();
+// console.log(cardChild);
+  trashPopup.open();  
 }
 
 apiPraktikum.getProfileInfo().then((profile) => {
