@@ -17,7 +17,7 @@ export default class PopupWithDelete extends Popup {
     return inputValues;
   }
 
-  _deleteCard(){
+  _deleteCard(cardID){
     //пойми какую карточку нужно удалить
     
     //удали её
@@ -27,7 +27,7 @@ export default class PopupWithDelete extends Popup {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      _deleteCard();
+      _deleteCard(cardID);
      // this._handleFormSubmit(this._removeCard);
       this.close();
     });  

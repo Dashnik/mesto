@@ -65,7 +65,7 @@ export default class Api {
       });
   }
 
-  changeAvatar(link){
+  changeAvatar(link) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this.headers,
@@ -85,7 +85,7 @@ export default class Api {
       });
   }
 
-  deleteCard(cardID){
+  deleteCard(cardID) {
     return fetch(`${this.baseUrl}/${id}`, {
       method: "DELETE",
       headers: this.headers,
@@ -105,4 +105,43 @@ export default class Api {
       });
   }
 
+  putLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this.headers,
+      // body: JSON.stringify(like),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this.headers,
+      // body: JSON.stringify(like),
+    })
+      .then((result) => {
+        if (!result.ok) {
+          return Promise.reject("Server error");
+        }
+        return result.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        alert(err);
+      });
+    }
 }

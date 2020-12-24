@@ -3,12 +3,16 @@
 @import url(./__input/popup__input.css);
 @import url(./__submit/popup__submit.css);
 @import url(./__title/popup__title.css);
-@import url(./__caption/popupImage__caption.css);
-@import url(./__bigImage/popupImage__bigImage.css);
+@import url(./__caption/popup__caption.css);
+@import url(./__image/popup__image.css); 
 @import url(./__input-error/popup__input-error.css);
 @import url(./__title_removing_card/popup-title__removing_card.css);
+/* @import url(./_type/popup_type_removing_card.css); */
 @import url(./__removing/popup__removing.css);
 @import url(./__editing_photo_container/popup__editing_photo_container.css);
+
+
+
 
 .popup {
   /* display: none; transition не работает с display:none */
@@ -17,9 +21,9 @@
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  width: 290px;
-  height: 340px;
-  background: #ffffff;
+  /* width: 290px;
+ height: 340px; */
+   background: #ffffff; 
   border-radius: 10px;
   box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
   z-index: 1001;
@@ -30,15 +34,12 @@
 
 @media screen and (min-width: 768px) {
   .popup {
-    height: 330px;
-    width: 430px;
+     /* height: 330px;
+    width: 430px;   */
+    border: 1px solid gold; 
   }
 }
 
-.popupImage {
-  max-width: 282px;
-  max-height: 282px;
-}
 
 .overlay {
   display: none;

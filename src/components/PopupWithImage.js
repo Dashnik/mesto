@@ -5,7 +5,7 @@ export default class PopupWithImage extends Popup {
     super.open(); //вызываем родительский метод
 
     const popupImageBigImageElement = this._popupElement.querySelector(
-      ".popupImage__bigImage"
+      ".popup__image"
     );
 
     //дополним open новой функциональностью
@@ -13,7 +13,7 @@ export default class PopupWithImage extends Popup {
     popupImageBigImageElement.src = imageLink;
 
     this._popupElement.querySelector(
-      ".popupImage__caption"
+      ".popup__caption"
     ).textContent = imageTitle;
   }
 }

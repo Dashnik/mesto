@@ -1,7 +1,5 @@
-//import PopupWithForm from "./PopupWithForm";
-
 export class Card {
-  constructor(cardSelector, card, handleCardClick, handleTrashClick) {
+  constructor(cardSelector, card, handleCardClick, handleTrashClick,handleLikeClick) {
     this._selector = cardSelector;
     this._cardimage = card.link;
     this._cardTitle = card.name;
@@ -9,6 +7,7 @@ export class Card {
     this._cardId = card._id;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
+    this._handleLikeClick = handleLikeClick;
   }
 
   _getTemplate() {
@@ -19,7 +18,7 @@ export class Card {
     const cardChild = event.target.parentNode;
     cardChild.remove();
   }
-  
+
   _likeCardHandler(evt) {
     evt.target.classList.toggle("card__like_active");
   }
@@ -35,10 +34,23 @@ export class Card {
       .querySelector(".card__image")
       .addEventListener("click", () => {
         this._handleCardClick(this._cardimage, this._cardTitle);
-      });
+      });    
+
+    // this._element
+    //   .querySelector(".card__like")
+    //   .addEventListener("click", this._likeCardHandler);
+
     this._element
       .querySelector(".card__like")
-      .addEventListener("click", this._likeCardHandler);
+      .addEventListener("click", (evt) => {
+        evt.target.classList.toggle("card__like_active");
+        this._handleLikeClick(this._cardId);
+
+        // const counterLikesElement = this._element.querySelector(
+        //   ".card__counter-like"
+        // );
+        // console.log(counterLikesElement);
+      });
   }
 
   getElement() {

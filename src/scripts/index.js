@@ -21,9 +21,12 @@ const cardTemplateWithoutTrashIcon = '.card-template-without-Trash-Icon';
 const popupEditProfileSelector = '.popup_edit-user-profile';
 //const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
-const popupImageSelector = ".popup_image";
-const popupTrashSelector = ".popup_removing_card";
- const popupEditProfilePhotoSelector = ".popup_editing_photo_profile";
+// const popupImageSelector = ".popup_image";
+const popupImageSelector = ".popup_type_image";
+// const popupTrashSelector = ".popup_removing_card";
+const popupTrashSelector = ".popup_type_removing_card";
+//  const popupEditProfilePhotoSelector = ".popup_editing_photo_profile";
+const popupEditProfilePhotoSelector = ".popup_type_editing_photo_profile"
 
 const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
@@ -130,7 +133,8 @@ function createCard(card) {
       cardTemplate,
       card,
       handleCardClick,
-      handleTrashClick
+      handleTrashClick,
+      handleLikeClick
     );
   
     const element = cardElement.getElement();
@@ -142,7 +146,8 @@ function createCardWithoutTrashIcon(card) {
     cardTemplateWithoutTrashIcon,
     card,
     handleCardClick,
-    handleTrashClick
+    handleTrashClick,
+    handleLikeClick
   );
 
   const element = cardElement.getElement();
@@ -160,6 +165,24 @@ imagePopup.setEventListeners();
 
 function handleCardClick(link,name){
   imagePopup.open(link,name);
+}
+
+function handleLikeClick(cardID){
+  //apiPraktikum.putLike(cardID);
+//  apiPraktikum.deleteLike(cardID);
+ apiPraktikum.getInitialCards().then((cards) => {
+   cards.forEach((card) => {
+     if (cardID === card._id) {
+      console.log('It works.Card likes is '+ card.likes.length); 
+      // console.log(card);
+      // console.log(card.likes);
+      // console.log(card.likes.length);
+    
+
+      // console.log(test);
+  }
+    })
+ })
 }
 
 apiPraktikum.getInitialCards().then((cards) => {
