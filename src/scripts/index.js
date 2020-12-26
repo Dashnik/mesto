@@ -17,7 +17,6 @@ const cardsContainer = document.querySelector(".elements");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
-const cardTemplateWithoutTrashIcon = '.card-template-without-Trash-Icon';
 const popupEditProfileSelector = '.popup_edit-user-profile';
 //const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
 const popupCardsSelector = ".popup_cards";
@@ -141,19 +140,6 @@ function createCard(card) {
     return element;
 }
 
-function createCardWithoutTrashIcon(card) {
-  const cardElement = new Card(
-    cardTemplateWithoutTrashIcon,
-    card,
-    handleCardClick,
-    handleTrashClick,
-    handleLikeClick
-  );
-
-  const element = cardElement.getElement();
-  return element;
-}
-
 const editUserProfileValidator = new FormValidator(validationConfig.formSelector, validationConfig);
 editUserProfileValidator.enableValidation();
 
@@ -186,22 +172,13 @@ function handleLikeClick(cardID){
 }
 
 apiPraktikum.getInitialCards().then((cards) => {
- // console.log(cards);
-
+  console.log(cards);
   const cardsList = new Section(
     {
       items: cards,
       renderer: (card) => {
-        if (card.owner._id === myID) {
-          const element = createCard(card);
-
-          cardsList.addItem(element);
-        }
-        else {
-          const element = createCardWithoutTrashIcon(card);
-
-          cardsList.addItem(element);
-        }
+        const element = createCard(card);
+        cardsList.addItem(element);
       },
     },
     cardsContainer
@@ -212,24 +189,43 @@ apiPraktikum.getInitialCards().then((cards) => {
 
 
 
+//const cardTemplateWithoutTrashIcon = '.card-template-without-Trash-Icon';
+// function createCardWithoutTrashIcon(card) {
+//   const cardElement = new Card(
+//     cardTemplateWithoutTrashIcon,
+//     card,
+//     handleCardClick,
+//     handleTrashClick,
+//     handleLikeClick
+//   );
 
-
-
-
-
-// function handleCardClick(link,name){
-//   imagePopup.open(link,name);
+//   const element = cardElement.getElement();
+//   return element;
 // }
 
 
 
-// const cardsList = new Section({
-//   items:initialCards,
-//   renderer: (card) => {
-//     const element = createCard(card)
+// apiPraktikum.getInitialCards().then((cards) => {
+//  // console.log(cards);
 
-//     cardsList.addItem(element);
-//   },
-//  },cardsContainer);
+//   const cardsList = new Section(
+//     {
+//       items: cards,
+//       renderer: (card) => {
+//         if (card.owner._id === myID) {
+//           const element = createCard(card);
 
-// cardsList.renderItems();
+//           cardsList.addItem(element);
+//         }
+//         else {
+//           const element = createCardWithoutTrashIcon(card);
+
+//           cardsList.addItem(element);
+//         }
+//       },
+//     },
+//     cardsContainer
+//   );
+
+//   cardsList.renderItems();
+// });
