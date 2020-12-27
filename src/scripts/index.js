@@ -125,7 +125,7 @@ popupCardsOpenButton.addEventListener("click", function () {
 });
 addCardPopup.setEventListeners();
 
-const myID = "2911d40eec43f0326fe3701b";
+// const myID = "2911d40eec43f0326fe3701b";
 
 function createCard(card) {
     const cardElement = new Card(
@@ -153,22 +153,13 @@ function handleCardClick(link,name){
   imagePopup.open(link,name);
 }
 
-function handleLikeClick(cardID){
-  //apiPraktikum.putLike(cardID);
-//  apiPraktikum.deleteLike(cardID);
- apiPraktikum.getInitialCards().then((cards) => {
-   cards.forEach((card) => {
-     if (cardID === card._id) {
-      console.log('It works.Card likes is '+ card.likes.length); 
-      // console.log(card);
-      // console.log(card.likes);
-      // console.log(card.likes.length);
-    
+function handleLikeClick(cardID, counterLikesElement) {
+  const promiseLikes = apiPraktikum.putLike(cardID);
+  promiseLikes.then((countLikesFromServer) => {
+    counterLikesElement.textContent = countLikesFromServer.likes.length;
+  });
 
-      // console.log(test);
-  }
-    })
- })
+  //  apiPraktikum.deleteLike(cardID);
 }
 
 apiPraktikum.getInitialCards().then((cards) => {

@@ -50,12 +50,9 @@ export class Card {
       .querySelector(".card__like")
       .addEventListener("click", (evt) => {
         evt.target.classList.toggle("card__like_active");
-        this._handleLikeClick(this._cardId);
-
-        // const counterLikesElement = this._element.querySelector(
-        //   ".card__counter-like"
-        // );
-        // console.log(counterLikesElement);
+        const likesContainer = evt.target.parentNode;
+        const countLikes = likesContainer.querySelector('.card__counter-like');
+        this._handleLikeClick(this._cardId,countLikes);
       });
   }
 
