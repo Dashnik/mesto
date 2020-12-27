@@ -153,13 +153,22 @@ function handleCardClick(link,name){
   imagePopup.open(link,name);
 }
 
-function handleLikeClick(cardID, counterLikesElement) {
+function handleLikeClick(cardID, counterLikesElement,isLiked) {
+
+  if (isLiked == null)
+   {
+      const promiseDeleteLikes = apiPraktikum.deleteLike(cardID);
+      promiseDeleteLikes.then((countLikesFromServer) => {
+      counterLikesElement.textContent = countLikesFromServer.likes.length;
+     });
+    }
+else
+{
   const promiseLikes = apiPraktikum.putLike(cardID);
   promiseLikes.then((countLikesFromServer) => {
     counterLikesElement.textContent = countLikesFromServer.likes.length;
   });
-
-  //  apiPraktikum.deleteLike(cardID);
+}
 }
 
 apiPraktikum.getInitialCards().then((cards) => {
