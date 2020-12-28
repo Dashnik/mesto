@@ -10,15 +10,21 @@ export default class PopupWithForm extends Popup {
     const emptyLike = '';
     const inputValues = {};
     const emptyId = '';
+
+    const ownerID = {
+      _id: "2911d40eec43f0326fe3701b"
+    }
+
     const valuesFromInputs = this._popupElement.querySelectorAll(
       ".popup__input"
     );
+
     valuesFromInputs.forEach(element => {
       inputValues[element.name] = element.value;      
     }); 
     inputValues.likes = emptyLike;
-    inputValues.owner = emptyId;
-   
+    inputValues.owner = ownerID;
+    //console.log(inputValues);
     return inputValues;
   }
   

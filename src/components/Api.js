@@ -86,10 +86,10 @@ export default class Api {
   }
 
   deleteCard(cardID) {
-    return fetch(`${this.baseUrl}/${id}`, {
+    return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: this.headers,
-      body: JSON.stringify(cardID),
+     // body: JSON.stringify(cardID),
     })
       .then((result) => {
         if (!result.ok) {

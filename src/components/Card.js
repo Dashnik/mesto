@@ -31,10 +31,17 @@ export class Card {
   }
 
   _setListeners() {
+    // this._element
+    //   .querySelector(".card__trash")
+    //   .addEventListener("click", this._handleTrashClick);
+
     this._element
       .querySelector(".card__trash")
-      .addEventListener("click", this._handleTrashClick);
-    //.addEventListener("click", this._deleteCardHandler);
+      .addEventListener("click", (event) => {
+        const cardChild = event.target.parentNode;
+        this._handleTrashClick(cardChild);
+      }
+      );
 
     this._element
       .querySelector(".card__image")
@@ -55,8 +62,7 @@ export class Card {
        const isItNull =  likesContainer.querySelector('.card__like_active');
      
         const countLikes = likesContainer.querySelector('.card__counter-like');
-        this._handleLikeClick(this._cardId,countLikes,isItNull);
-       
+       this._handleLikeClick(this._cardId,countLikes,isItNull);
       });
   }
 
@@ -64,7 +70,7 @@ export class Card {
     this._element = this._getTemplate();
     const myID = "2911d40eec43f0326fe3701b";
     const cardID = this._element.querySelector(".card");
-    cardID.id = this._cardId;
+     cardID.id = this._cardId;
     const cardImageElement = this._element.querySelector(".card__image");
     const counterLikesElement = this._element.querySelector(
       ".card__counter-like"

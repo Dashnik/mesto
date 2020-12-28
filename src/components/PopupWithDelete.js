@@ -1,3 +1,4 @@
+//import Api from "./Api.js";
 import Popup from "./Popup.js";
 
 export default class PopupWithDelete extends Popup {
@@ -5,32 +6,14 @@ export default class PopupWithDelete extends Popup {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
   }
-  
-  _getInputValues() {
-    const inputValues = {};
-    const valuesFromInputs = this._popupElement.querySelectorAll(
-      ".popup__input"
-    );
-    valuesFromInputs.forEach(element => {
-      inputValues[element.name] = element.value;
-    }); 
-    return inputValues;
-  }
-
-  _deleteCard(cardID){
-    //пойми какую карточку нужно удалить
     
-    //удали её
-  }
-  
-  setEventListeners() {
+  setEventListeners(card,apiPraktikum) {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      _deleteCard(cardID);
-     // this._handleFormSubmit(this._removeCard);
+      apiPraktikum.deleteCard(card.id);
+      card.remove();
       this.close();
     });  
   }
-  
 }

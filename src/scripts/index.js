@@ -51,19 +51,11 @@ const profilePhotoContainer = document.querySelector(".profile__photo_container"
   popupWithEditPhoto.open();
  });
 
+const trashPopup = new PopupWithDelete(popupTrashSelector);
 
- function handleRemovingFormSubmit(cardID){
-  cardID.remove();
-}
-
-const trashPopup = new PopupWithDelete(popupTrashSelector,handleRemovingFormSubmit);
-
-trashPopup.setEventListeners();
-
-function handleTrashClick(event){
-  const cardChild = event.target.parentNode;
-// console.log(cardChild);
+function handleTrashClick(card){
   trashPopup.open();  
+  trashPopup.setEventListeners(card,apiPraktikum);
 }
 
 apiPraktikum.getProfileInfo().then((profile) => {
@@ -93,9 +85,8 @@ function handleProfileFormSubmit() {
 
 function handleFormSubmit(objectNewCards) {
   const newElement = createCard(objectNewCards);
-
   apiPraktikum.postCardOnTheServer(objectNewCards);
- 
+  location.reload()
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(
     validationConfig.inactiveButtonClass
@@ -172,7 +163,7 @@ else
 }
 
 apiPraktikum.getInitialCards().then((cards) => {
-  console.log(cards);
+ //console.log(cards);
   const cardsList = new Section(
     {
       items: cards,
