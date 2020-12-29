@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const emptyLike = '';
+    const emptyLike = [];
     const inputValues = {};
     const emptyId = '';
 

@@ -17,9 +17,13 @@ const cardsContainer = document.querySelector(".elements");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
-const popupEditProfileSelector = '.popup_edit-user-profile';
+// const popupEditProfileSelector = '.popup_edit-user-profile';
+const popupEditProfileSelector = '.popup_type_edit-user-profile';
 //const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
-const popupCardsSelector = ".popup_cards";
+// const popupCardsSelector = ".popup_cards";
+const popupCardsSelector = ".popup_type_new-cards";
+
+
 // const popupImageSelector = ".popup_image";
 const popupImageSelector = ".popup_type_image";
 const popupTrashSelector = ".popup_type_removing_card";
@@ -92,13 +96,13 @@ function handleProfileFormSubmit() {
 // }
 
 function handleFormSubmit(objectNewCard) {
-  const newElement = createCard(objectNewCard);
-  apiPraktikum.postCardOnTheServer(objectNewCard);
-  location.reload()
+   const newElement = createCard(objectNewCard);
+   apiPraktikum.postCardOnTheServer(objectNewCard);
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(
     validationConfig.inactiveButtonClass
   );
+  location.reload()
 }
 
 const userInfo = new UserInfo(textProfileName,profileDescription); 
@@ -172,7 +176,7 @@ else
 }
 
 apiPraktikum.getInitialCards().then((cards) => {
- //console.log(cards);
+ console.log(cards);
   const cardsList = new Section(
     {
       items: cards,

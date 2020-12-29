@@ -2,8 +2,12 @@ export const overlay = document.querySelector(".overlay");
 
 export const validationConfig = {
   // formSelector: ".popup",
-  formSelector: ".popup_edit-user-profile",
-  formSelectorCard: ".popup_cards",
+  // formSelector: ".popup_edit-user-profile",
+  formSelector: ".popup_type_edit-user-profile",
+  
+  // formSelectorCard: ".popup_cards",
+  formSelectorCard: ".popup_type_new-cards",
+  
   // formSelectorPhotoProfile: ".popup_type_editing_photo_profile",
 
   formProfileInputsSelector : ".popup__input_type_error",

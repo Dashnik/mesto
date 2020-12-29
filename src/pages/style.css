@@ -16,7 +16,8 @@
 @import url(../blocks/popup/_type/popup_type_editing_photo_profile.css);
 
 @import url(../blocks/popup/_type/popup_type_image.css);
-
+@import url(../blocks/popup/_type/popup_type_edit-user-profile.css);
+@import url(../blocks/popup/_type/popup_type_new-cards.css);
 
 .card__trash_turned-off{
     display: none;
