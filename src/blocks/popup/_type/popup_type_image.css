@@ -1,14 +1,13 @@
 .popup_type_image {
   max-width: 282px;
   max-height: 282px;
-  /* background: #111010; */
   background: #000a;
-  border: 1px solid salmon;
 }
 
 @media screen and (min-width: 768px) {
   .popup_type_image {
     max-height: 708px;
     max-width: 708px;
+    background: #000a;
   }
 }

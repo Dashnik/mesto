@@ -14,17 +14,14 @@
     <main class="content">
         <section class="profile">
             <div class="profile__photo_container">
-                <!-- <img src="./images/Jacques_Cousteau.jpg" class="profile__image" alt='Жак-Ив Кусто'> -->
                 <img src="#" class="profile__image" alt='Жак-Ив Кусто'>
                 <img src="./images/EditPen.svg" class="penEdit" alt="PenEdit">
              </div>
                 <div class="profile__info">
                 <div class="profile__info-table">
-                    <!-- <h1 class="profile__name">Жак-Ив Кусто</h1> -->
                     <h1 class="profile__name"></h1>
                     <button type="button" class="profile__name-edit"></button>
                 </div>
-                <!-- <p class="profile__description">Исследователь океана</p> -->
                 <p class="profile__description"></p>
             </div>
             <div class="profile__rectangle">
@@ -102,7 +99,7 @@
     <div class="popup popup_type_removing_card" name="popupRemovingCard">
         <button type="button" class="popup__close" aria-label="закрыть попап"></button>
         <div class="popup__removing">
-            <h3 class="popup__title popup-title__removing_card">Вы уверены?</h3>
+            <h2 class="popup__title popup__title_removing_card">Вы уверены?</h2>
             <form>
                 <button type="submit" class="popup__submit">Да</button>
             </form>
@@ -112,7 +109,7 @@
     <div class="popup popup_type_editing_photo_profile" name="popupEditingPhotoProfile">
         <button type="button" class="popup__close" aria-label="закрыть попап"></button>
         <div class="popup__editing_photo_container">
-            <h3 class="popup__title">Обновить аватар</h3>
+            <h2 class="popup__title">Обновить аватар</h2>
             <input 
             type='url'
             value="" 
@@ -121,6 +118,7 @@
             class="popup__input popup__item_input_url" 
             placeholder="Ссылка на аватар" 
             required>
+            <span class="popup__input-error" id='place-name-error'></span>
             <form>
                 <button type="submit" class="popup__submit">Сохранить</button>
             </form>
@@ -129,7 +127,6 @@
 
         <template class="card-template">
         <div class="card" id="">
-            <!-- <details class="card_id"></details> -->
             <img class='card__image' src="#" alt='#'>
             <img class="card__trash" src="./images/Trash.svg" alt="Иконка мусорки">
             <div class="card__body">
@@ -141,20 +138,6 @@
             </div>
         </div>
     </template>
-
-    <!-- <template class="card-template-without-Trash-Icon">
-        <div class="card" id="">
-            <img class='card__image' src="#" alt='#'>
-            <img class="card__trash card__trash_turned-off " src="#" alt="мусорка">
-            <div class="card__body">
-                <h2 class="card__title"></h2>
-                <div class="card__likes">
-                <button type="button" class=" card__like"></button>
-                <p class="card__counter-like">0</p>
-                 </div>
-            </div>
-        </div>
-    </template> -->
  
 </body>
 

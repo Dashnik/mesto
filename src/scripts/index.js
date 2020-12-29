@@ -22,9 +22,7 @@ const popupEditProfileSelector = '.popup_edit-user-profile';
 const popupCardsSelector = ".popup_cards";
 // const popupImageSelector = ".popup_image";
 const popupImageSelector = ".popup_type_image";
-// const popupTrashSelector = ".popup_removing_card";
 const popupTrashSelector = ".popup_type_removing_card";
-//  const popupEditProfilePhotoSelector = ".popup_editing_photo_profile";
 const popupEditProfilePhotoSelector = ".popup_type_editing_photo_profile"
 
 const profileNameInput = document.querySelector(".popup__item_profile_name");
@@ -76,16 +74,26 @@ function handleProfileFormSubmit() {
     about: profileJobInput.value,
   }
  
-  apiPraktikum.changeProfile(profileInfo);
+  apiPraktikum.setNewProfile(profileInfo);
 
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 
 }
 
-function handleFormSubmit(objectNewCards) {
-  const newElement = createCard(objectNewCards);
-  apiPraktikum.postCardOnTheServer(objectNewCards);
+// function handleFormSubmit(objectNewCards) {
+//   const newElement = createCard(objectNewCards);
+//   apiPraktikum.postCardOnTheServer(objectNewCards);
+//   location.reload()
+//   cardsContainer.prepend(newElement);
+//   addingInactiveClassForSubmit.classList.add(
+//     validationConfig.inactiveButtonClass
+//   );
+// }
+
+function handleFormSubmit(objectNewCard) {
+  const newElement = createCard(objectNewCard);
+  apiPraktikum.postCardOnTheServer(objectNewCard);
   location.reload()
   cardsContainer.prepend(newElement);
   addingInactiveClassForSubmit.classList.add(
@@ -116,8 +124,6 @@ popupCardsOpenButton.addEventListener("click", function () {
 });
 addCardPopup.setEventListeners();
 
-// const myID = "2911d40eec43f0326fe3701b";
-
 function createCard(card) {
     const cardElement = new Card(
       cardTemplate,
@@ -136,6 +142,9 @@ editUserProfileValidator.enableValidation();
 
 const addCardValidator = new FormValidator(validationConfig.formSelectorCard, validationConfig);
 addCardValidator.enableValidation();
+
+// const editProfilePhotoValidator = new FormValidator(validationConfig.formSelectorPhotoProfile, validationConfig);
+// editProfilePhotoValidator.enableValidation();
 
 const imagePopup =  new PopupWithImage (popupImageSelector);
 imagePopup.setEventListeners();
@@ -177,46 +186,3 @@ apiPraktikum.getInitialCards().then((cards) => {
 
   cardsList.renderItems();
 });
-
-
-
-//const cardTemplateWithoutTrashIcon = '.card-template-without-Trash-Icon';
-// function createCardWithoutTrashIcon(card) {
-//   const cardElement = new Card(
-//     cardTemplateWithoutTrashIcon,
-//     card,
-//     handleCardClick,
-//     handleTrashClick,
-//     handleLikeClick
-//   );
-
-//   const element = cardElement.getElement();
-//   return element;
-// }
-
-
-
-// apiPraktikum.getInitialCards().then((cards) => {
-//  // console.log(cards);
-
-//   const cardsList = new Section(
-//     {
-//       items: cards,
-//       renderer: (card) => {
-//         if (card.owner._id === myID) {
-//           const element = createCard(card);
-
-//           cardsList.addItem(element);
-//         }
-//         else {
-//           const element = createCardWithoutTrashIcon(card);
-
-//           cardsList.addItem(element);
-//         }
-//       },
-//     },
-//     cardsContainer
-//   );
-
-//   cardsList.renderItems();
-// });

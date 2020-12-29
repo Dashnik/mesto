@@ -24,7 +24,6 @@ export default class PopupWithForm extends Popup {
     }); 
     inputValues.likes = emptyLike;
     inputValues.owner = ownerID;
-    //console.log(inputValues);
     return inputValues;
   }
   

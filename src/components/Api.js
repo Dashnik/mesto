@@ -12,6 +12,9 @@ export default class Api {
       .then((res) => res.json())
       .then((result) => {
         return result;
+      })
+      .catch((err) =>{
+        console.log(err);
       });
   }
 
@@ -22,10 +25,14 @@ export default class Api {
       .then((res) => res.json())
       .then((result) => {
         return result;
+      })
+      .catch((err) =>{
+        console.log(err);
       });
   }
 
-  changeProfile(profileInfo) {
+
+  setNewProfile(profileInfo) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
@@ -89,7 +96,6 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: this.headers,
-     // body: JSON.stringify(cardID),
     })
       .then((result) => {
         if (!result.ok) {
@@ -109,7 +115,6 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: this.headers,
-      // body: JSON.stringify(like),
     })
       .then((result) => {
         if (!result.ok) {
@@ -129,7 +134,6 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
-      // body: JSON.stringify(like),
     })
       .then((result) => {
         if (!result.ok) {

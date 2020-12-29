@@ -4,6 +4,7 @@ export const validationConfig = {
   // formSelector: ".popup",
   formSelector: ".popup_edit-user-profile",
   formSelectorCard: ".popup_cards",
+  // formSelectorPhotoProfile: ".popup_type_editing_photo_profile",
 
   formProfileInputsSelector : ".popup__input_type_error",
   formProfileInputsErrorsSelector:".popup__input-error",
