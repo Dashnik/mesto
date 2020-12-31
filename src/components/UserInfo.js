@@ -23,4 +23,18 @@ export default class UserInfo {
     this._selectorName.textContent = nameInputValue; 
     this._selectorDescription.textContent = jobInputValue; 
   }
+
+  getUserInfoFromServer(apiPraktikum) {
+    const profileImage = document.querySelector(".profile__image");
+
+    apiPraktikum.getProfileInfo().then((profile) => {
+      profileImage.src = profile.avatar;
+      this._selectorName.textContent = profile.name;
+      this._selectorDescription.textContent = profile.about;
+    })
+    .catch((error) => {
+      console.error(error);
+    });     
+  }
+
 }

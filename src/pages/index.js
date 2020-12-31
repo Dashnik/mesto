@@ -1,4 +1,5 @@
-import '../pages/style.css';
+import './style.css';
+//import '../pages/style.css';
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {Section} from '../components/Section.js';
@@ -7,7 +8,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithDelete from '../components/PopupWithDelete.js';
 import UserInfo from '../components/UserInfo.js';
 //import {initialCards} from './Defaults-cards.js';
-import {validationConfig} from './constants.js';
+//import {validationConfig} from './constants.js';
+import {validationConfig} from '../scripts/constants.js';
 import Api from '../components/Api.js';
 
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
@@ -60,11 +62,11 @@ function handleTrashClick(card){
   trashPopup.setEventListeners(card,apiPraktikum);
 }
 
-apiPraktikum.getProfileInfo().then((profile) => {
-   profileImage.src = profile.avatar;
-   textProfileName.textContent = profile.name;
-   profileDescription.textContent = profile.about;
- });
+// apiPraktikum.getProfileInfo().then((profile) => {
+//    profileImage.src = profile.avatar;
+//    textProfileName.textContent = profile.name;
+//    profileDescription.textContent = profile.about;
+//  });
  
  function handleEditPhotoProfileSubmit(newLink) {
   apiPraktikum.changeAvatar(newLink);
@@ -80,6 +82,7 @@ function handleProfileFormSubmit() {
  
   apiPraktikum.setNewProfile(profileInfo);
 
+  // userInfo.setUserInfo(profileNameInput, profileJobInput);
   userInfo.setUserInfo(profileNameInput, profileJobInput);
   profilePopUp.close();
 
@@ -105,7 +108,9 @@ function handleFormSubmit(objectNewCard) {
   location.reload()
 }
 
+// const userInfo = new UserInfo(textProfileName,profileDescription); 
 const userInfo = new UserInfo(textProfileName,profileDescription); 
+userInfo.getUserInfoFromServer(apiPraktikum);
 
 const profilePopUp = new PopupWithForm(popupEditProfileSelector,handleProfileFormSubmit);
 
