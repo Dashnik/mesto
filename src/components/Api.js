@@ -1,6 +1,6 @@
 export default class Api {
   constructor(config) {
-    //тело конструктора
+    /** тело конструктора*/
     this.baseUrl = config.baseUrl;
     this.headers = config.headers;
   }
@@ -13,9 +13,6 @@ export default class Api {
       .then((result) => {
         return result;
       })
-      // .catch((err) =>{
-      //   console.log(err);
-      // });
   }
 
   getInitialCards() {
@@ -26,9 +23,6 @@ export default class Api {
       .then((result) => {
         return result;
       })
-      .catch((err) =>{
-        console.log(err);
-      });
   }
 
 
@@ -47,9 +41,6 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
   }
 
   postCardOnTheServer(newCard) {
@@ -67,9 +58,6 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
   }
 
   changeAvatar(link) {
@@ -87,9 +75,6 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
   }
 
   deleteCard(cardID) {
@@ -106,9 +91,6 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
   }
 
   putLike(cardId) {
@@ -125,9 +107,6 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
   }
 
   deleteLike(cardId) {
@@ -144,8 +123,5 @@ export default class Api {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        alert(err);
-      });
     }
 }

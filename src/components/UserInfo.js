@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(userNameElement, userDescriptionElement) {
+  constructor(userNameElement, userDescriptionElement,apiPraktikum) {
     this._selectorName = userNameElement;
     this._selectorDescription = userDescriptionElement;
+    this.apiPraktikum = apiPraktikum;
   }
 
   getUserInfo() {
@@ -24,10 +25,10 @@ export default class UserInfo {
     this._selectorDescription.textContent = jobInputValue; 
   }
 
-  getUserInfoFromServer(apiPraktikum) {
+  getUserInfoFromServer() {
     const profileImage = document.querySelector(".profile__image");
 
-    apiPraktikum.getProfileInfo().then((profile) => {
+    this.apiPraktikum.getProfileInfo().then((profile) => {
       profileImage.src = profile.avatar;
       this._selectorName.textContent = profile.name;
       this._selectorDescription.textContent = profile.about;
@@ -35,6 +36,10 @@ export default class UserInfo {
     .catch((error) => {
       console.error(error);
     });     
+  }
+
+  setNewAvatarLink(newLink){
+    this.apiPraktikum.changeAvatar(newLink);
   }
 
 }

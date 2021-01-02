@@ -4,7 +4,8 @@ export class Card {
     card,
     handleCardClick,
     handleTrashClick,
-    handleLikeClick
+    // handleLikeClick
+    apiPraktikum
   ) {
     this._selector = cardSelector;
     this._cardimage = card.link;
@@ -14,7 +15,8 @@ export class Card {
     this._ownerId = card.owner._id;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
-    this._handleLikeClick = handleLikeClick;
+    // this._handleLikeClick = handleLikeClick;
+     this._apiPraktikum = apiPraktikum;
   }
 
   _getTemplate() {
@@ -31,9 +33,6 @@ export class Card {
   }
 
   _setListeners() {
-    // this._element
-    //   .querySelector(".card__trash")
-    //   .addEventListener("click", this._handleTrashClick);
 
     this._element
       .querySelector(".card__trash")
@@ -62,8 +61,23 @@ export class Card {
        const isItNull =  likesContainer.querySelector('.card__like_active');
      
         const countLikes = likesContainer.querySelector('.card__counter-like');
-       this._handleLikeClick(this._cardId,countLikes,isItNull);
+      //  this._handleLikeClick(this._cardId,countLikes,isItNull);
+       this._handleCountLikes(this._cardId,countLikes,isItNull);
       });
+  }
+
+  _handleCountLikes(cardID, counterLikesElement, isLiked){
+    if (isLiked == null) {
+      const promiseDeleteLikes = this._apiPraktikum .deleteLike(cardID);
+      promiseDeleteLikes.then((countLikesFromServer) => {
+        counterLikesElement.textContent = countLikesFromServer.likes.length;
+      });
+    } else {
+      const promiseLikes = this._apiPraktikum .putLike(cardID);
+      promiseLikes.then((countLikesFromServer) => {
+        counterLikesElement.textContent = countLikesFromServer.likes.length;
+      });
+    }
   }
 
   getElement() {
