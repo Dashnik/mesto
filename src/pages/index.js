@@ -180,6 +180,7 @@ Promise.all([
   userInfo.getUserInfoFromServer(),
   apiPraktikum.getInitialCards()
   .then((cards) => {
+    console.log(cards);
     cardsList.renderItems(cards);
   })
 ])

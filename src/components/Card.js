@@ -15,8 +15,7 @@ export class Card {
     this._ownerId = card.owner._id;
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
-    // this._handleLikeClick = handleLikeClick;
-     this._apiPraktikum = apiPraktikum;
+    this._apiPraktikum = apiPraktikum;
   }
 
   _getTemplate() {
@@ -49,10 +48,6 @@ export class Card {
         this._handleCardClick(this._cardimage, this._cardTitle);
       });
 
-    // this._element
-    //   .querySelector(".card__like")
-    //   .addEventListener("click", this._likeCardHandler);
-
     this._element
       .querySelector(".card__like")
       .addEventListener("click", (evt) => {
@@ -83,7 +78,6 @@ export class Card {
 
   getElement() {
     this._element = this._getTemplate();
-    const myID = "2911d40eec43f0326fe3701b";
     const cardID = this._element.querySelector(".card");
      cardID.id = this._cardId;
     const cardImageElement = this._element.querySelector(".card__image");
@@ -96,12 +90,16 @@ export class Card {
     cardImageElement.alt = this._cardTitle;
     counterLikesElement.textContent = this._cardLikes.length;
     this._element.querySelector(".card__title").textContent = this._cardTitle;
-    if (this._ownerId !== myID) {
+    this._apiPraktikum.getProfileInfo()
+    .then((data)=>{
+     
+      if (this._ownerId !== data._id) {
     
-      cardTrashIcon.src = "";
-      cardTrashIcon.alt = "";
-    }
-
+        cardTrashIcon.src = "";
+        cardTrashIcon.alt = "";
+      }
+    })
+    
     this._setListeners();
     return this._element;
   }
