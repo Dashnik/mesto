@@ -29,32 +29,8 @@ export default class Api {
     })
     .then((res) => {
       return this._getResponseData(res);
-      // if (res.ok) {
-      //   return res.json();
-      // }
-      // else {
-      //   return Promise.reject(`Ошибка: ${res.status}`);
-      // }
     });
   }
-
-  // setNewProfile(profileInfo) {
-  //   return fetch(`${this.baseUrl}/users/me`, {
-  //     method: "PATCH",
-  //     headers: this.headers,
-  //     body: JSON.stringify(profileInfo),
-  //   })
-  //     .then((result) => {
-  //       if (!result.ok) {
-  //         return Promise.reject("Server error");
-  //       }
-  //       return result.json();
-  //     })
-  //     .then((data) => {
-  //       return data;
-  //     });
-  // }
-
   
     setNewProfile(profileInfo) {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -75,14 +51,7 @@ export default class Api {
     })
       .then((res) => {
         return this._getResponseData(res);
-        // if (!result.ok) {
-        //   return Promise.reject("Server error");
-        // }
-        // return result.json();
       })
-      // .then((data) => {
-      //   return data;
-      // });
   }
 
   changeAvatar(link) {
@@ -93,14 +62,7 @@ export default class Api {
     })
       .then((res) => {
         return this._getResponseData(res);
-        // if (!result.ok) {
-        //   return Promise.reject("Server error");
-        // }
-        // return result.json();
       })
-      // .then((data) => {
-      //   return data;
-      // });
   }
 
   deleteCard(cardID) {
@@ -117,10 +79,6 @@ export default class Api {
     })
       .then((res) => {
         return this._getResponseData(res);
-        // if (!result.ok) {
-        //   return Promise.reject("Server error");
-        // }
-        // return result.json();
       })
       .then((data) => {
         return data;
@@ -134,10 +92,6 @@ export default class Api {
     })
       .then((res) => {
         return this._getResponseData(res);
-        // if (!result.ok) {
-        //   return Promise.reject("Server error");
-        // }
-        // return result.json();
       })
       .then((data) => {
         return data;

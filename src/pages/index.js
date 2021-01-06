@@ -125,6 +125,10 @@ profilePopUp.setEventListeners();
 const addCardPopup = new PopupWithForm(popupCardsSelector, handleFormSubmit);
 popupCardsOpenButton.addEventListener("click", function () {
   addCardPopup.open();
+
+  //
+  editUserProfileValidator.clearProfileErrors();
+  //
   addingInactiveClassForSubmit.classList.add(
     validationConfig.inactiveButtonClass
   );
@@ -147,6 +151,7 @@ function createCard(card) {
 const editUserProfileValidator = new FormValidator(
   validationConfig.formSelector,
   validationConfig
+  
 );
 editUserProfileValidator.enableValidation();
 
@@ -180,7 +185,7 @@ Promise.all([
   userInfo.getUserInfoFromServer(),
   apiPraktikum.getInitialCards()
   .then((cards) => {
-    console.log(cards);
+    //console.log(cards);
     cardsList.renderItems(cards);
   })
 ])

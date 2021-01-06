@@ -12,7 +12,6 @@ export default class PopupWithDelete extends Popup {
       evt.preventDefault();
       //  this._handleFormSubmit(card.id);
       this._handleFormSubmit(card);
-      console.log(card);
       // apiPraktikum.deleteCard(card.id);
       // card.remove();
 

@@ -1,9 +1,6 @@
-import {validationConfig} from '../scripts/constants.js';
-
-
 export class FormValidator {
   constructor(formSelector, object) {
-    this._formSelector = formSelector;
+    //this._formSelector = formSelector;
     this._formElement = document.querySelector(formSelector);
     this._object = object;
     this._inputSelector = object.inputSelector;
@@ -11,6 +8,8 @@ export class FormValidator {
     this._inactiveButtonClass = object.inactiveButtonClass;
     this._errorClass = object.errorClass;
     this._inputErrorClass = object.inputErrorClass;
+    this._formProfileInputsSelector = object.formProfileInputsSelector;
+    this._formProfileInputsErrorsSelector = object.formProfileInputsErrorsSelector;
   }
   // Функция, которая добавляет класс с ошибкой
   _showInputError(formElement, inputElement, errorMessage) {
@@ -94,17 +93,17 @@ export class FormValidator {
   }
 
   clearProfileErrors() {
-    const popupInput = document.querySelectorAll(validationConfig.formProfileInputsSelector);
-    const popupSubmit = document.querySelector(validationConfig.submitButtonSelector);
-    const popupInputError = document.querySelectorAll(validationConfig.formProfileInputsErrorsSelector);
+    const popupInput = document.querySelectorAll(this._formProfileInputsSelector);
+    const popupSubmit = document.querySelector(this._submitButtonSelector);
+    const popupInputError = document.querySelectorAll(this._formProfileInputsErrorsSelector);
     if (popupInput.length !== 0) {
       popupInput.forEach((item) => {
-        item.classList.remove(validationConfig.inputErrorClass);
+        item.classList.remove(this._inputErrorClass);
       });
-      popupSubmit.classList.remove(validationConfig.inactiveButtonClass);
+      popupSubmit.classList.remove(this._inactiveButtonClass);
       if (popupInputError.length !== 0) {
         popupInputError.forEach((item) => {
-          item.classList.remove(validationConfig.errorClass);
+          item.classList.remove(this._errorClass);
         });
       }
     }
