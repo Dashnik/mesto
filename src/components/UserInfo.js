@@ -39,9 +39,4 @@ export default class UserInfo {
     });     
   }
 
-
-  setNewAvatarLink(newLink){
-    this.apiPraktikum.changeAvatar(newLink);
-  }
-
 }

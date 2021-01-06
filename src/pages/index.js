@@ -57,8 +57,15 @@ function handleTrashClick(card) {
 
 
 function handleEditPhotoProfileSubmit(newLink) {
-  userInfo.setNewAvatarLink(newLink);
-  profileImage.src = newLink.avatar;
+  apiPraktikum.changeAvatar(newLink)
+  .then(()=>{
+    profileImage.src = newLink.avatar;
+    popupWithEditPhoto.close();
+  })
+  .catch((error) =>{
+    console.log(error);
+  })
+  
 }
 
 function handleProfileFormSubmit() {
@@ -80,10 +87,13 @@ function handleFormSubmit(objectNewCard) {
   const newElement = createCard(objectNewCard);
   apiPraktikum.postCardOnTheServer(objectNewCard)
   .then(()=>{
+    //addCardPopup.renderLoading(true);
     cardsList.addItem(newElement);
     addingInactiveClassForSubmit.classList.add(
       validationConfig.inactiveButtonClass
     );
+   // addCardPopup.renderLoading(false);
+   addCardPopup.close();
   });
 }
 
