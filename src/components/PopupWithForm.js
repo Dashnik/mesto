@@ -1,8 +1,9 @@
+//import { overlay } from "../scripts/constants.js";
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector,handleFormSubmit) {
-    super(popupSelector);
+  constructor(popupSelector,overlay,handleFormSubmit) {
+    super(popupSelector,overlay);
     this._handleFormSubmit = handleFormSubmit;
   }
 

@@ -1,21 +1,22 @@
-import {overlay} from '../scripts/constants.js';
+//import {overlay} from '../scripts/constants.js';
 
 export default class Popup {
-  constructor(popupSelector) {
+  constructor(popupSelector,overlay) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     this.setEventListeners = this.setEventListeners.bind(this);
+    this._overlay = document.querySelector(overlay);
   }
 
   open() {
     this._popupElement.classList.add("popup_opened");
-    overlay.classList.add("overlay_visible");
+    this._overlay.classList.add("overlay_visible");
      document.addEventListener("keyup", this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove("popup_opened");
-    overlay.classList.remove("overlay_visible");
+    this._overlay.classList.remove("overlay_visible");
     document.removeEventListener("keyup", this._handleEscClose);
   }
 
@@ -33,7 +34,7 @@ export default class Popup {
          this.close();
      }  
     } );
-    overlay.addEventListener("click", (event) => { 
+    this._overlay.addEventListener("click", (event) => { 
       if (event.target === event.currentTarget) { 
         this.close();
       } 

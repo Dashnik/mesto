@@ -1,8 +1,8 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithDelete extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
-    super(popupSelector);
+  constructor(popupSelector, overlay, handleFormSubmit) {
+    super(popupSelector,overlay);
     this._handleFormSubmit = handleFormSubmit;
   }
     

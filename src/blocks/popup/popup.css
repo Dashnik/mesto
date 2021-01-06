@@ -11,14 +11,12 @@
 @import url(./__editing_photo_container/popup__editing_photo_container.css);
 
 .popup {
-  /* display: none; transition не работает с display:none */
+  /** display: none; transition не работает с display:none */
 
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
-  /* width: 290px;
-  height: 340px; */
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.7);
@@ -28,12 +26,6 @@
   transition: visibility 0s, opacity 0.5s, linear 0.5s;
 }
 
- /* @media screen and (min-width: 768px) {
-  .popup {
-     height: 330px;
-    width: 430px;  
-  }
-}   */
 
 .overlay {
   display: none;

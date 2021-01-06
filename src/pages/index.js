@@ -9,6 +9,7 @@ import UserInfo from "../components/UserInfo.js";
 import { validationConfig } from "../scripts/constants.js";
 import Api from "../components/Api.js";
 
+const overlay = ".overlay";
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const cardsContainer = document.querySelector(".elements");
@@ -36,6 +37,7 @@ const apiPraktikum = new Api({
 
 const popupWithEditPhoto = new PopupWithForm(
   popupEditProfilePhotoSelector,
+  overlay,
   handleEditPhotoProfileSubmit
 );
 
@@ -45,7 +47,7 @@ profilePhotoContainer.addEventListener("click", function () {
   popupWithEditPhoto.open();
 });
 
-const trashPopup = new PopupWithDelete(popupTrashSelector,handleFormWithDeleteSubmit);
+const trashPopup = new PopupWithDelete(popupTrashSelector,overlay, handleFormWithDeleteSubmit );
 
 function handleTrashClick(card) {
   trashPopup.open();
@@ -109,6 +111,7 @@ const userInfo = new UserInfo(
 
 const profilePopUp = new PopupWithForm(
   popupEditProfileSelector,
+  overlay,
   handleProfileFormSubmit
 );
 
@@ -122,7 +125,7 @@ popupOpenProfileButton.addEventListener("click", function () {
 });
 profilePopUp.setEventListeners();
 
-const addCardPopup = new PopupWithForm(popupCardsSelector, handleFormSubmit);
+const addCardPopup = new PopupWithForm(popupCardsSelector, overlay, handleFormSubmit);
 popupCardsOpenButton.addEventListener("click", function () {
   addCardPopup.open();
 
@@ -162,7 +165,7 @@ const addCardValidator = new FormValidator(
 addCardValidator.enableValidation();
 
 
-const imagePopup = new PopupWithImage(popupImageSelector);
+const imagePopup = new PopupWithImage(popupImageSelector, overlay);
 imagePopup.setEventListeners();
 
 function handleCardClick(link, name) {
