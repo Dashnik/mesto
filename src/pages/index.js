@@ -69,19 +69,17 @@ function handleProfileFormSubmit() {
   };
 
   apiPraktikum.setNewProfile(profileInfo)
-
   .then(()=>{
     userInfo.setUserInfo(profileNameInput, profileJobInput);
     profilePopUp.close();
   })
-  //.catch(err=>console.log(`При изменении аватара пользователя произошла ошибка: ${err}`));
 }
 
 function handleFormSubmit(objectNewCard) {
 
   const newElement = createCard(objectNewCard);
-  apiPraktikum.postCardOnTheServer(objectNewCard).then(()=>{
-
+  apiPraktikum.postCardOnTheServer(objectNewCard)
+  .then(()=>{
     cardsList.addItem(newElement);
     addingInactiveClassForSubmit.classList.add(
       validationConfig.inactiveButtonClass
@@ -89,13 +87,12 @@ function handleFormSubmit(objectNewCard) {
   });
 }
 
-
-
 function handleFormWithDeleteSubmit(cardId){
   apiPraktikum.deleteCard(cardId.id).then(()=> {
    
     console.log('It is success');
     cardId.remove();
+    trashPopup.close();
   })
   .catch(err => {
     console.log('It is error');

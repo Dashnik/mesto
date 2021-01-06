@@ -1,21 +1,16 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithDelete extends Popup {
-  constructor(popupSelector, overlay, handleFormSubmit) {
+  constructor(popupSelector, overlay, handleFormWithDeleteSubmit) {
     super(popupSelector,overlay);
-    this._handleFormSubmit = handleFormSubmit;
+    this._handleFormSubmit = handleFormWithDeleteSubmit;
   }
     
   setEventListeners(card) {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      //  this._handleFormSubmit(card.id);
       this._handleFormSubmit(card);
-      // apiPraktikum.deleteCard(card.id);
-      // card.remove();
-
-      this.close();
     });  
   }
 }
