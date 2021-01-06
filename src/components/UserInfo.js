@@ -28,7 +28,9 @@ export default class UserInfo {
   getUserInfoFromServer() {
     const profileImage = document.querySelector(".profile__image");
 
-    this.apiPraktikum.getProfileInfo().then((profile) => {
+    this.apiPraktikum.getProfileInfo()
+    .then((profile) => {
+      console.log(profile);
       profileImage.src = profile.avatar;
       this._selectorName.textContent = profile.name;
       this._selectorDescription.textContent = profile.about;
@@ -37,6 +39,7 @@ export default class UserInfo {
       console.error(error);
     });     
   }
+
 
   setNewAvatarLink(newLink){
     this.apiPraktikum.changeAvatar(newLink);

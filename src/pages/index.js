@@ -1,5 +1,4 @@
 import "./style.css";
-//import '../pages/style.css';
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
@@ -7,39 +6,25 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithDelete from "../components/PopupWithDelete.js";
 import UserInfo from "../components/UserInfo.js";
-//import {initialCards} from './Defaults-cards.js';
-//import {validationConfig} from './constants.js';
 import { validationConfig } from "../scripts/constants.js";
 import Api from "../components/Api.js";
 
 const popupOpenProfileButton = document.querySelector(".profile__name-edit");
-//const popupCards = document.querySelector(".popup_cards");
 const popupCardsOpenButton = document.querySelector(".profile__vector");
 const cardsContainer = document.querySelector(".elements");
 const textProfileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardTemplate = ".card-template";
-// const popupEditProfileSelector = '.popup_edit-user-profile';
 const popupEditProfileSelector = ".popup_type_edit-user-profile";
-//const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
-// const popupCardsSelector = ".popup_cards";
 const popupCardsSelector = ".popup_type_new-cards";
-
-// const popupImageSelector = ".popup_image";
 const popupImageSelector = ".popup_type_image";
 const popupTrashSelector = ".popup_type_removing_card";
 const popupEditProfilePhotoSelector = ".popup_type_editing_photo_profile";
-
 const profileNameInput = document.querySelector(".popup__item_profile_name");
 const profileJobInput = document.querySelector(".popup__item_profile_job");
-const addingInactiveClassForSubmit = document.querySelector(
-  ".popup_cards__submit"
-);
-
+const addingInactiveClassForSubmit = document.querySelector(".popup_cards__submit");
 const profileImage = document.querySelector(".profile__image");
-const profilePhotoContainer = document.querySelector(
-  ".profile__photo_container"
-);
+const profilePhotoContainer = document.querySelector(".profile__photo_container");
 
 const apiPraktikum = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-17",
@@ -60,11 +45,11 @@ profilePhotoContainer.addEventListener("click", function () {
   popupWithEditPhoto.open();
 });
 
-const trashPopup = new PopupWithDelete(popupTrashSelector);
+const trashPopup = new PopupWithDelete(popupTrashSelector,handleFormWithDeleteSubmit);
 
 function handleTrashClick(card) {
   trashPopup.open();
-  trashPopup.setEventListeners(card, apiPraktikum);
+  trashPopup.setEventListeners(card);
 }
 
 
@@ -74,20 +59,6 @@ function handleEditPhotoProfileSubmit(newLink) {
   profileImage.src = newLink.avatar;
 }
 
-// function handleProfileFormSubmit() {
-
-//   const profileInfo = {
-//     name: profileNameInput.value,
-//     about: profileJobInput.value,
-//   };
-
-//   apiPraktikum.setNewProfile(profileInfo);
-
-//   // userInfo.setUserInfo(profileNameInput, profileJobInput);
-//   userInfo.setUserInfo(profileNameInput, profileJobInput);
-//   profilePopUp.close();
-// }
-
 function handleProfileFormSubmit() {
   
   const profileInfo = {
@@ -95,44 +66,47 @@ function handleProfileFormSubmit() {
     about: profileJobInput.value,
   };
 
-  apiPraktikum.setNewProfile(profileInfo).then(()=>{
+  apiPraktikum.setNewProfile(profileInfo)
+  .then(()=>{
     userInfo.setUserInfo(profileNameInput, profileJobInput);
     profilePopUp.close();
   })
-  .catch(err=>console.log(`При изменении аватара пользователя произошла ошибка: ${err}`));
+  //.catch(err=>console.log(`При изменении аватара пользователя произошла ошибка: ${err}`));
 }
-
-// function handleFormSubmit(objectNewCard) {
-
-//   const newElement = createCard(objectNewCard);
-//   apiPraktikum.postCardOnTheServer(objectNewCard);
-//   cardsContainer.prepend(newElement);
-//   addingInactiveClassForSubmit.classList.add(
-//     validationConfig.inactiveButtonClass
-//   );
-//   //location.reload();
-// }
 
 function handleFormSubmit(objectNewCard) {
 
   const newElement = createCard(objectNewCard);
   apiPraktikum.postCardOnTheServer(objectNewCard).then(()=>{
 
-    cardsContainer.prepend(newElement);
+    cardsList.addItem(newElement);
+ //cardsContainer.prepend(newElement);
     addingInactiveClassForSubmit.classList.add(
       validationConfig.inactiveButtonClass
     );
   });
- 
 }
 
+
+
+function handleFormWithDeleteSubmit(cardId){
+  apiPraktikum.deleteCard(cardId).then(()=> {
+   
+    console.log('It is success');
+    //card.remove();
+  })
+  .catch(err => {
+    console.log('It is error');
+    console.log(err);
+  }) 
+}
 
 const userInfo = new UserInfo(
   textProfileName,
   profileDescription,
   apiPraktikum
 );
-userInfo.getUserInfoFromServer();
+// userInfo.getUserInfoFromServer();
 
 const profilePopUp = new PopupWithForm(
   popupEditProfileSelector,
@@ -191,26 +165,53 @@ function handleCardClick(link, name) {
   imagePopup.open(link, name);
 }
 
+// Promise.all([ 
+//   userInfo.getUserInfoFromServer(),
+
+// ])
+
+const cardsList = new Section(
+  {
+    renderer: (card) => {
+      const element = createCard(card);
+      cardsList.addItem(element,true);
+    },
+  },
+  cardsContainer
+);
+
 
 
 apiPraktikum.getInitialCards().then((cards) => {
-  console.log(cards);
-   const cardsList = new Section(
-    {
-      items: cards,
-      renderer: (card) => {
-        const element = createCard(card);
-        cardsList.addItem(element);
-      },
-    },
-    cardsContainer
-  );
-
-  cardsList.renderItems();
+  userInfo.getUserInfoFromServer();
+  cardsList.renderItems(cards);
 });
 
 
+// apiPraktikum.getInitialCards().then((cards) => {
+//   userInfo.getUserInfoFromServer();
+//  // cardsList;
+//    const cardsList = new Section(
+//     {
+//       items: cards,
+//       renderer: (card) => {
+//         const element = createCard(card);
+//         cardsList.addItem(element);
+//       },
+//     },
+//     cardsContainer
+//   );
+  
 
+//   cardsList.renderItems();
+// });
+
+
+//const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
+// const popupImageSelector = ".popup_image";
+// const popupCardsSelector = ".popup_cards";
+// const popupEditProfileSelector = '.popup_edit-user-profile';
+//const popupCards = document.querySelector(".popup_cards");
 
 
 

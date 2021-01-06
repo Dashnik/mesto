@@ -9,22 +9,36 @@ export default class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
     })
-      .then((res) => res.json())
-      .then((result) => {
-        return result;
-      })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      else {
+        return Promise.reject(`Ошибка: ${res.status}`);
+      }
+    });
+    // .then((result) => {
+    //   return result;
+    // })
   }
 
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
     })
-      .then((res) => res.json())
-      .then((result) => {
-        return result;
-      })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      else {
+        return Promise.reject(`Ошибка: ${res.status}`);
+      }
+    });
+    // .then((res) => res.json());
+    // .then((result) => {
+    //   return result;
+    // })
   }
-
 
   setNewProfile(profileInfo) {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -40,7 +54,7 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
+      });
   }
 
   postCardOnTheServer(newCard) {
@@ -57,7 +71,7 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
+      });
   }
 
   changeAvatar(link) {
@@ -74,23 +88,23 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
+      });
   }
 
   deleteCard(cardID) {
     return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: this.headers,
-    })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
-      })
-      .then((data) => {
-        return data;
-      })
+    });
+    // .then((result) => {
+    //   if (!result.ok) {
+    //     return Promise.reject("Server error");
+    //   }
+    //   return result.json();
+    // })
+    // .then((data) => {
+    //   return data;
+    // })
   }
 
   putLike(cardId) {
@@ -106,7 +120,7 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
+      });
   }
 
   deleteLike(cardId) {
@@ -122,6 +136,6 @@ export default class Api {
       })
       .then((data) => {
         return data;
-      })
-    }
+      });
+  }
 }

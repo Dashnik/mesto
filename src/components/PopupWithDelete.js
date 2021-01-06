@@ -6,12 +6,15 @@ export default class PopupWithDelete extends Popup {
     this._handleFormSubmit = handleFormSubmit;
   }
     
-  setEventListeners(card,apiPraktikum) {
+  setEventListeners(card) {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      apiPraktikum.deleteCard(card.id);
-      card.remove();
+      //  this._handleFormSubmit(card.id);
+      this._handleFormSubmit(card);
+      // apiPraktikum.deleteCard(card.id);
+      // card.remove();
+
       this.close();
     });  
   }
