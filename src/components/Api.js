@@ -5,21 +5,22 @@ export default class Api {
     this.headers = config.headers;
   }
 
+  _getResponseData(value){
+    if (value.ok) {
+      return value.json();
+    }
+    else {
+      return Promise.reject(`Ошибка: ${value.status}`);
+    }
+  }
+
   getProfileInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
+      return this._getResponseData(res);
     });
-    // .then((result) => {
-    //   return result;
-    // })
   }
 
   getInitialCards() {
@@ -27,34 +28,43 @@ export default class Api {
       headers: this.headers,
     })
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
+      return this._getResponseData(res);
+      // if (res.ok) {
+      //   return res.json();
+      // }
+      // else {
+      //   return Promise.reject(`Ошибка: ${res.status}`);
+      // }
     });
-    // .then((res) => res.json());
-    // .then((result) => {
-    //   return result;
-    // })
   }
 
-  setNewProfile(profileInfo) {
+  // setNewProfile(profileInfo) {
+  //   return fetch(`${this.baseUrl}/users/me`, {
+  //     method: "PATCH",
+  //     headers: this.headers,
+  //     body: JSON.stringify(profileInfo),
+  //   })
+  //     .then((result) => {
+  //       if (!result.ok) {
+  //         return Promise.reject("Server error");
+  //       }
+  //       return result.json();
+  //     })
+  //     .then((data) => {
+  //       return data;
+  //     });
+  // }
+
+  
+    setNewProfile(profileInfo) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(profileInfo),
     })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
+      .then((res) => {
+        return this._getResponseData(res);
       })
-      .then((data) => {
-        return data;
-      });
   }
 
   postCardOnTheServer(newCard) {
@@ -63,15 +73,16 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify(newCard),
     })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
+      .then((res) => {
+        return this._getResponseData(res);
+        // if (!result.ok) {
+        //   return Promise.reject("Server error");
+        // }
+        // return result.json();
       })
-      .then((data) => {
-        return data;
-      });
+      // .then((data) => {
+      //   return data;
+      // });
   }
 
   changeAvatar(link) {
@@ -80,15 +91,16 @@ export default class Api {
       headers: this.headers,
       body: JSON.stringify(link),
     })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
+      .then((res) => {
+        return this._getResponseData(res);
+        // if (!result.ok) {
+        //   return Promise.reject("Server error");
+        // }
+        // return result.json();
       })
-      .then((data) => {
-        return data;
-      });
+      // .then((data) => {
+      //   return data;
+      // });
   }
 
   deleteCard(cardID) {
@@ -96,15 +108,6 @@ export default class Api {
       method: "DELETE",
       headers: this.headers,
     });
-    // .then((result) => {
-    //   if (!result.ok) {
-    //     return Promise.reject("Server error");
-    //   }
-    //   return result.json();
-    // })
-    // .then((data) => {
-    //   return data;
-    // })
   }
 
   putLike(cardId) {
@@ -112,11 +115,12 @@ export default class Api {
       method: "PUT",
       headers: this.headers,
     })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
+      .then((res) => {
+        return this._getResponseData(res);
+        // if (!result.ok) {
+        //   return Promise.reject("Server error");
+        // }
+        // return result.json();
       })
       .then((data) => {
         return data;
@@ -128,11 +132,12 @@ export default class Api {
       method: "DELETE",
       headers: this.headers,
     })
-      .then((result) => {
-        if (!result.ok) {
-          return Promise.reject("Server error");
-        }
-        return result.json();
+      .then((res) => {
+        return this._getResponseData(res);
+        // if (!result.ok) {
+        //   return Promise.reject("Server error");
+        // }
+        // return result.json();
       })
       .then((data) => {
         return data;

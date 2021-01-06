@@ -30,7 +30,6 @@ export default class UserInfo {
 
     this.apiPraktikum.getProfileInfo()
     .then((profile) => {
-      console.log(profile);
       profileImage.src = profile.avatar;
       this._selectorName.textContent = profile.name;
       this._selectorDescription.textContent = profile.about;

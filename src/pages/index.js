@@ -67,6 +67,7 @@ function handleProfileFormSubmit() {
   };
 
   apiPraktikum.setNewProfile(profileInfo)
+
   .then(()=>{
     userInfo.setUserInfo(profileNameInput, profileJobInput);
     profilePopUp.close();
@@ -80,7 +81,6 @@ function handleFormSubmit(objectNewCard) {
   apiPraktikum.postCardOnTheServer(objectNewCard).then(()=>{
 
     cardsList.addItem(newElement);
- //cardsContainer.prepend(newElement);
     addingInactiveClassForSubmit.classList.add(
       validationConfig.inactiveButtonClass
     );
@@ -90,10 +90,10 @@ function handleFormSubmit(objectNewCard) {
 
 
 function handleFormWithDeleteSubmit(cardId){
-  apiPraktikum.deleteCard(cardId).then(()=> {
+  apiPraktikum.deleteCard(cardId.id).then(()=> {
    
     console.log('It is success');
-    //card.remove();
+    cardId.remove();
   })
   .catch(err => {
     console.log('It is error');
@@ -106,7 +106,6 @@ const userInfo = new UserInfo(
   profileDescription,
   apiPraktikum
 );
-// userInfo.getUserInfoFromServer();
 
 const profilePopUp = new PopupWithForm(
   popupEditProfileSelector,
@@ -165,10 +164,7 @@ function handleCardClick(link, name) {
   imagePopup.open(link, name);
 }
 
-// Promise.all([ 
-//   userInfo.getUserInfoFromServer(),
 
-// ])
 
 const cardsList = new Section(
   {
@@ -180,87 +176,13 @@ const cardsList = new Section(
   cardsContainer
 );
 
-
-
-apiPraktikum.getInitialCards().then((cards) => {
-  userInfo.getUserInfoFromServer();
-  cardsList.renderItems(cards);
-});
-
-
-// apiPraktikum.getInitialCards().then((cards) => {
-//   userInfo.getUserInfoFromServer();
-//  // cardsList;
-//    const cardsList = new Section(
-//     {
-//       items: cards,
-//       renderer: (card) => {
-//         const element = createCard(card);
-//         cardsList.addItem(element);
-//       },
-//     },
-//     cardsContainer
-//   );
-  
-
-//   cardsList.renderItems();
-// });
-
-
-//const popupEditProfileElement = document.querySelector('.popup_edit-user-profile');
-// const popupImageSelector = ".popup_image";
-// const popupCardsSelector = ".popup_cards";
-// const popupEditProfileSelector = '.popup_edit-user-profile';
-//const popupCards = document.querySelector(".popup_cards");
-
-
-
-
-// apiPraktikum.getProfileInfo().then((profile) => {
-//    profileImage.src = profile.avatar;
-//    textProfileName.textContent = profile.name;
-//    profileDescription.textContent = profile.about;
-//  });
-
-//  function handleEditPhotoProfileSubmit(newLink) {
-//   apiPraktikum.changeAvatar(newLink);
-//    profileImage.src = newLink.avatar;
-//  }
-
-
-// function handleFormSubmit(objectNewCards) {
-//   const newElement = createCard(objectNewCards);
-//   apiPraktikum.postCardOnTheServer(objectNewCards);
-//   location.reload()
-//   cardsContainer.prepend(newElement);
-//   addingInactiveClassForSubmit.classList.add(
-//     validationConfig.inactiveButtonClass
-//   );
-// }
-
-// function handleLikeClick(cardID, counterLikesElement, isLiked) {
-//   if (isLiked == null) {
-//     const promiseDeleteLikes = apiPraktikum.deleteLike(cardID);
-//     promiseDeleteLikes.then((countLikesFromServer) => {
-//       counterLikesElement.textContent = countLikesFromServer.likes.length;
-//     });
-//   } else {
-//     const promiseLikes = apiPraktikum.putLike(cardID);
-//     promiseLikes.then((countLikesFromServer) => {
-//       counterLikesElement.textContent = countLikesFromServer.likes.length;
-//     });
-//   }
-// }
-
-// function createCard(card) {
-//   const cardElement = new Card(
-//     cardTemplate,
-//     card,
-//     handleCardClick,
-//     handleTrashClick,
-//     handleLikeClick
-//   );
-
-//   const element = cardElement.getElement();
-//   return element;
-// }
+Promise.all([ 
+  userInfo.getUserInfoFromServer(),
+  apiPraktikum.getInitialCards()
+  .then((cards) => {
+    cardsList.renderItems(cards);
+  })
+])
+.catch((err) =>{
+  console.log(err);
+})
