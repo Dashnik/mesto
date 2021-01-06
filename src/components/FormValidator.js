@@ -1,6 +1,5 @@
 export class FormValidator {
   constructor(formSelector, object) {
-    //this._formSelector = formSelector;
     this._formElement = document.querySelector(formSelector);
     this._object = object;
     this._inputSelector = object.inputSelector;
@@ -11,7 +10,7 @@ export class FormValidator {
     this._formProfileInputsSelector = object.formProfileInputsSelector;
     this._formProfileInputsErrorsSelector = object.formProfileInputsErrorsSelector;
   }
-  // Функция, которая добавляет класс с ошибкой
+  /**  Функция, которая добавляет класс с ошибкой */
   _showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
@@ -21,7 +20,7 @@ export class FormValidator {
     inputElement.classList.add(this._object.inputErrorClass);
   }
 
-  // Функция, которая удаляет класс с ошибкой
+  /**  Функция, которая удаляет класс с ошибкой */
   _hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
@@ -35,16 +34,16 @@ export class FormValidator {
     return inputElement.validationMessage;
   }
 
-  // Функция, которая проверяет валидность поля
+  /** Функция, которая проверяет валидность поля */
   _checkInputValidity(formElement, inputElement) {
     const isInputNotValid = !inputElement.validity.valid;
 
     if (isInputNotValid) {
       const errorMessage = this._getErrorMessage(inputElement);
-      // Если поле не проходит валидацию, покажем ошибку
+      /**  Если поле не проходит валидацию, покажем ошибку */
       this._showInputError(formElement, inputElement, errorMessage);
     } else {
-      // Если проходит, скроем
+      /**  Если проходит, скроем */
       this._hideInputError(formElement, inputElement);
     }
   }
