@@ -40,4 +40,13 @@ export default class Popup {
       } 
     }); 
   }
+
+  renderLoading(isLoading){
+    const submitButton = this._popupElement.querySelector('.popup__submit');
+      if (isLoading){
+        submitButton.innerHTML = 'Сохранение...';
+      } else {
+        submitButton.innerHTML = 'Сохранить';
+      }   
+    };
 }

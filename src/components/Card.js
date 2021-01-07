@@ -25,8 +25,6 @@ export class Card {
   _deleteCardHandler(event) {
     const cardChild = event.target.parentNode;
     cardChild.remove();
-   
-  
   }
 
   _likeCardHandler(evt) {
@@ -57,7 +55,6 @@ export class Card {
        const isItNull =  likesContainer.querySelector('.card__like_active');
      
         const countLikes = likesContainer.querySelector('.card__counter-like');
-      //  this._handleLikeClick(this._cardId,countLikes,isItNull);
        this._handleCountLikes(this._cardId,countLikes,isItNull);
       });
   }
@@ -79,7 +76,7 @@ export class Card {
   getElement() {
     this._element = this._getTemplate();
     const cardID = this._element.querySelector(".card");
-     cardID.id = this._cardId;
+    cardID.id = this._cardId;
     const cardImageElement = this._element.querySelector(".card__image");
     const counterLikesElement = this._element.querySelector(
       ".card__counter-like"
@@ -91,10 +88,10 @@ export class Card {
     counterLikesElement.textContent = this._cardLikes.length;
     this._element.querySelector(".card__title").textContent = this._cardTitle;
     this._apiPraktikum.getProfileInfo()
-    .then((data)=>{
-     
-      if (this._ownerId !== data._id) {
+    .then((profileData)=>{
     
+      if (this._ownerId !== profileData._id) {
+  
         cardTrashIcon.src = "";
         cardTrashIcon.alt = "";
       }

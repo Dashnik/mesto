@@ -1,4 +1,3 @@
-//import { overlay } from "../scripts/constants.js";
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
@@ -15,6 +14,7 @@ export default class PopupWithForm extends Popup {
     const ownerID = {
       _id: "2911d40eec43f0326fe3701b"
     }
+  
 
     const valuesFromInputs = this._popupElement.querySelectorAll(
       ".popup__input"
@@ -26,31 +26,20 @@ export default class PopupWithForm extends Popup {
     inputValues.likes = emptyLike;
     inputValues.owner = ownerID;
     return inputValues;
-  }
-  
-  renderLoading(isLoading){
-    const submitButton = this._popupElement.querySelector('.popup__submit');
-      if (isLoading){
-        submitButton.innerHTML = 'Сохранение...';
-      } else {
-        submitButton.innerHTML = 'Сохранить';
-      }   
-    };
+  } 
 
   setEventListeners() {
     super.setEventListeners();
     this._popupElement.addEventListener('submit',(evt) => {
       evt.preventDefault();
-      this.renderLoading(true);
       this._handleFormSubmit(this._getInputValues());
-      this.renderLoading(false);
     })
    
   }
 
   close() {
     super.close();
-    // this._popupElement.reset();   
+   this._popupElement.reset();   
   }
 
 }

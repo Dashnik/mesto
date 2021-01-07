@@ -69,7 +69,10 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: this.headers,
-    });
+    })
+    .then((res) => {
+      return this._getResponseData(res);
+    })
   }
 
   putLike(cardId) {
