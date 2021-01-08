@@ -1,10 +1,7 @@
-//import {overlay} from '../scripts/constants.js';
-
 export default class Popup {
   constructor(popupSelector,overlay) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
-    this.setEventListeners = this.setEventListeners.bind(this);
     this._overlay = document.querySelector(overlay);
   }
 
@@ -48,5 +45,5 @@ export default class Popup {
       } else {
         submitButton.innerHTML = 'Сохранить';
       }   
-    };
+   };
 }

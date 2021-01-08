@@ -2,30 +2,16 @@ import "./style.css";
 import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {Section} from "../components/Section.js";
-import {validationConfig} from "../scripts/constants.js";
+import {validationConfig, overlay,popupCardsSelector,popupImageSelector,popupTrashSelector,
+  cardTemplate,popupEditProfileSelector,popupEditProfilePhotoSelector,popupOpenProfileButton,
+  popupCardsOpenButton,cardsContainer, textProfileName, profileDescription,profileNameInput,
+  profileJobInput,addingInactiveClassForSubmit, profileImage,profilePhotoContainer
+} from "../scripts/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithDelete from "../components/PopupWithDelete.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-
-const overlay = ".overlay";
-const popupCardsSelector = ".popup_type_new-cards";
-const popupImageSelector = ".popup_type_image";
-const popupTrashSelector = ".popup_type_removing_card";
-const cardTemplate = ".card-template";
-const popupEditProfileSelector = ".popup_type_edit-user-profile";
-const popupEditProfilePhotoSelector = ".popup_type_editing_photo_profile";
-const popupOpenProfileButton = document.querySelector(".profile__name-edit");
-const popupCardsOpenButton = document.querySelector(".profile__vector");
-const cardsContainer = document.querySelector(".elements");
-const textProfileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const profileNameInput = document.querySelector(".popup__item_profile_name");
-const profileJobInput = document.querySelector(".popup__item_profile_job");
-const addingInactiveClassForSubmit = document.querySelector(".popup_cards__submit");
-const profileImage = document.querySelector(".profile__image");
-const profilePhotoContainer = document.querySelector(".profile__photo_container");
 
 /** Обработчики  */
 function handleTrashClick(card) {
@@ -72,7 +58,8 @@ function handleFormSubmit(objectNewCard) {
   addCardPopup.renderLoading(true);
   apiPraktikum.postCardOnTheServer(objectNewCard)
   .then(()=>{
-    cardsList.addItem(newElement);
+     cardsList.addItem(newElement);
+  
     addingInactiveClassForSubmit.classList.add(
       validationConfig.inactiveButtonClass
     );
@@ -85,7 +72,6 @@ function handleFormSubmit(objectNewCard) {
 }
 
 function handleFormWithDeleteSubmit(card){
-  console.log(card.id);
   apiPraktikum.deleteCard(card.id)
   .then(()=> {
     console.log('It is success');
@@ -209,12 +195,13 @@ addCardValidator.enableValidation();
 
 /** Инициализация данных с сервера */
 Promise.all([ 
-  userInfo.getUserInfoFromServer(),
-  apiPraktikum.getInitialCards()
-  .then((cards) => {
-    cardsList.renderItems(cards);
-  })
+  apiPraktikum.getInitialCards(),
+  userInfo.getUserInfoFromServer()
 ])
+.then((values) => {
+  const [initialCards] = values;
+  cardsList.renderItems(initialCards);
+})
 .catch((err) =>{
   console.log(err);
 })

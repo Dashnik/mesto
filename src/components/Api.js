@@ -70,9 +70,6 @@ export default class Api {
       method: "DELETE",
       headers: this.headers,
     })
-    .then((res) => {
-      return this._getResponseData(res);
-    })
   }
 
   putLike(cardId) {

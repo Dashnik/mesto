@@ -4,7 +4,6 @@ export class Card {
     card,
     handleCardClick,
     handleTrashClick,
-    // handleLikeClick
     apiPraktikum
   ) {
     this._selector = cardSelector;

@@ -10,6 +10,7 @@ export class FormValidator {
     this._formProfileInputsSelector = object.formProfileInputsSelector;
     this._formProfileInputsErrorsSelector = object.formProfileInputsErrorsSelector;
   }
+  
   /**  Функция, которая добавляет класс с ошибкой */
   _showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);

@@ -11,11 +11,15 @@ export default class PopupWithForm extends Popup {
     const inputValues = {};
     const emptyId = '';
 
+    /**
+     * если я не буду добавлять id новой карточке, то мне негде будет брать
+     * информацию кому принадлежит новая карточка, а если я не буду знать 
+     * кому принадлежит новая карточка, то я не буду знать отрисовывать логотип корзины или нет.
+     */
     const ownerID = {
       _id: "2911d40eec43f0326fe3701b"
     }
   
-
     const valuesFromInputs = this._popupElement.querySelectorAll(
       ".popup__input"
     );
@@ -34,7 +38,6 @@ export default class PopupWithForm extends Popup {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
     })
-   
   }
 
   close() {
