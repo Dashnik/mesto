@@ -196,11 +196,16 @@ addCardValidator.enableValidation();
 /** Инициализация данных с сервера */
 Promise.all([ 
   apiPraktikum.getInitialCards(),
-  userInfo.getUserInfoFromServer()
+  apiPraktikum.getProfileInfo()
 ])
 .then((values) => {
-  const [initialCards] = values;
+  const [initialCards,profileInfo] = values;
+ console.log(profileInfo);
   cardsList.renderItems(initialCards);
+
+  profileImage.src = profileInfo.avatar;
+  textProfileName.textContent = profileInfo.name;
+  profileDescription.textContent = profileInfo.about;
 })
 .catch((err) =>{
   console.log(err);
