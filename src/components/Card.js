@@ -58,12 +58,16 @@ export class Card {
       });
   }
 
+  _toggleCounterLikes(counterLikesElement,countLikesFromServer){
+    counterLikesElement.textContent = countLikesFromServer.likes.length;
+  }
+
   _handleCountLikes(cardID, counterLikesElement, isLiked){
     if (isLiked == null) {
       const promiseDeleteLikes = this._apiPraktikum .deleteLike(cardID);
       promiseDeleteLikes
       .then((countLikesFromServer) => {
-        counterLikesElement.textContent = countLikesFromServer.likes.length;
+        this._toggleCounterLikes(counterLikesElement,countLikesFromServer);
       })
       .catch((error)=>{
         console.log(error);
@@ -72,7 +76,7 @@ export class Card {
       const promiseLikes = this._apiPraktikum .putLike(cardID);
       promiseLikes
       .then((countLikesFromServer) => {
-        counterLikesElement.textContent = countLikesFromServer.likes.length;
+        this._toggleCounterLikes(counterLikesElement,countLikesFromServer);
       })
       .catch((error)=>{
         console.log(error);

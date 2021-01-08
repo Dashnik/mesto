@@ -202,8 +202,8 @@ Promise.all([
   const [initialCards,profileInfo] = values;
 
   cardsList.renderItems(initialCards);
-  userInfo.setUserInfo(profileInfo.name,profileInfo.about)
-  profileImage.src = profileInfo.avatar;
+  userInfo.setUserInfo(profileInfo.name,profileInfo.about);
+  userInfo.setUserAvatar(profileInfo.avatar);
 })
 .catch((err) =>{
   console.log(err);
