@@ -3,7 +3,7 @@ import {Card} from "../components/Card.js";
 import {FormValidator} from "../components/FormValidator.js";
 import {Section} from "../components/Section.js";
 import {validationConfig, overlay,popupCardsSelector,popupImageSelector,popupTrashSelector,
-  cardTemplate,popupEditProfileSelector,popupEditProfilePhotoSelector,popupOpenProfileButton,
+  cardTemplate, profileImageSelector, popupEditProfileSelector,popupEditProfilePhotoSelector,popupOpenProfileButton,
   popupCardsOpenButton,cardsContainer, textProfileName, profileDescription,profileNameInput,
   profileJobInput,addingInactiveClassForSubmit, profileImage,profilePhotoContainer
 } from "../scripts/constants.js";
@@ -23,7 +23,7 @@ function handleEditPhotoProfileSubmit(newLink) {
   popupWithEditPhoto.renderLoading(true);
   apiPraktikum.changeAvatar(newLink)
   .then(()=>{
-    profileImage.src = newLink.avatar;
+    userInfo.setUserAvatar(newLink.avatar);
     popupWithEditPhoto.close();
   })
   .catch((error) =>{
@@ -118,7 +118,7 @@ const popupWithEditPhoto = new PopupWithForm(
 const userInfo = new UserInfo(
   textProfileName,
   profileDescription,
-  apiPraktikum
+  profileImageSelector
 );
 
 const cardsList = new Section(
@@ -202,10 +202,8 @@ Promise.all([
   const [initialCards,profileInfo] = values;
 
   cardsList.renderItems(initialCards);
-
+  userInfo.setUserInfo(profileInfo.name,profileInfo.about)
   profileImage.src = profileInfo.avatar;
-  textProfileName.textContent = profileInfo.name;
-  profileDescription.textContent = profileInfo.about;
 })
 .catch((err) =>{
   console.log(err);

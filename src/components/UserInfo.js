@@ -1,8 +1,8 @@
 export default class UserInfo {
-  constructor(userNameElement, userDescriptionElement,apiPraktikum) {
+  constructor(userNameElement, userDescriptionElement,userAvatarSelector) {
     this._selectorName = userNameElement;
     this._selectorDescription = userDescriptionElement;
-    this.apiPraktikum = apiPraktikum;
+    this._avatar = document.querySelector(userAvatarSelector);
   }
 
   getUserInfo() {
@@ -18,8 +18,8 @@ export default class UserInfo {
   }
 
   setUserInfo(userName, userDescription) {
-    const nameInputValue = userName.value; 
-    const jobInputValue = userDescription.value; 
+    const nameInputValue = userName; 
+    const jobInputValue = userDescription; 
  
     this._selectorName.textContent = nameInputValue; 
     this._selectorDescription.textContent = jobInputValue; 

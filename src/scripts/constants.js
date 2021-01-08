@@ -15,6 +15,7 @@ export const popupCardsSelector = ".popup_type_new-cards";
 export const popupImageSelector = ".popup_type_image";
 export const popupTrashSelector = ".popup_type_removing_card";
 export const cardTemplate = ".card-template";
+export const profileImageSelector = (".profile__image");
 export const popupEditProfileSelector = ".popup_type_edit-user-profile";
 export const popupEditProfilePhotoSelector = ".popup_type_editing_photo_profile";
 export const popupOpenProfileButton = document.querySelector(".profile__name-edit");
