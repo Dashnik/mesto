@@ -61,14 +61,22 @@ export class Card {
   _handleCountLikes(cardID, counterLikesElement, isLiked){
     if (isLiked == null) {
       const promiseDeleteLikes = this._apiPraktikum .deleteLike(cardID);
-      promiseDeleteLikes.then((countLikesFromServer) => {
+      promiseDeleteLikes
+      .then((countLikesFromServer) => {
         counterLikesElement.textContent = countLikesFromServer.likes.length;
-      });
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
     } else {
       const promiseLikes = this._apiPraktikum .putLike(cardID);
-      promiseLikes.then((countLikesFromServer) => {
+      promiseLikes
+      .then((countLikesFromServer) => {
         counterLikesElement.textContent = countLikesFromServer.likes.length;
-      });
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
     }
   }
 
