@@ -47,6 +47,9 @@ function handleProfileFormSubmit() {
     userInfo.setUserInfo(profileNameInput, profileJobInput);
     profilePopUp.close();
   })
+  .catch((error)=>{
+    console.log(error);
+  })
   .finally(()=>{
     profilePopUp.renderLoading(false);
   })
@@ -66,6 +69,9 @@ function handleFormSubmit(objectNewCard) {
   
    addCardPopup.close();
   })
+  .catch((error)=>{
+    console.log(error);
+  })
   .finally(()=>{
     addCardPopup.renderLoading(false);
   })
@@ -74,18 +80,12 @@ function handleFormSubmit(objectNewCard) {
 function handleFormWithDeleteSubmit(card){
   apiPraktikum.deleteCard(card.id)
   .then(()=> {
-    console.log('It is success');
     card.remove();
-  
-  })
-  .catch(err => {
-    console.log('It is error');
-    console.log(err);
-  }) 
-  .finally(()=>{
-
     trashPopup.close();
   })
+  .catch(err => {
+    console.log(err);
+  }) 
 }
 
 function handleCardClick(link, name) {
@@ -200,7 +200,7 @@ Promise.all([
 ])
 .then((values) => {
   const [initialCards,profileInfo] = values;
- console.log(profileInfo);
+
   cardsList.renderItems(initialCards);
 
   profileImage.src = profileInfo.avatar;
