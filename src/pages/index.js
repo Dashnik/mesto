@@ -44,7 +44,7 @@ function handleProfileFormSubmit() {
   profilePopUp.renderLoading(true);
   apiPraktikum.setNewProfile(profileInfo)
   .then(()=>{
-    userInfo.setUserInfo(profileNameInput, profileJobInput);
+    userInfo.setUserInfo(profileInfo.name, profileInfo.about);
     profilePopUp.close();
   })
   .catch((error)=>{
@@ -201,7 +201,6 @@ Promise.all([
 ])
 .then((values) => {
   const [initialCards,profileInfo] = values;
-  //console.log(initialCards);
   const userId = profileInfo._id;
 
   cardsList.renderItems(initialCards,userId);
