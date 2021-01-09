@@ -56,11 +56,11 @@ function handleProfileFormSubmit() {
 }
 
 function handleFormSubmit(objectNewCard) {
-
-  const newElement = createCard(objectNewCard);
   addCardPopup.renderLoading(true);
   apiPraktikum.postCardOnTheServer(objectNewCard)
-  .then(()=>{
+  .then((dataCardAfterCreation)=>{
+ 
+    const newElement = createCard(dataCardAfterCreation,dataCardAfterCreation.owner._id);
      cardsList.addItem(newElement);
   
     addingInactiveClassForSubmit.classList.add(
@@ -123,8 +123,8 @@ const userInfo = new UserInfo(
 
 const cardsList = new Section(
   {
-    renderer: (card) => {
-      const element = createCard(card);
+    renderer: (card,userId) => {
+      const element = createCard(card,userId);
       cardsList.addItem(element,true);
     },
   },
@@ -167,13 +167,14 @@ profilePhotoContainer.addEventListener("click", function () {
 });
 
 
-function createCard(card) {
+function createCard(card,userId) {
   const cardElement = new Card(
     cardTemplate,
     card,
     handleCardClick,
     handleTrashClick,
-    apiPraktikum
+    apiPraktikum,
+    userId
   );
 
   const element = cardElement.getElement();
@@ -200,8 +201,9 @@ Promise.all([
 ])
 .then((values) => {
   const [initialCards,profileInfo] = values;
+  const userId = profileInfo._id;
 
-  cardsList.renderItems(initialCards);
+  cardsList.renderItems(initialCards,userId);
   userInfo.setUserInfo(profileInfo.name,profileInfo.about);
   userInfo.setUserAvatar(profileInfo.avatar);
 })

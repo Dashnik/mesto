@@ -4,7 +4,8 @@ export class Card {
     card,
     handleCardClick,
     handleTrashClick,
-    apiPraktikum
+    apiPraktikum,
+    userId
   ) {
     this._selector = cardSelector;
     this._cardimage = card.link;
@@ -15,6 +16,8 @@ export class Card {
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
     this._apiPraktikum = apiPraktikum;
+    this._userId = userId;
+
   }
 
   _getTemplate() {
@@ -84,6 +87,15 @@ export class Card {
     }
   }
 
+  _hideTrashIcon(_ownerId,_userId){
+    const cardTrashIcon = this._element.querySelector(".card__trash");
+    
+    if (this._ownerId !== this._userId) {
+      cardTrashIcon.src = "";
+      cardTrashIcon.alt = "";
+    }
+  }
+
   getElement() {
     this._element = this._getTemplate();
     const cardID = this._element.querySelector(".card");
@@ -92,21 +104,17 @@ export class Card {
     const counterLikesElement = this._element.querySelector(
       ".card__counter-like"
     );
-    const cardTrashIcon = this._element.querySelector(".card__trash");
+    //const cardTrashIcon = this._element.querySelector(".card__trash");
 
     cardImageElement.src = this._cardimage;
     cardImageElement.alt = this._cardTitle;
     counterLikesElement.textContent = this._cardLikes.length;
     this._element.querySelector(".card__title").textContent = this._cardTitle;
-    this._apiPraktikum.getProfileInfo()
-    .then((profileData)=>{
-    
-      if (this._ownerId !== profileData._id) {
-  
-        cardTrashIcon.src = "";
-        cardTrashIcon.alt = "";
-      }
-    })
+    // if (this._ownerId !== this._userId) {
+    //     cardTrashIcon.src = "";
+    //     cardTrashIcon.alt = "";
+    //   }
+    this._hideTrashIcon(this._ownerId,this._userId);
     
     this._setListeners();
     return this._element;
