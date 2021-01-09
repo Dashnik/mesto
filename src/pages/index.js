@@ -201,6 +201,7 @@ Promise.all([
 ])
 .then((values) => {
   const [initialCards,profileInfo] = values;
+  //console.log(initialCards);
   const userId = profileInfo._id;
 
   cardsList.renderItems(initialCards,userId);
