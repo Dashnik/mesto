@@ -104,16 +104,12 @@ export class Card {
     const counterLikesElement = this._element.querySelector(
       ".card__counter-like"
     );
-    //const cardTrashIcon = this._element.querySelector(".card__trash");
 
     cardImageElement.src = this._cardimage;
     cardImageElement.alt = this._cardTitle;
     counterLikesElement.textContent = this._cardLikes.length;
     this._element.querySelector(".card__title").textContent = this._cardTitle;
-    // if (this._ownerId !== this._userId) {
-    //     cardTrashIcon.src = "";
-    //     cardTrashIcon.alt = "";
-    //   }
+
     this._hideTrashIcon(this._ownerId,this._userId);
     
     this._setListeners();
